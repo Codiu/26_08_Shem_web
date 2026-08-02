@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Об авторе | Шемшук Владимир Алексеевич</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body class="pearl-theme">
+
+  <!-- Dynamic Canvas Background (Interactive Floating Particles) -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Pearl Integrated Header -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Top Row: Brand Logo & Official Sites List -->
+      <div class="header-top">
+        <a href="index.html" class="header-brand">
+          <img src="dl/Контакты _ Шемшук Владимир Алексеевич_files/shemsh_full.png" alt="Шемшук В. А." class="avatar-img" onerror="this.style.display='none'">
+          <div class="brand-text">
+            <span class="brand-title">Владимир Алексеевич Шемшук</span>
+            <span class="brand-sub">Официальный ресурс автора</span>
+          </div>
+        </a>
+
+        <!-- Official Sites Pills -->
+        <div class="header-sites">
+          <span class="sites-label">Другие ресурсы автора:</span>
+          <div class="sites-pills">
+            <a href="https://shemshuk-book.ru" target="_blank" rel="noopener" class="site-pill" title="Официальный магазин электронных книг">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <span>Электронные книги <small>(shemshuk-book.ru)</small></span>
+            </a>
+            <a href="https://youtube.com/@shemshuk" target="_blank" rel="noopener" class="site-pill youtube-pill" title="Официальный YouTube Канал">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>YouTube канал</span>
+            </a>
+          </div>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Bottom Row: Integrated Main Navigation -->
+      <nav class="header-nav">
+        <a href="#">ГЛАВНАЯ</a>
+        <a href="#">МАГАЗИН</a>
+        <a href="shkola.html">ШКОЛА</a>
+        <a href="#">КОНЦЕРТ</a>
+        <a href="molitva.html">МОЛИТВА-ТРЕБА</a>
+        <a href="#">БЛОГ</a>
+        <a href="ob-avtore.html" class="active">ОБ АВТОРЕ</a>
+        <a href="index.html">КОНТАКТЫ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#">ГЛАВНАЯ</a>
+    <a href="#">МАГАЗИН</a>
+    <a href="shkola.html">ШКОЛА</a>
+    <a href="#">КОНЦЕРТ</a>
+    <a href="molitva.html">МОЛИТВА-ТРЕБА</a>
+    <a href="#">БЛОГ</a>
+    <a href="ob-avtore.html" class="active">ОБ АВТОРЕ</a>
+    <a href="index.html">КОНТАКТЫ</a>
+  </div>
+
+  <!-- Page Container -->
+  <main class="page-container">
+    
+    <!-- Main About Author Card -->
+    <article class="about-box pearl-card">
+      <h1 class="section-title">ОБ АВТОРЕ</h1>
+
+      <div class="about-content-grid">
+        
+        <!-- Left: Author Portrait Image -->
+        <div class="author-photo-wrapper">
+          <img src="dl/Об авторе _ Шемшук Владимир Алексеевич_files/shemshuk_ob_avtore.jpg" alt="Владимир Алексеевич Шемшук" class="author-photo" onerror="this.src='dl/Контакты _ Шемшук Владимир Алексеевич_files/shemsh_full.png'">
+          <div class="author-photo-caption">
+            <strong>Владимир Алексеевич Шемшук</strong>
+            <span>Писатель, биолог, исследователь</span>
+          </div>
+        </div>
+
+        <!-- Right: Biography & Activity Highlights -->
+        <div class="author-bio">
+          <h2 class="bio-subtitle">Владимир Алексеевич Шемшук</h2>
+          
+          <ul class="achievements-list">
+            <li>Исследователь, работающий в области экологии, социологии, культурологии, физиологии;</li>
+            <li>Писатель, биолог, физик;</li>
+            <li>Исследователь истинной истории Руси;</li>
+            <li>Создатель Пермской комиссии по аномальным явлениям;</li>
+            <li>Один из организаторов международного форума по вступлению Человечества в Космическую Коалицию;</li>
+            <li>Организатор Уральского фонда Рерихов;</li>
+            <li>Исследователь народных магических практик, много лет посвятивший исследованию русской волшебной культуры;</li>
+            <li>Автор более 200 статей в журналах и газетах, постоянный эксперт по чудесным и загадочным явлениям в Природе на телевидении.</li>
+          </ul>
+
+          <div class="books-highlight-panel">
+            <h3>Книги и серии трудов</h3>
+            <p>
+              Является автором более 50-ти книг серии <strong>«В поисках сокровенного»</strong>: 
+              <em>«Диалог Земля-Космос»</em>, <em>«Бабы-Яги — Кто они?»</em>, <em>«Этическое государство»</em>, 
+              <em>«Возвращение Рая на Землю»</em>, <em>«Сыроедение — путь к бессмертию»</em>, 
+              <em>«Когда люди были богами»</em> и др., посвящённых русской истории, культурным традициям, древлеправославию, русским народным методам оздоровления, общим тиражом более миллиона экземпляров.
+            </p>
+            <p>
+              А также более десятка книг серии <strong>«Русская волшебная культура»</strong>, такие как 
+              <em>«Книга Волшбы»</em>, <em>«Книга Метеургии»</em>, <em>«Книга Демиургии»</em>, <em>«Книга Колодавства»</em> (в трёх томах).
+            </p>
+            <p class="summary-note">
+              В своих книгах автор открывает страницы истории Руси и нашей планеты в новом свете и освещает высочайший уровень культуры ушедших цивилизаций.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© 2020-2026 Владимир Алексеевич Шемшук.</p>
+      <div class="footer-links">
+        <a href="terms.html">Пользовательское соглашение</a>
+        <span class="sep">•</span>
+        <a href="policy.html">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=4"></script>
+</body>
+</html>

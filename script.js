@@ -73,23 +73,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Copy Postal Address to Clipboard Handler
-  const copyBtn = document.getElementById('copyAddressBtn');
-  const toast = document.getElementById('copyToast');
 
-  if (copyBtn) {
-    copyBtn.addEventListener('click', () => {
-      const address = "Россия, 152020, Ярославская область, г. Переславль-Залесский, ул. Свободы, дом 1а. До востребования — Армишева Наталья Владимировна";
-      navigator.clipboard.writeText(address).then(() => {
-        if (toast) {
-          toast.classList.add('show');
-          setTimeout(() => {
-            toast.classList.remove('show');
-          }, 2500);
-        }
-      }).catch(err => {
-        console.error('Failed to copy: ', err);
-      });
-    });
-  }
 });

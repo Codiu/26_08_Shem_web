@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Контакты | Шемшук Владимир Алексеевич</title>
+  <title>Школа | Шемшук Владимир Алексеевич</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body class="pearl-theme">
 
-  <!-- Dynamic Canvas Background (Interactive Floating Particles) -->
+  <!-- Dynamic Canvas Background -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Pearl Integrated Header (Logo + Sites + Main Nav in single cohesive header) -->
+  <!-- Pearl Integrated Header -->
   <header class="header">
     <div class="header-inner">
       <!-- Top Row: Brand Logo & Official Sites List -->
       <div class="header-top">
-        <a href="#" class="header-brand">
+        <a href="index.html" class="header-brand">
           <img src="dl/Контакты _ Шемшук Владимир Алексеевич_files/shemsh_full.png" alt="Шемшук В. А." class="avatar-img" onerror="this.style.display='none'">
           <div class="brand-text">
             <span class="brand-title">Владимир Алексеевич Шемшук</span>
@@ -51,12 +51,12 @@
       <nav class="header-nav">
         <a href="#">ГЛАВНАЯ</a>
         <a href="#">МАГАЗИН</a>
-        <a href="shkola.html">ШКОЛА</a>
+        <a href="shkola.html" class="active">ШКОЛА</a>
         <a href="#">КОНЦЕРТ</a>
         <a href="molitva.html">МОЛИТВА-ТРЕБА</a>
         <a href="#">БЛОГ</a>
         <a href="ob-avtore.html">ОБ АВТОРЕ</a>
-        <a href="index.html" class="active">КОНТАКТЫ</a>
+        <a href="index.html">КОНТАКТЫ</a>
       </nav>
     </div>
   </header>
@@ -65,67 +65,73 @@
   <div class="mobile-drawer" id="mobileDrawer">
     <a href="#">ГЛАВНАЯ</a>
     <a href="#">МАГАЗИН</a>
-    <a href="shkola.html">ШКОЛА</a>
+    <a href="shkola.html" class="active">ШКОЛА</a>
     <a href="#">КОНЦЕРТ</a>
     <a href="molitva.html">МОЛИТВА-ТРЕБА</a>
     <a href="#">БЛОГ</a>
     <a href="ob-avtore.html">ОБ АВТОРЕ</a>
-    <a href="index.html" class="active">КОНТАКТЫ</a>
+    <a href="index.html">КОНТАКТЫ</a>
   </div>
 
   <!-- Page Container -->
   <main class="page-container">
     
-    <!-- Main Contact Card -->
-    <div class="contact-box pearl-card">
-      <h1 class="section-title">КОНТАКТЫ</h1>
+    <article class="shkola-box pearl-card">
+      <h1 class="section-title">ШКОЛА</h1>
 
-      <div class="contact-grid">
-        
-        <!-- Phone Row -->
-        <div class="grid-row">
-          <div class="row-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <span class="grid-label">Телефон:</span>
-          <a href="tel:+79262265570" class="grid-value link">+7 (926) 226-55-70</a>
-        </div>
-
-        <!-- Email Row -->
-        <div class="grid-row">
-          <div class="row-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <span class="grid-label">Email:</span>
-          <a href="mailto:vfpz1@yandex.ru" class="grid-value link">vfpz1@yandex.ru</a>
-        </div>
-
-        <!-- Website Row -->
-        <div class="grid-row">
-          <div class="row-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <span class="grid-label">Официальный сайт:</span>
-          <a href="https://shemshuk.net" target="_blank" class="grid-value link">shemshuk.net</a>
-        </div>
-
-        <!-- Address Card Panel -->
-        <div class="address-panel">
-          <div class="address-header">
-            <div class="address-title-group">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="address-title">Почтовый адрес для писем:</span>
-            </div>
-          </div>
-
-          <p class="address-details" id="addressText">
-            Россия, 152020, Ярославская область, г. Переславль-Залесский, ул. Свободы, дом 1а.<br>
-            <strong class="highlight">До востребования</strong> — Армишева Наталья Владимировна, тел: <a href="tel:+79262265570" class="link">+7 (926) 226-55-70</a>
-          </p>
-        </div>
-
+      <!-- Main Course Header -->
+      <div class="course-header-banner">
+        <h2>Авторская школа Шемшука по Древлеправославной культуре</h2>
+        <span class="date-badge">С 3 Августа 2026 года</span>
       </div>
-    </div>
+
+      <!-- Call to Action Card -->
+      <div class="apply-card">
+        <div class="apply-text">
+          <h3>Запись в Школу</h3>
+          <p>Для участия в обучении заполните официальную форму заявки на Yandex.Forms или свяжитесь по почте.</p>
+        </div>
+        <div class="apply-actions">
+          <a href="https://forms.yandex.ru/u/64a30f7e3e9d0899ae6da987/" target="_blank" rel="noopener" class="btn-primary">
+            <span>Заполнить заявку</span> →
+          </a>
+          <span class="fallback-note">Если форма не работает, пишите на: <a href="mailto:shkola@shemshuk.net?subject=Заявка%20в%20школу%20Шемшука" class="link">shkola@shemshuk.net</a></span>
+        </div>
+      </div>
+
+      <!-- Program Details -->
+      <div class="program-details-panel">
+        <h3>Условия и формат обучения</h3>
+        <p class="privacy-note"><em>По ряду причин информация о подробной программе школы не публикуется в открытом доступе.</em></p>
+
+        <ul class="program-features-list">
+          <li><strong>Формат:</strong> Занятия проходят дистанционно, 5 раз в месяц (всего 25 занятий в курсе);</li>
+          <li><strong>Время начала:</strong> С 3 Августа в 19:00 по московскому времени;</li>
+          <li><strong>Длительность:</strong> В среднем по 2 академических часа (1 час — основной лекционный материал, 1 час — ответы на вопросы слушателей);</li>
+          <li><strong>Стоимость:</strong> 1 000 рублей за одно занятие. Оплата производится ежемесячно.</li>
+        </ul>
+      </div>
+
+      <!-- Author Video Section (Embedded Vimeo Player) -->
+      <div class="school-video-panel">
+        <div class="video-panel-header">
+          <h3>Видеозапись: «Русская жреческая школа»</h3>
+          <div class="video-links-group">
+            <a href="https://rutube.ru/channel/26401259/videos/" target="_blank" rel="noopener" class="video-badge rutube">
+              ▶ RuTube
+            </a>
+            <a href="https://www.youtube.com/@shemshuk" target="_blank" rel="noopener" class="video-badge youtube">
+              ▶ YouTube
+            </a>
+          </div>
+        </div>
+
+        <div class="video-embed-container">
+          <iframe src="https://player.vimeo.com/video/1048620467" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Русская жреческая школа"></iframe>
+        </div>
+      </div>
+
+    </article>
   </main>
 
   <!-- Footer -->
@@ -140,6 +146,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
