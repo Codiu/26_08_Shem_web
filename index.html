@@ -7,43 +7,47 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
-<body>
-  <!-- Dynamic Canvas Background -->
+<body class="pearl-theme">
+
+  <!-- Dynamic Canvas Background (Interactive Floating Particles) -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Compact Top Header (Logo + Sites Only) -->
+  <!-- Pearl Light Header (Logo + Official Sites List) -->
   <header class="header">
     <div class="header-inner">
-      <!-- Left: Logo & Author Name -->
+      <!-- Left: Brand Logo & Title -->
       <a href="#" class="header-brand">
         <img src="dl/Контакты _ Шемшук Владимир Алексеевич_files/shemsh_full.png" alt="Шемшук В. А." class="avatar-img" onerror="this.style.display='none'">
         <div class="brand-text">
           <span class="brand-title">Владимир Алексеевич Шемшук</span>
-          <span class="brand-sub">Официальный ресурс</span>
+          <span class="brand-sub">Официальный ресурс автора</span>
         </div>
       </a>
 
-      <!-- Right: Official Sites Links -->
+      <!-- Right: Official Sites List -->
       <div class="header-sites">
-        <a href="https://shemshuk.net" target="_blank" rel="noopener" class="site-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <span>shemshuk.net</span>
-        </a>
-        <a href="https://shemshuk-book.ru" target="_blank" rel="noopener" class="site-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          <span>shemshuk-book.ru <small>(цифровые книги)</small></span>
-        </a>
-        <a href="https://youtube.com/@shemshuk" target="_blank" rel="noopener" class="site-pill">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          <span>@shemshuk</span>
-        </a>
+        <span class="sites-label">Официальные сайты:</span>
+        <div class="sites-pills">
+          <a href="https://shemshuk.net" target="_blank" rel="noopener" class="site-pill" title="Официальный сайт">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span>shemshuk.net</span>
+          </a>
+          <a href="https://shemshuk-book.ru" target="_blank" rel="noopener" class="site-pill" title="Магазин цифровых книг">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>shemshuk-book.ru <small>(книги)</small></span>
+          </a>
+          <a href="https://youtube.com/@shemshuk" target="_blank" rel="noopener" class="site-pill youtube-pill" title="YouTube Канал">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>@shemshuk</span>
+          </a>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Menu Drawer -->
+  <!-- Mobile Drawer -->
   <div class="mobile-drawer" id="mobileDrawer">
     <a href="#">ГЛАВНАЯ</a>
     <a href="#">МАГАЗИН</a>
@@ -55,11 +59,11 @@
     <a href="#" class="active">КОНТАКТЫ</a>
   </div>
 
-  <!-- Page Main Content Area -->
+  <!-- Page Container -->
   <main class="page-container">
     
-    <!-- Navigation Buttons Bar (Belongs to the Page!) -->
-    <nav class="page-nav-bar glass-panel">
+    <!-- Navigation Buttons Bar -->
+    <nav class="page-nav-bar pearl-card">
       <div class="nav-links">
         <a href="#">ГЛАВНАЯ</a>
         <a href="#">МАГАЗИН</a>
@@ -75,33 +79,61 @@
       </button>
     </nav>
 
-    <!-- Main Contact Box -->
-    <div class="contact-box glass-panel">
+    <!-- Main Contact Card -->
+    <div class="contact-box pearl-card">
       <h2 class="section-title">КОНТАКТЫ</h2>
 
       <div class="contact-grid">
+        
+        <!-- Phone Row -->
         <div class="grid-row">
-          <span class="grid-label">Тел:</span>
-          <a href="tel:+79262265570" class="grid-value link">+7(926) 226-55-70</a>
+          <div class="row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <span class="grid-label">Телефон:</span>
+          <a href="tel:+79262265570" class="grid-value link">+7 (926) 226-55-70</a>
         </div>
 
+        <!-- Email Row -->
         <div class="grid-row">
-          <span class="grid-label">email:</span>
+          <div class="row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <span class="grid-label">Email:</span>
           <a href="mailto:vfpz1@yandex.ru" class="grid-value link">vfpz1@yandex.ru</a>
         </div>
 
+        <!-- Website Row -->
         <div class="grid-row">
-          <span class="grid-label">Официальные сайты:</span>
+          <div class="row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <span class="grid-label">Официальный сайт:</span>
           <a href="https://shemshuk.net" target="_blank" class="grid-value link">shemshuk.net</a>
         </div>
 
+        <!-- Address Card Panel -->
         <div class="address-panel">
-          <span class="address-title">Почтовый адрес:</span>
-          <p class="address-details">
+          <div class="address-header">
+            <div class="address-title-group">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span class="address-title">Почтовый адрес для писем:</span>
+            </div>
+            <!-- One-click Copy Address Button -->
+            <button class="copy-btn" id="copyAddressBtn" title="Скопировать почтовый адрес">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Скопировать адрес</span>
+            </button>
+          </div>
+
+          <p class="address-details" id="addressText">
             Россия, 152020, Ярославская область, г. Переславль-Залесский, ул. Свободы, дом 1а.<br>
-            <strong class="highlight">До востребования</strong> — Армишева Наталья Владимировна <a href="tel:+79262265570" class="link">+7(926) 226-55-70</a>
+            <strong class="highlight">До востребования</strong> — Армишева Наталья Владимировна, тел: <a href="tel:+79262265570" class="link">+7 (926) 226-55-70</a>
           </p>
+
+          <div class="copy-toast" id="copyToast">Адрес скопирован в буфер обмена!</div>
         </div>
+
       </div>
     </div>
   </main>
@@ -118,6 +150,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

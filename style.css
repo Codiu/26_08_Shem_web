@@ -1,12 +1,12 @@
-/* Strict Grid Alignment & Compact Layout */
+/* Pearl Light Premium Concept */
 :root {
   --bg-dark: #050811;
 
-  /* Theme Tokens */
+  /* Pearl Light Palette */
   --header-bg: rgba(255, 255, 255, 0.95);
   --panel-bg: rgba(255, 255, 255, 0.96);
   --panel-border: rgba(226, 232, 240, 0.9);
-  --panel-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  --panel-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 
   --text-dark: #0f172a;
   --text-body: #334155;
@@ -18,7 +18,7 @@
 
   --grid-width: 980px;
 
-  --radius-lg: 16px;
+  --radius-lg: 18px;
   --radius-md: 10px;
   --radius-pill: 20px;
 
@@ -26,6 +26,7 @@
   --font-heading: 'Outfit', 'Inter', sans-serif;
 
   --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Reset */
@@ -35,10 +36,10 @@
   box-sizing: border-box;
 }
 
-body {
+body.pearl-theme {
   font-family: var(--font-family);
   background-color: var(--bg-dark);
-  background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.25), rgba(7, 9, 14, 0.55)),
+  background-image: radial-gradient(circle at 50% 15%, rgba(15, 23, 42, 0.2), rgba(5, 8, 17, 0.7)),
                     url("dl/Контакты _ Шемшук Владимир Алексеевич_files/stars_sky_shore_84534_1920x1080m.jpg");
   background-size: cover;
   background-position: center top;
@@ -69,7 +70,7 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--panel-border);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -95,8 +96,8 @@ body {
 }
 
 .avatar-img {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--accent-blue);
@@ -110,7 +111,7 @@ body {
 
 .brand-title {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-dark);
   letter-spacing: -0.01em;
@@ -125,8 +126,24 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* Header Sites Pills (Right Side) */
+/* Header Sites Group (Label + Pills) */
 .header-sites {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sites-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.sites-pills {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -140,10 +157,10 @@ body {
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: var(--radius-pill);
-  padding: 5px 12px;
+  padding: 6px 14px;
   color: var(--text-dark);
   text-decoration: none;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 600;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
   transition: all var(--transition-fast);
@@ -158,8 +175,8 @@ body {
   background: var(--accent-blue);
   border-color: var(--accent-blue);
   color: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px var(--accent-glow);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--accent-glow);
 }
 
 .site-pill:hover svg {
@@ -168,7 +185,7 @@ body {
 
 .site-pill small {
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
 }
 
 .site-pill:hover small {
@@ -187,11 +204,11 @@ body {
   gap: 24px;
 }
 
-/* Glassmorphism Utility */
-.glass-panel {
+/* Pearl Card Panel Utility */
+.pearl-card {
   background: var(--panel-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--panel-shadow);
@@ -222,7 +239,7 @@ body {
   letter-spacing: 0.04em;
   padding: 8px 14px;
   border-radius: 8px;
-  background: rgba(241, 245, 249, 0.7);
+  background: rgba(241, 245, 249, 0.75);
   border: 1px solid transparent;
   white-space: nowrap;
   transition: all var(--transition-fast);
@@ -285,7 +302,7 @@ body {
 
 /* Main Contact Card Box */
 .contact-box {
-  padding: 40px;
+  padding: 44px;
 }
 
 .section-title {
@@ -294,7 +311,7 @@ body {
   font-weight: 700;
   color: var(--text-dark);
   letter-spacing: 0.03em;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
   border-bottom: 3px solid var(--accent-blue);
   padding-bottom: 10px;
   display: inline-block;
@@ -304,20 +321,33 @@ body {
 .contact-grid {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 .grid-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   font-size: 1.05rem;
-  padding-bottom: 12px;
+  padding-bottom: 14px;
   border-bottom: 1px dashed #e2e8f0;
 }
 
+.row-icon {
+  width: 38px;
+  height: 38px;
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-blue);
+  flex-shrink: 0;
+}
+
 .grid-label {
-  width: 180px;
+  width: 160px;
   flex-shrink: 0;
   font-weight: 700;
   color: var(--text-dark);
@@ -335,20 +365,72 @@ body {
   text-decoration: underline;
 }
 
+/* Address Panel */
 .address-panel {
-  margin-top: 8px;
+  margin-top: 10px;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-left: 4px solid var(--accent-blue);
-  padding: 20px 24px;
+  padding: 22px 26px;
   border-radius: var(--radius-md);
+  position: relative;
+}
+
+.address-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.address-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-dark);
+}
+
+.address-title-group svg {
+  color: var(--accent-blue);
 }
 
 .address-title {
   font-weight: 700;
-  color: var(--text-dark);
-  display: block;
-  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.copy-btn svg {
+  color: var(--accent-blue);
+}
+
+.copy-btn:hover {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.copy-btn:hover svg {
+  color: #ffffff;
 }
 
 .address-details {
@@ -365,6 +447,31 @@ body {
 .link {
   color: var(--accent-blue);
   text-decoration: none;
+}
+
+/* Copy Toast Notification */
+.copy-toast {
+  display: none;
+  position: absolute;
+  bottom: -40px;
+  right: 20px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.copy-toast.show {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Footer */
@@ -414,6 +521,10 @@ body {
     align-items: flex-start;
     padding: 12px 20px;
   }
+  .header-sites {
+    width: 100%;
+    justify-content: flex-start;
+  }
   .nav-links {
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -433,7 +544,7 @@ body {
   .grid-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 6px;
   }
   .grid-label {
     width: auto;
