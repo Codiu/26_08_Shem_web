@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body class="pearl-theme">
 
@@ -36,7 +36,7 @@
               <span>Электронные книги <small>(shemshuk-book.ru)</small></span>
             </a>
             <a href="https://youtube.com/@shemshuk" target="_blank" rel="noopener" class="site-pill youtube-pill" title="Официальный YouTube Канал">
-              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
               <span>YouTube канал</span>
             </a>
           </div>
@@ -75,53 +75,104 @@
 
   <!-- Page Container -->
   <main class="page-container">
-    
     <article class="shkola-box pearl-card">
-      <h1 class="section-title">ШКОЛА</h1>
-
-      <!-- Main Course Header -->
-      <div class="course-header-banner">
-        <h2>Авторская школа Шемшука по Древлеправославной культуре</h2>
-        <span class="date-badge">С 3 Августа 2026 года</span>
+      
+      <!-- Hero Banner -->
+      <div class="school-hero">
+        <div class="hero-badge">ШКОЛА</div>
+        <h1 class="school-title">Авторская школа Шемшука по Древлеправославной культуре</h1>
+        <div class="start-date-pill">🗓 Начало занятий: с 3 Августа 2026 года</div>
       </div>
 
-      <!-- Call to Action Card -->
-      <div class="apply-card">
-        <div class="apply-text">
-          <h3>Запись в Школу</h3>
-          <p>Для участия в обучении заполните официальную форму заявки на Yandex.Forms или свяжитесь по почте.</p>
+      <!-- 4 Quick Specs Grid -->
+      <div class="school-specs-grid">
+        <div class="spec-card">
+          <div class="spec-icon">📚</div>
+          <div class="spec-content">
+            <h4>25 Занятий</h4>
+            <p>Дистанционно, 5 раз в месяц</p>
+          </div>
         </div>
-        <div class="apply-actions">
-          <a href="https://forms.yandex.ru/u/64a30f7e3e9d0899ae6da987/" target="_blank" rel="noopener" class="btn-primary">
-            <span>Заполнить заявку</span> →
+        <div class="spec-card">
+          <div class="spec-icon">⏰</div>
+          <div class="spec-content">
+            <h4>с 19:00 МСК</h4>
+            <p>По московскому времени</p>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">⏳</div>
+          <div class="spec-content">
+            <h4>2 Ак. Часа</h4>
+            <p>1 час материал + 1 час ответы на вопросы</p>
+          </div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-icon">💳</div>
+          <div class="spec-content">
+            <h4>1 000 ₽ / Занятие</h4>
+            <p>Оплата производится ежемесячно</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Card / Enrollment -->
+      <div class="school-action-box">
+        <div class="action-info">
+          <h3>Заявка на участие</h3>
+          <p>Заполните форму для отправки заявки на обучение.</p>
+        </div>
+        <div class="action-buttons">
+          <a href="https://forms.yandex.ru/u/64a30f7e3e9d0899ae6da987/" target="_blank" rel="noopener" class="btn-enroll">
+            <span>Заполнить заявку</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <span class="fallback-note">Если форма не работает, пишите на: <a href="mailto:shkola@shemshuk.net?subject=Заявка%20в%20школу%20Шемшука" class="link">shkola@shemshuk.net</a></span>
+          <span class="email-note">Если форма не работает, отправьте заявку на почту: <a href="mailto:shkola@shemshuk.net?subject=Заявка%20в%20школу%20Шемшука" class="email-link">shkola@shemshuk.net</a></span>
         </div>
       </div>
 
-      <!-- Program Details -->
-      <div class="program-details-panel">
-        <h3>Условия и формат обучения</h3>
-        <p class="privacy-note"><em>По ряду причин информация о подробной программе школы не публикуется в открытом доступе.</em></p>
+      <!-- Two-column Info section: Program & Author info -->
+      <div class="school-columns-grid">
+        <!-- Left: Program info -->
+        <div class="info-block program-block">
+          <h3>Программа Школы</h3>
+          <div class="block-notice">
+            <span class="lock-icon">ℹ️</span>
+            <span>По ряду причин Информация о программе школы не публикуется.</span>
+          </div>
+          <ul class="program-points">
+            <li>Занятия проходят дистанционно, 5 раз в месяц (всего 25 занятий);</li>
+            <li>Начало занятий 3 Августа с 19:00 по московскому времени;</li>
+            <li>В среднем по 2 академических часа (один час основной материал и один час ответы на вопросы);</li>
+            <li>Цена одного занятия 1000 рублей. Оплата производится ежемесячно.</li>
+          </ul>
+        </div>
 
-        <ul class="program-features-list">
-          <li><strong>Формат:</strong> Занятия проходят дистанционно, 5 раз в месяц (всего 25 занятий в курсе);</li>
-          <li><strong>Время начала:</strong> С 3 Августа в 19:00 по московскому времени;</li>
-          <li><strong>Длительность:</strong> В среднем по 2 академических часа (1 час — основной лекционный материал, 1 час — ответы на вопросы слушателей);</li>
-          <li><strong>Стоимость:</strong> 1 000 рублей за одно занятие. Оплата производится ежемесячно.</li>
-        </ul>
+        <!-- Right: Author Profile -->
+        <div class="info-block author-block">
+          <h3>Владимир Алексеевич Шемшук</h3>
+          <ul class="author-merits">
+            <li>Исследователь, работающий в области экологии и физиологии человека, писатель, доктор философских наук, много лет посвятивший исследованию русской волшебной культуры;</li>
+            <li>Автор более 60 опубликованных книг по русской истории, культурным традициям, древлеправославию, русским народным методам оздоровления, общим тиражом более миллиона книг;</li>
+            <li>Автор более 200 статей в журналах и газетах. Частый гость на телевидении в качестве эксперта по чудесным и загадочным явлениям в Природе;</li>
+            <li>Писатель, учёный-биолог, физик, исследователь, бывший директор Уральского фонда Рерихов и Пермской комиссии по аномальным явлениям.</li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Author Video Section (Embedded Vimeo Player) -->
-      <div class="school-video-panel">
-        <div class="video-panel-header">
-          <h3>Видеозапись: «Русская жреческая школа»</h3>
+      <!-- Video Section -->
+      <div class="school-video-card">
+        <div class="video-card-header">
+          <div class="video-card-title">
+            <span class="play-badge">▶ Видео</span>
+            <h3>Русская жреческая школа</h3>
+          </div>
           <div class="video-links-group">
-            <a href="https://rutube.ru/channel/26401259/videos/" target="_blank" rel="noopener" class="video-badge rutube">
-              ▶ RuTube
-            </a>
             <a href="https://www.youtube.com/@shemshuk" target="_blank" rel="noopener" class="video-badge youtube">
               ▶ YouTube
+            </a>
+            <a href="https://rutube.ru/channel/26401259/videos/" target="_blank" rel="noopener" class="video-badge rutube">
+              ▶ RuTube
             </a>
           </div>
         </div>
@@ -146,6 +197,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

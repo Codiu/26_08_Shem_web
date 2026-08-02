@@ -138,17 +138,17 @@ body.pearl-theme {
 .header-sites {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
+  gap: 12px;
+  white-space: nowrap;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  padding-left: 18px;
 }
 
 .sites-label {
-  font-size: 0.7rem;
-  font-weight: 700;
   color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
 }
 
 .sites-pills {
@@ -754,43 +754,110 @@ body.pearl-theme {
   color: var(--accent-blue);
 }
 
-/* School Page Styles */
+/* Redesigned School Page Styles */
 .shkola-box {
-  padding: 28px 32px;
+  padding: 32px 36px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-.course-header-banner {
+.school-hero {
   background: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(2, 132, 199, 0.02) 100%);
-  border: 1px solid rgba(2, 132, 199, 0.2);
+  border: 1px solid rgba(2, 132, 199, 0.18);
   border-radius: var(--radius-md);
-  padding: 20px 24px;
+  padding: 24px 28px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-.course-header-banner h2 {
+.hero-badge {
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--accent-blue);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.school-title {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text-dark);
-  margin-bottom: 8px;
+  line-height: 1.35;
+  max-width: 720px;
 }
 
-.date-badge {
-  display: inline-block;
+.school-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.start-date-pill {
   background: var(--accent-blue);
   color: #ffffff;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 6px 16px;
   border-radius: var(--radius-sm);
+  margin-top: 4px;
+  box-shadow: 0 3px 10px var(--accent-glow);
 }
 
-.apply-card {
+/* 4 Quick Specs Grid */
+.school-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.spec-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.spec-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-blue);
+}
+
+.spec-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.spec-content h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.spec-content p {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+/* Enrollment Action Box */
+.school-action-box {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 4px solid var(--accent-blue);
   border-radius: var(--radius-md);
   padding: 20px 24px;
   display: flex;
@@ -799,19 +866,19 @@ body.pearl-theme {
   gap: 20px;
 }
 
-.apply-text h3 {
+.action-info h3 {
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 4px;
 }
 
-.apply-text p {
-  font-size: 0.88rem;
+.action-info p {
+  font-size: 0.85rem;
   color: var(--text-body);
 }
 
-.apply-actions {
+.action-buttons {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -819,7 +886,7 @@ body.pearl-theme {
   flex-shrink: 0;
 }
 
-.btn-primary {
+.btn-enroll {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -827,60 +894,85 @@ body.pearl-theme {
   color: #ffffff;
   font-weight: 600;
   font-size: 0.9rem;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: var(--radius-sm);
   text-decoration: none;
   transition: all var(--transition-fast);
-  box-shadow: 0 3px 8px var(--accent-glow);
+  box-shadow: 0 4px 12px var(--accent-glow);
 }
 
-.btn-primary:hover {
+.btn-enroll:hover {
   background: var(--accent-hover);
   transform: translateY(-1px);
 }
 
-.fallback-note {
-  font-size: 0.75rem;
+.email-note {
+  font-size: 0.76rem;
   color: var(--text-muted);
 }
 
-.program-details-panel {
-  background: #f8fafc;
+.email-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+}
+
+/* Two Columns Grid */
+.school-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.info-block {
+  background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
-  padding: 20px 24px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.program-details-panel h3 {
+.info-block h3 {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--text-dark);
-  margin-bottom: 6px;
 }
 
-.privacy-note {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 14px;
+.block-notice {
+  background: rgba(2, 132, 199, 0.05);
+  border: 1px dashed rgba(2, 132, 199, 0.3);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--text-body);
+  display: flex;
+  gap: 8px;
+  line-height: 1.45;
 }
 
-.program-features-list {
+.program-points, .author-merits {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.program-features-list li {
+.program-points li, .author-merits li {
   position: relative;
-  padding-left: 18px;
-  font-size: 0.88rem;
+  padding-left: 16px;
+  font-size: 0.84rem;
   color: var(--text-body);
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
-.program-features-list li::before {
+.program-points li::before, .author-merits li::before {
   content: "•";
   position: absolute;
   left: 2px;
@@ -888,7 +980,8 @@ body.pearl-theme {
   font-weight: bold;
 }
 
-.school-video-panel {
+/* School Video Card */
+.school-video-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
@@ -898,17 +991,58 @@ body.pearl-theme {
   gap: 14px;
 }
 
-.video-panel-header {
+.video-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
 
-.school-video-panel h3 {
+.video-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.play-badge {
+  background: rgba(2, 132, 199, 0.1);
+  color: var(--accent-blue);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.video-card-title h3 {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+  .school-specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .school-action-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .action-buttons {
+    align-items: flex-start;
+    width: 100%;
+  }
+  .btn-enroll {
+    width: 100%;
+    justify-content: center;
+  }
+  .school-columns-grid {
+    grid-template-columns: 1fr;
+  }
+  .video-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .video-embed-container {
