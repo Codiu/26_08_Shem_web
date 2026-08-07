@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Книжный магазин | Шемшук Владимир Алексеевич</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=6">
+</head>
+<body class="pearl-theme">
+
+  <!-- Dynamic Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+    <!-- Pearl Integrated Header -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Top Row: Brand Logo & Official Sites List -->
+      <div class="header-top">
+        <a href="index.html" class="header-brand">
+          <img src="assets/images/author/shemshuk-avatar.png" alt="Шемшук В. А." class="avatar-img" onerror="this.style.display='none'">
+          <div class="brand-text">
+            <span class="brand-title">Владимир Алексеевич Шемшук</span>
+            <span class="brand-sub">Официальный ресурс автора</span>
+          </div>
+        </a>
+
+        <!-- Official Sites Pills -->
+        <div class="header-sites">
+          <span class="sites-label">Другие ресурсы автора:</span>
+          <div class="sites-pills">
+            <a href="https://shemshuk-book.ru" target="_blank" rel="noopener" class="site-pill" title="Официальный магазин электронных книг">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <span>Электронные книги <small>(shemshuk-book.ru)</small></span>
+            </a>
+            <a href="https://youtube.com/@shemshuk" target="_blank" rel="noopener" class="site-pill youtube-pill" title="Официальный YouTube Канал">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>YouTube канал</span>
+            </a>
+          </div>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Bottom Row: Integrated Main Navigation + Cart Button on Right -->
+      <nav class="header-nav">
+        <div class="nav-links">
+          <a href="index.html">ГЛАВНАЯ</a>
+          <a href="shop.html" class="active">МАГАЗИН</a>
+          <a href="shkola.html">ШКОЛА</a>
+          <a href="#">КОНЦЕРТ</a>
+          <a href="molitva.html">МОЛИТВА-ТРЕБА</a>
+          <a href="blog.html">БЛОГ</a>
+          <a href="ob-avtore.html">ОБ АВТОРЕ</a>
+          <a href="index.html">КОНТАКТЫ</a>
+        </div>
+
+        <a href="cart.html" class="nav-cart-btn" title="Корзина покупок">
+          <div class="cart-icon-wrap">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span class="cart-count-badge" style="display: none;">0</span>
+          </div>
+          <span>КОРЗИНА</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html">ГЛАВНАЯ</a>
+    <a href="shop.html" class="active">МАГАЗИН</a>
+    <a href="cart.html">КОРЗИНА</a>
+    <a href="shkola.html">ШКОЛА</a>
+    <a href="#">КОНЦЕРТ</a>
+    <a href="molitva.html">МОЛИТВА-ТРЕБА</a>
+    <a href="blog.html">БЛОГ</a>
+    <a href="ob-avtore.html">ОБ АВТОРЕ</a>
+    <a href="index.html">КОНТАКТЫ</a>
+  </div>
+
+  <!-- Page Container -->
+  <main class="page-container">
+    <div class="shop-page">
+      
+      <!-- Shop Hero -->
+      <section class="shop-hero">
+        <div class="shop-hero-badge">ОФИЦИАЛЬНЫЙ КАТАЛОГ ИЗДАНИЙ</div>
+        <h1 class="shop-hero-title">Книжный магазин В. А. Шемшука</h1>
+        <p class="shop-hero-sub">
+          Фундаментальные исследования древнеславянской цивилизации, сакральных практик и законов гармоничного мироустройства.
+        </p>
+      </section>
+
+      <!-- Books Storefront Grid -->
+      <section class="shop-container">
+        <div class="shop-grid">
+
+          <!-- Book book-03 -->
+          <article class="book-card" id="book-03">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/yaga.svg" alt="Бабы Яги - Кто Они" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Бабы Яги - Кто Они</h2>
+              <p class="book-desc">Рукописи не горят. Ничто и никогда не исчезает бесследно. Такие мысли сразу приходят на память после прочтения этой книги.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-03"
+                          data-title="Бабы Яги - Кто Они"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1500"
+                          data-sku="978-5-91898-002-6"
+                          data-cover-thumb="assets/images/books/thumbs/yaga.svg"
+                          data-cover-full="assets/images/books/yaga.svg"
+                          data-long-desc="Рукописи не горят. Ничто и никогда не исчезает бесследно. Такие мысли сразу приходят на память после прочтения этой книги. Что было, то и будет, русская волшебная культура не умерла и не может умереть, даже если останется только один ее представитель. Не дайте ей исчезнуть, берегите ее, дополняйте утраченным, передавайте другим- в этом залог ее сохранения.Книга посвящена описанию техник достижения чудесных вещей, которые с корнем вырваны и продолжают искореняться из русской волшебной культуры. Но есть надежда, что это лишь начало исследования, если продолжится диалог с настоящими носителями исчезающей культуры.Книга расчитана на всех, кто пытается приблизится к источнику волшебных знаний.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-03"
+                          data-title="Бабы Яги - Кто Они"
+                          data-price="1500"
+                          data-thumb="assets/images/books/thumbs/yaga.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-04 -->
+          <article class="book-card" id="book-04">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/volhvy.svg" alt="Волхвы" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Волхвы</h2>
+              <p class="book-desc">Все люди по своей природе продолжают оставаться богами, хотя и лишены памяти о своих прошлых - божественных воплощениях.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">800 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-04"
+                          data-title="Волхвы"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="800"
+                          data-sku="978-59024-4405-5"
+                          data-cover-thumb="assets/images/books/thumbs/volhvy.svg"
+                          data-cover-full="assets/images/books/volhvy.svg"
+                          data-long-desc="Все люди по своей природе продолжают оставаться богами, хотя и лишены памяти о своих прошлых - божественных воплощениях. Их высокие достижения были обусловлены нашей древней религией - православием и нашей древней верой - правоверием, канувшим в Лету, как и все былое могущество наших предков. О них и пойдет речь в предлагаемой работе.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-04"
+                          data-title="Волхвы"
+                          data-price="800"
+                          data-thumb="assets/images/books/thumbs/volhvy.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-06 -->
+          <article class="book-card" id="book-06">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/koschei.svg" alt="Встреча с Кощеем Бессмертным" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Встреча с Кощеем Бессмертным</h2>
+              <p class="book-desc">Сегодня конечность человеческой жизни воспринимается нами как естественное, само собой разумеющееся явление.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-06"
+                          data-title="Встреча с Кощеем Бессмертным"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku="978-5-93897-010-5"
+                          data-cover-thumb="assets/images/books/thumbs/koschei.svg"
+                          data-cover-full="assets/images/books/koschei.svg"
+                          data-long-desc="Сегодня конечность человеческой жизни воспринимается нами как естественное, само собой разумеющееся явление. Но заложена ли смерть во внутренней биологической природе человека? Предлагаемая работа доказывает, что убеждение большинства людей в невозможности физического бессмертия есть не что иное, как исторически сложившаяся догма, родственная в уверенности в том, что &quot;камни с неба падать не могут, потому, что их там нет&quot;. Физическое бессмертие индивида возможно, считает автор этой книги и лишь упорство человеческого невежества мешает людям признать эту истину.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-06"
+                          data-title="Встреча с Кощеем Бессмертным"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/koschei.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-07 -->
+          <article class="book-card" id="book-07">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Диалог Земля-Космос" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Диалог Земля-Космос</h2>
+              <p class="book-desc">Новое и дополненное издание! В этой книге сделана попытка ответить на вопросы, почему на земле не прекращаются войны и кризисы, почему с каж...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-07"
+                          data-title="Диалог Земля-Космос"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku="978-5-902-444-03-9"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Новое и дополненное издание! В этой книге сделана попытка ответить на вопросы, почему на земле не прекращаются войны и кризисы, почему с каждым годом, несмотря на рост производства, не происходит улучшение положения людей, а наоборот, ухудшение. Почему преследуются изобретатели эпохальных открытий, ученые, открывшие новые явления и руководители филосовских школ, реально помогающие людям устроить свою жизнь. Кто стоит за переписыванием истории и уничтожением потрясающих, выходящих из ряда вон, археологических находок. Почему так упорно нам продолжают делать прививки в детском возрасте, хотя уже давно доказана их смертельная опасность? Кто придумывает образовательные реформы, которые от столетия к столетию ведут к дебилизации населения. Куда уходят добываемые ресурсы планеты, из которых только 5% идет на нужды Человечества, а 95% канут в неизвестности. Эта книга позволяет ответить на вопросы: кто является настоящим хозяином нашей планеты, и почему все благие начинания людей и политиков заканчиваются крахом, а жизнь на Земле как ни улучшалась, так и не улучшается.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-07"
+                          data-title="Диалог Земля-Космос"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-08 -->
+          <article class="book-card" id="book-08">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Древлеправославная цивилизация" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Древлеправославная цивилизация</h2>
+              <p class="book-desc">В этой книге изложены главные традиции древлеправославной цивилизации, собранные из различных источников, и частично изложенные автором из е...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">800 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-08"
+                          data-title="Древлеправославная цивилизация"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="800"
+                          data-sku="976-5-91898-001-1"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой книге изложены главные традиции древлеправославной цивилизации, собранные из различных источников, и частично изложенные автором из его работ из серии &quot;В поисках сокровенного&quot;. и серии &quot;Русская Волшебная Культура&quot;. Поэтому книга принадлежит одновременно двум сериям и рассчитана на широкий круг читателей.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-08"
+                          data-title="Древлеправославная цивилизация"
+                          data-price="800"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-11 -->
+          <article class="book-card" id="book-11">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/oberegi.svg" alt="Званиеслов. Имена-обереги" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Званиеслов. Имена-обереги</h2>
+              <p class="book-desc">Работа посвящена древлеправославной системе определения имён богов, необходимых для имени и звания человека.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">750 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-11"
+                          data-title="Званиеслов. Имена-обереги"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="750"
+                          data-sku="978-5-91898-022-4"
+                          data-cover-thumb="assets/images/books/thumbs/oberegi.svg"
+                          data-cover-full="assets/images/books/oberegi.svg"
+                          data-long-desc="Работа посвящена древлеправославной системе определения имён богов, необходимых для имени и звания человека. Славя русских богов, которые входят в имя человека, верный древлеправославию получает не только душевную и духовную пищу, но и божественную судьбу. Только с помощью своих вычисленных божественных имён можно творить чудеса и обретать чудесные способности (сиддхи) и, в конце концов, как и наши предки, стать богом. В книге рассказано о ритуалах имянаречения и способах вызволения души умершего человека обратно в эту жизнь. Без божественных имён, человек не получает на том свете духовного питания (а другого питания там просто нет), потому что католические имена мучеников никто не славит. Поэтому, чтобы душа не умерла с голоду, она вынуждена воплощаться в кого попало, даже в животных и птиц, что для неё тоже означает в итоге гибель.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-11"
+                          data-title="Званиеслов. Имена-обереги"
+                          data-price="750"
+                          data-thumb="assets/images/books/thumbs/oberegi.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-14 -->
+          <article class="book-card" id="book-14">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/oberegi.svg" alt="Инструкция (дополнение к книге - Званиеслов. Имена-Обереги)новая обл." class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Инструкция (дополнение к книге - Званиеслов. Имена-Обереги)новая обл.</h2>
+              <p class="book-desc">Работа посвящена древлеправославной системе определения имён богов, необходимых для имени и звания человека.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">750 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-14"
+                          data-title="Инструкция (дополнение к книге - Званиеслов. Имена-Обереги)новая обл."
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="750"
+                          data-sku="978-5-91898-027-9"
+                          data-cover-thumb="assets/images/books/thumbs/oberegi.svg"
+                          data-cover-full="assets/images/books/oberegi.svg"
+                          data-long-desc="Работа посвящена древлеправославной системе определения имён богов, необходимых для имени и звания человека. Славя русских богов, которые входят в имя человека, верный древлеправославию получает не только душевную и духовную пищу, но и божественную судьбу. Только с помощью своих вычисленных божественных имён можно творить чудеса и обретать чудесные способности (сиддхи) и, в конце концов, как и наши предки, стать богом. В книге рассказано о ритуалах имянаречения и способах вызволения души умершего человека обратно в эту жизнь. Без божественных имён, человек не получает на том свете духовного питания (а другого питания там просто нет), потому что католические имена мучеников никто не славит. Поэтому, чтобы душа не умерла с голоду, она вынуждена воплощаться в кого попало, даже в животных и птиц, что для неё тоже означает в итоге гибель.Книга снабжена таблицами и схемами для определения древлеправославных имён, в дополнение к книге &quot;Званиеслов&quot;.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-14"
+                          data-title="Инструкция (дополнение к книге - Званиеслов. Имена-Обереги)новая обл."
+                          data-price="750"
+                          data-thumb="assets/images/books/thumbs/oberegi.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-15 -->
+          <article class="book-card" id="book-15">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Искры" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Искры</h2>
+              <p class="book-desc">Первая телепатическая книга</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-15"
+                          data-title="Искры"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku="978-5-918-98-024-9"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Первая телепатическая книга">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-15"
+                          data-title="Искры"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-16 -->
+          <article class="book-card" id="book-16">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Как Нам Вернуть Рай" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Как Нам Вернуть Рай</h2>
+              <p class="book-desc">Исправленное и дополненное издание! Настоящий сборник исследований посвящен описанию достижений древних цивилизаций, причин их гибели и путе...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">900 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-16"
+                          data-title="Как Нам Вернуть Рай"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="900"
+                          data-sku="978-5-902444-05-5"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Исправленное и дополненное издание! Настоящий сборник исследований посвящен описанию достижений древних цивилизаций, причин их гибели и путей возвращения Человечества обратно к своему прежнему могуществу. Он состоит из трех частей. Первая- &quot;Наши Предки&quot;- выходит существенно дополненной новыми материалами. Вторая часть, вошедшая в этот сборник, &quot;Истоки лунного культа&quot;, также переработана, исправлена и дополнена новой информацией. В третьей части &quot;Возвращения Рая на Землю&quot; сконцентрированы материалы исследований о том , что необходимо сделать, чтобы вернуть на Землю утраченный Рай.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-16"
+                          data-title="Как Нам Вернуть Рай"
+                          data-price="900"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-17 -->
+          <article class="book-card" id="book-17">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Как родить Бога" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Как родить Бога</h2>
+              <p class="book-desc">Новое и дополненное издание!Книга посвящена древнерусским традициям, вырванным с корнем из современной культуры.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-17"
+                          data-title="Как родить Бога"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku="978-5-902-444-04-6"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Новое и дополненное издание!Книга посвящена древнерусским традициям, вырванным с корнем из современной культуры. Сегодня молодые люди уже не знают ни как выбрать себе спутника или спутницу жизни, ни как правильно зачать, рожать и воспитывать детей, ни как нужно вести себя в семье, чтобы она была источником эволюции, а не источником разрушения здоровья и психики. Даже не знают, как правильно совершать акт соития, превратив последний в разновидность развлечения. Несмотря на огромное количество книг, посвящённых этим вопросам, реальная информация, раскрывающая, хотя бы частично, поднятые темы, в них отсутствует. Эта книга в какой-то степени позволит устранить этот пробел.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-17"
+                          data-title="Как родить Бога"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-18 -->
+          <article class="book-card" id="book-18">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Как стать сыроедом" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Как стать сыроедом</h2>
+              <p class="book-desc">Книга предназначена для сыроедов со стажем и для тех, кто хочет безболезненно перейти на сыроедение.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-18"
+                          data-title="Как стать сыроедом"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Книга предназначена для сыроедов со стажем и для тех, кто хочет безболезненно перейти на сыроедение. Приведены характерные ошибки при сыроедении, дано примерное меню с рецептами сыроедческих блюд для переходного периода.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-18"
+                          data-title="Как стать сыроедом"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-19 -->
+          <article class="book-card" id="book-19">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Календарь Жреца" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Календарь Жреца</h2>
+              <p class="book-desc">Календарь Жреца входит в серию Волшебная Русская Культура и является пособием по определению времени изготовления вещей, которое делает их ч...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-19"
+                          data-title="Календарь Жреца"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1500"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Календарь Жреца входит в серию Волшебная Русская Культура и является пособием по определению времени изготовления вещей, которое делает их чудесными и придаёт волшебные свойства. Предназначена для слушателей Школы Жрецов.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-19"
+                          data-title="Календарь Жреца"
+                          data-price="1500"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-20 -->
+          <article class="book-card" id="book-20">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Когда люди были Богами" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Когда люди были Богами</h2>
+              <p class="book-desc">Используя мифологию и научные данные, автор доказывает одно из утверждений Вед,что предшествующие цивилизации, по своему развитию находились...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-20"
+                          data-title="Когда люди были Богами"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku="978-5-93897-004-5"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Используя мифологию и научные данные, автор доказывает одно из утверждений Вед,что предшествующие цивилизации, по своему развитию находились на уровне Повелителей Вселенных, и мы являемся их потомками. Эта книга интересна для всех, кто пытается познать правду о происхождении людей и реальную историю нашей цивилизации.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-20"
+                          data-title="Когда люди были Богами"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-21 -->
+          <article class="book-card" id="book-21">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Культ Предков" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Культ Предков</h2>
+              <p class="book-desc">Автор обосновывает реальность того света не только с позиции субъективных переживаний очевидцев, но и с точки зрения физики.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-21"
+                          data-title="Культ Предков"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku="978-5-93897-002-1"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Автор обосновывает реальность того света не только с позиции субъективных переживаний очевидцев, но и с точки зрения физики. Приводя примеры материальных проявлений потустороннего мира, а также условий, при которых становятся возможны переходы в иные миры, он доказывает, что наши предки могли путешествовать по параллельным пространствам.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-21"
+                          data-title="Культ Предков"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-22 -->
+          <article class="book-card" id="book-22">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Метрики" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Метрики</h2>
+              <p class="book-desc">Метрика- ваш личный документ, позволяющий Вам построить свою дальнейшую жизнь в соответствии с гармонией, заложенной в природе.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-22"
+                          data-title="Метрики"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku="978-5-90244-402-2"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Метрика- ваш личный документ, позволяющий Вам построить свою дальнейшую жизнь в соответствии с гармонией, заложенной в природе.Наши мудрые предки исповедовали Веды, которые вели человека по пути мер своего имени, т.е. по стезе имени бога, с которым человек был тезка.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-22"
+                          data-title="Метрики"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-23 -->
+          <article class="book-card" id="book-23">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Нообиоценоз Касание Сварога" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Нообиоценоз Касание Сварога</h2>
+              <p class="book-desc">Эта книга посвящена древнерусским ритуалам и обрядам, замененными сегодня на католическую бутафорию.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-23"
+                          data-title="Нообиоценоз Касание Сварога"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku="978-5-918-980-057"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Эта книга посвящена древнерусским ритуалам и обрядам, замененными сегодня на католическую бутафорию.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-23"
+                          data-title="Нообиоценоз Касание Сварога"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-24 -->
+          <article class="book-card" id="book-24">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/oberegi.svg" alt="Обереги" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Обереги</h2>
+              <p class="book-desc">Книга посвящена древнерусским традициям, вырванным с корнем из культуры землян.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-24"
+                          data-title="Обереги"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1500"
+                          data-sku="978-5-90244-406-3"
+                          data-cover-thumb="assets/images/books/thumbs/oberegi.svg"
+                          data-cover-full="assets/images/books/oberegi.svg"
+                          data-long-desc="Книга посвящена древнерусским традициям, вырванным с корнем из культуры землян.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-24"
+                          data-title="Обереги"
+                          data-price="1500"
+                          data-thumb="assets/images/books/thumbs/oberegi.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-25 -->
+          <article class="book-card" id="book-25">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Омоложение. Превращение стариков в юношей" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Омоложение. Превращение стариков в юношей</h2>
+              <p class="book-desc">Книга предназначена для всех желающих омолодиться и оставаться всегда молодым.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-25"
+                          data-title="Омоложение. Превращение стариков в юношей"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku="978-5-91898-009-5"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Книга предназначена для всех желающих омолодиться и оставаться всегда молодым.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-25"
+                          data-title="Омоложение. Превращение стариков в юношей"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-26 -->
+          <article class="book-card" id="book-26">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Основы целительства Русского жречества" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Основы целительства Русского жречества</h2>
+              <p class="book-desc">В этой книге изложены основы целительства Русского жречества. Книга рассчитана на читателей, познакомившихся с работами автора из серии &quot;В п...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-26"
+                          data-title="Основы целительства Русского жречества"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой книге изложены основы целительства Русского жречества. Книга рассчитана на читателей, познакомившихся с работами автора из серии &quot;В поисках Сокровенного&quot; и слушателей Школы Жрецов. В книге представлена информация об истинных причинах болезней человека и способов их устранения. В отличие от современной медицины, Русская жреческая традиция не борется с симптомами болезни, а устраняет причины этих симптомов.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-26"
+                          data-title="Основы целительства Русского жречества"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-27 -->
+          <article class="book-card" id="book-27">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Поводырь" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Поводырь</h2>
+              <p class="book-desc">Владимир Шемшук известен нам как иследователь древней русской культуры и пропагандист Священных Рощ.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-27"
+                          data-title="Поводырь"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="500"
+                          data-sku="978-5-91898-009-5"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Владимир Шемшук известен нам как иследователь древней русской культуры и пропагандист Священных Рощ. Однако читателю будет интересно узнать его и со стороны писателя, работающего в жанре короткого рассказа. Его наблюдения сегодняшней жизни точны и выпуклы. Но это не просто констатация увиденного, это еще и филосовское осмысление происходящего. В нашем обществе делается все, чтобы никто не замечал, как люди мучаются от боли, которую испытывают не только взрослые, но и дети. И нельзя допустить, чтобы равнодушие и черствость стали основой общества. Главный вывод, следующий из его рассказов, что нам нельзя в это трудное время ни победить, ни выстоять без правды жизни.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-27"
+                          data-title="Поводырь"
+                          data-price="500"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-28 -->
+          <article class="book-card" id="book-28">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Пособие для жрецов и кудесников" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Пособие для жрецов и кудесников</h2>
+              <p class="book-desc">В этой работе изложены основы древлеправославной веры, покоящейся на чудесных дисциплинах русской волшебной культуры.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-28"
+                          data-title="Пособие для жрецов и кудесников"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1500"
+                          data-sku="978-5-91898-038-5"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой работе изложены основы древлеправославной веры, покоящейся на чудесных дисциплинах русской волшебной культуры. Книга рассчитана на читателей, познакомившихся с работами автора из серии &quot;В поисках сокровенного&quot;.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-28"
+                          data-title="Пособие для жрецов и кудесников"
+                          data-price="1500"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-29 -->
+          <article class="book-card" id="book-29">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Путь в Общину" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Путь в Общину</h2>
+              <p class="book-desc">В книге рассмотрены условия жизненности общин, дан исторический анализ и прогноз их развития.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">800 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-29"
+                          data-title="Путь в Общину"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="800"
+                          data-sku="978-5-91898-012-5"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В книге рассмотрены условия жизненности общин, дан исторический анализ и прогноз их развития. Община-это тот социальный инструмент, который может вернуть человеку его прежнее могущество и совершенство.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-29"
+                          data-title="Путь в Общину"
+                          data-price="800"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-30 -->
+          <article class="book-card" id="book-30">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Русь Борейская" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Русь Борейская</h2>
+              <p class="book-desc">Книга &quot;Русь борейская&quot; входит в серию &quot;В поисках сокровенного&quot;. В ней осуществлена попытка воссоздания развёрнутой панорамы непроявленных со...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-30"
+                          data-title="Русь Борейская"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku="5-93897-007-5"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Книга &quot;Русь борейская&quot; входит в серию &quot;В поисках сокровенного&quot;. В ней осуществлена попытка воссоздания развёрнутой панорамы непроявленных событий в истории России и вскрыты причины волшебности русской культуры.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-30"
+                          data-title="Русь Борейская"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-31 -->
+          <article class="book-card" id="book-31">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Славы русским Богам" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Славы русским Богам</h2>
+              <p class="book-desc">В этой книге представлены читателю в стихотворной форме Славы русским Богам.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-31"
+                          data-title="Славы русским Богам"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku="978-5-88917-003-7"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой книге представлены читателю в стихотворной форме Славы русским Богам.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-31"
+                          data-title="Славы русским Богам"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-32 -->
+          <article class="book-card" id="book-32">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Словарь терминов по Русской волшебной культуре" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Словарь терминов по Русской волшебной культуре</h2>
+              <p class="book-desc">В словаре рассмотрены значения как обычных, но имевших совсем иное значение, так и исчезнувших слов, характеризовавших волшебность древлепра...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-32"
+                          data-title="Словарь терминов по Русской волшебной культуре"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1500"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В словаре рассмотрены значения как обычных, но имевших совсем иное значение, так и исчезнувших слов, характеризовавших волшебность древлеправославной русской культуры. Предназначена для слушателей Школы Жрецов.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-32"
+                          data-title="Словарь терминов по Русской волшебной культуре"
+                          data-price="1500"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-33 -->
+          <article class="book-card" id="book-33">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Солнце-и праноедение" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Солнце-и праноедение</h2>
+              <p class="book-desc">Книга предназначена для всех, кто рискует оказаться на самом дне жизни: для бизнесменов, банкиров, предпринимателей, директоров фирм и завод...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">800 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-33"
+                          data-title="Солнце-и праноедение"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="800"
+                          data-sku="978-5-91898-037-8"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Книга предназначена для всех, кто рискует оказаться на самом дне жизни: для бизнесменов, банкиров, предпринимателей, директоров фирм и заводов, крупных и не очень крупных чиновников, политиков, знаменитостей, фермеров, должников, набравших кредитов в банках, просто людей не подозревающих, о своём будущем крахе, для всех тех, кто рискует оказаться в ситуации, когда в течение года, а может быть и нескольких лет, будет всем нечего есть. Предчувствуя такой вариант событий (а он происходит у каждого человека с железной необходимостью), нужно заблаговременно подготовиться к этим испытаниям. Чтобы с честью их пройти, нужно научить организм прано- и солнцеедению. Правильный переход на солнце и праноеедение позволит человеку сохранять жизнь и здоровье и дожить до благополучных дней, когда снова появятся условия для нормальной жизни.В этой книге изложены условия безболезненного перехода на многолетнее существование человека без воды и еды.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-33"
+                          data-title="Солнце-и праноедение"
+                          data-price="800"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-35 -->
+          <article class="book-card" id="book-35">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Сыроедение - путь к бессмертию" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Сыроедение - путь к бессмертию</h2>
+              <p class="book-desc">В книге рассказано о фантастических результатах сыроедения, раскрыты механизмы, объясняющие феномены поразительного оздоровления и излечения...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">800 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-35"
+                          data-title="Сыроедение - путь к бессмертию"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="800"
+                          data-sku="978-5-91898-001-9"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В книге рассказано о фантастических результатах сыроедения, раскрыты механизмы, объясняющие феномены поразительного оздоровления и излечения от всевозможных неизлечимых болезней. Приведены случаи омоложения глубоких стариков с превращением их в молодых людей и даже юношей.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-35"
+                          data-title="Сыроедение - путь к бессмертию"
+                          data-price="800"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-36 -->
+          <article class="book-card" id="book-36">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Теория и практика Священных Рощ" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Теория и практика Священных Рощ</h2>
+              <p class="book-desc">Настоящее исследование проясняет влияние Священных Рощ на экологию, биосферу и общество.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-36"
+                          data-title="Теория и практика Священных Рощ"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku="978-5-91898-004-0"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Настоящее исследование проясняет влияние Священных Рощ на экологию, биосферу и общество.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-36"
+                          data-title="Теория и практика Священных Рощ"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-37 -->
+          <article class="book-card" id="book-37">
+            <div class="book-cover-wrap">
+              <span class="book-ribbon">Переиздание</span>
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Украденная история" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Украденная история</h2>
+              <p class="book-desc">По заявкам читателей, переиздана и дополнена книга &quot;Украденная история&quot;.Книга &quot;Украденная история России, Европы, Азии и Америки&quot;, входит в...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-37"
+                          data-title="Украденная история"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="По заявкам читателей, переиздана и дополнена книга &quot;Украденная история&quot;.Книга &quot;Украденная история России, Европы, Азии и Америки&quot;, входит в серию &quot; В поисках сокровенного&quot;. Она является значительным дополнением книги &quot;Запрещённой истории России&quot;. В ней представлены портретные сходства королей, канцлеров и президентов стран Европы, Америки и Азии с императорами и руководителями Российской империи из чего делается вывод, что Европа, Азия и Америка до 1913 года входили в состав Российской империи и окончательно выделились в &quot;самостоятельные&quot; государства только лишь после Первой мировой войны. Но развал Российской империи на этом не остановился. Он продолжался и после Февральской и Октябрьских революций, после Гражданской и 2-й мировой войны и продолжается до сих пор после так называемых оранжевых революций. Эта книга также о том, почему и как это происходит. Книга написана на основе Доклада &quot;История преступлений космических кураторов против Человечества и человечности&quot;, подготовленный для членов &quot;Комиссии Космической Коалиции по планете Земля&quot;.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-37"
+                          data-title="Украденная история"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-38 -->
+          <article class="book-card" id="book-38">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Хроника великой Руссии" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Хроника великой Руссии</h2>
+              <p class="book-desc">Хроника Великой Руссии объединяет ранее вышедшие книги автора &quot;Запрещенная история&quot; и &quot;Украденная история&quot;.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-38"
+                          data-title="Хроника великой Руссии"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1500"
+                          data-sku="978-5-918-98-024-9"
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Хроника Великой Руссии объединяет ранее вышедшие книги автора &quot;Запрещенная история&quot; и &quot;Украденная история&quot;. В книге приведены новые факты параллелей с греческой мифологией и историей.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-38"
+                          data-title="Хроника великой Руссии"
+                          data-price="1500"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-39 -->
+          <article class="book-card" id="book-39">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Что может спасти Америку и Европу от неминуемой гибели?" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Что может спасти Америку и Европу от неминуемой гибели?</h2>
+              <p class="book-desc">Несмотря на то, что взрыв Йеллоустоунского супервулкана уничтожит не только Америку, но и всех людей на Земле, автор рассчитывает на благора...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">200 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-39"
+                          data-title="Что может спасти Америку и Европу от неминуемой гибели?"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="200"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Несмотря на то, что взрыв Йеллоустоунского супервулкана уничтожит не только Америку, но и всех людей на Земле, автор рассчитывает на благоразумие здоровых сил Человечества и их возможность принять последнюю разумную меру, способную замедлить надвигающуюся, неизбежную катастрофу (которая практически уже началась) и может быть даже спастись, погасив её. В надвигающейся неотвратимой гибели Человечества и Биосферы Земли, лучше хоть что-то попытаться сделать, чем пассивно ждать своего смертельного конца. Кто-то планирует отсидеться в подземных городах, специально выстроенных для случая глобальной катастрофы, но реальность сегодня такова, что спасутся или все, или не спасётся никто.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-39"
+                          data-title="Что может спасти Америку и Европу от неминуемой гибели?"
+                          data-price="200"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-40 -->
+          <article class="book-card" id="book-40">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/rai.svg" alt="Эпоха Рая на Земле" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Эпоха Рая на Земле</h2>
+              <p class="book-desc">Наконец-то свершилось. Прозревшее сердце, погруженное в череду бесконечных рождений и смертей, отчаявшееся найти свой отчий дом, утопающее в...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-40"
+                          data-title="Эпоха Рая на Земле"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku="5-93897-007-5"
+                          data-cover-thumb="assets/images/books/thumbs/rai.svg"
+                          data-cover-full="assets/images/books/rai.svg"
+                          data-long-desc="Наконец-то свершилось. Прозревшее сердце, погруженное в череду бесконечных рождений и смертей, отчаявшееся найти свой отчий дом, утопающее в слезах в веках тьмы и насилия, припало к целебным истокам и древним корням Святой Руси. Книга В.А. Шемшука раскрыла в памяти опыт прошлых моих рождений в мире Прави и Слави: потрясающий мир с невероятными знаниями, превзошедшими самые дерзкие помыслы и фантазии, с загадочной и доселе скрытой культурой. Все катаклизмы, революции, войны, лжепросвещения, разрушения,взлеты и падения цивилизаций были направлены на то, чтобы мы никогда не постигли красоту русско-славянской, ведической культуры, бывшей колыбелью для евразийских народов. Скоро Господь во всех нас возродит память о прошлом, и мы все убедимся в истинностизнаний, поведанных в этой книге.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-40"
+                          data-title="Эпоха Рая на Земле"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/rai.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-41 -->
+          <article class="book-card" id="book-41">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/gosudarstvo.svg" alt="Этическое Государство" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Этическое Государство</h2>
+              <p class="book-desc">Человек не может жить без веры, без четких социальных ориентиров. Этические принципы, вытекающие из народной философии и национальной морали...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-41"
+                          data-title="Этическое Государство"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku="978-5-88917-003-7"
+                          data-cover-thumb="assets/images/books/thumbs/gosudarstvo.svg"
+                          data-cover-full="assets/images/books/gosudarstvo.svg"
+                          data-long-desc="Человек не может жить без веры, без четких социальных ориентиров. Этические принципы, вытекающие из народной философии и национальной морали, помогут восстановить веру российского человека, с которой тысячелетиями жило Человечество. Государством должны управлять духовные и высоконравственные люди. Без претворения в жизнь этических норм невозможна эволюция человека и общества.На основе исторического материала и современных представлений автор показал направление эволюции, привел примеры живых социальных конструкций и сделал прогноз будущего развития России.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-41"
+                          data-title="Этическое Государство"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/gosudarstvo.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-42 -->
+          <article class="book-card" id="book-42">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Чаровное Сыроедение" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Чаровное Сыроедение</h2>
+              <p class="book-desc">Автор использует жреческие знания, и на примере сыроедения, исследует культуру Русского волшебного питания.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-42"
+                          data-title="Чаровное Сыроедение"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Автор использует жреческие знания, и на примере сыроедения, исследует культуру Русского волшебного питания. Оказывается, чаровность заложена в строении самих растений, что и задаёт соотношение растений между собой в пище человека. Рекомендовано слушателям Школы Жрецов.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-42"
+                          data-title="Чаровное Сыроедение"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-49 -->
+          <article class="book-card" id="book-49">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Задачник для Школы Жрецов" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Задачник для Школы Жрецов</h2>
+              <p class="book-desc">Книга посвящена вопросам, которые надо проработать и домашним заданиям Школы Жрецов</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-49"
+                          data-title="Задачник для Школы Жрецов"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Книга посвящена вопросам, которые надо проработать и домашним заданиям Школы Жрецов">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-49"
+                          data-title="Задачник для Школы Жрецов"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-50 -->
+          <article class="book-card" id="book-50">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Плоская Земля и Теория относительности или Почему с нами не контачат инопланетян" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Плоская Земля и Теория относительности или Почему с нами не контачат инопланетян</h2>
+              <p class="book-desc">Книга &quot;Плоская Земля и Теория относительности&quot; или &quot;Почему с нами не контачат инопланетяне&quot; входит в серию &quot;поисках сокровенного&quot; и отвечает...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-50"
+                          data-title="Плоская Земля и Теория относительности или Почему с нами не контачат инопланетян"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Книга &quot;Плоская Земля и Теория относительности&quot; или &quot;Почему с нами не контачат инопланетяне&quot; входит в серию &quot;поисках сокровенного&quot; и отвечает на вопрос, мучащих многих Землян: &quot;почему с нами не хотят вступать в контакт иные цивилизации&quot;. Книга посвящена решению вопроса: как Человечеству обрести статус разумности.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-50"
+                          data-title="Плоская Земля и Теория относительности или Почему с нами не контачат инопланетян"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-51 -->
+          <article class="book-card" id="book-51">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Яга Любви (для Жрецов. новая обл.)" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Яга Любви (для Жрецов. новая обл.)</h2>
+              <p class="book-desc">Твёрдый переплёт.Используя мифологию и фольклорные данные и старые традиции сохранившейся в русской глубинке, автор предпринял попытку восст...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-51"
+                          data-title="Яга Любви (для Жрецов. новая обл.)"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1500"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Твёрдый переплёт.Используя мифологию и фольклорные данные и старые традиции сохранившейся в русской глубинке, автор предпринял попытку восстановить прежнюю форму физиологии половых отношений.Книга рассчитана на физиологов, сексологов, психотерапевтов, психологов и психоаналитиков.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-51"
+                          data-title="Яга Любви (для Жрецов. новая обл.)"
+                          data-price="1500"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-52 -->
+          <article class="book-card" id="book-52">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Старинные способы оживления умершего человека" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Старинные способы оживления умершего человека</h2>
+              <p class="book-desc">Автор собрал и изложил старинные способы оживления умерших людей, позволявшие человеку полностью восстановится после смерти.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-52"
+                          data-title="Старинные способы оживления умершего человека"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Автор собрал и изложил старинные способы оживления умерших людей, позволявшие человеку полностью восстановится после смерти.Книга рассчитана на реаниматологов и на всех интересующихся этой проблемой.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-52"
+                          data-title="Старинные способы оживления умершего человека"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-53 -->
+          <article class="book-card" id="book-53">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="История русского жречества" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">История русского жречества</h2>
+              <p class="book-desc">В этой работе вкратце изложена история русского жречества, носителей чудесных знаний русской волшебной культуры.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-53"
+                          data-title="История русского жречества"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой работе вкратце изложена история русского жречества, носителей чудесных знаний русской волшебной культуры.Книга относится к серии &quot;Русская волшебная культура&quot; и рассчитана на ограниченный круг читателей.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-53"
+                          data-title="История русского жречества"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-54 -->
+          <article class="book-card" id="book-54">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Апокалипсис в XVI веке. Армагедон. Всемирный потоп. Истребление душ в XX" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Апокалипсис в XVI веке. Армагедон. Всемирный потоп. Истребление душ в XX</h2>
+              <p class="book-desc">В этой работе вкратце изложена история катастроф, происшедших за последнее время на Земле.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-54"
+                          data-title="Апокалипсис в XVI веке. Армагедон. Всемирный потоп. Истребление душ в XX"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой работе вкратце изложена история катастроф, происшедших за последнее время на Земле. Описаны причины их вызвавшие и события на Земле с ними связанные. Книга относится к серии: &quot;В поисках сокровенного&quot; и рассчитана на широкий круг думающих читателей.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-54"
+                          data-title="Апокалипсис в XVI веке. Армагедон. Всемирный потоп. Истребление душ в XX"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-55 -->
+          <article class="book-card" id="book-55">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Божественность в русском языке" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Божественность в русском языке</h2>
+              <p class="book-desc">В этой работе изложена основа, в чем заключается божественность русского языка и как она проявляется.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-55"
+                          data-title="Божественность в русском языке"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой работе изложена основа, в чем заключается божественность русского языка и как она проявляется. Книга относится к серии &quot; В поисках сокровенного&quot; и рассчитана на широкий круг думающих читателей.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-55"
+                          data-title="Божественность в русском языке"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-56 -->
+          <article class="book-card" id="book-56">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Битва за Землю" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Битва за Землю</h2>
+              <p class="book-desc">На протяжении последних 70 лет правительства ведущих стран мира вынуждены были заниматься сокрытием факта инопланетного присутствия на Земле...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">300 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-56"
+                          data-title="Битва за Землю"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="300"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="На протяжении последних 70 лет правительства ведущих стран мира вынуждены были заниматься сокрытием факта инопланетного присутствия на Земле, а самое главное- своих связей с инопланетными цивилизациями, безраздельно контролирующей Человечество уже не одну сотню лет.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-56"
+                          data-title="Битва за Землю"
+                          data-price="300"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-57 -->
+          <article class="book-card" id="book-57">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Педагогическая рапсодия" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Педагогическая рапсодия</h2>
+              <p class="book-desc">В этой работе вкратце изложены традиции и принципы образования, обучения, формирования, просвещения, умения и программы в русской древлеправославной школе.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-57"
+                          data-title="Педагогическая рапсодия"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой работе вкратце изложены традиции и принципы образования, обучения, формирования, просвещения, умения и программы в русской древлеправославной школе. Книга относится к серии: &quot;В поисках сокровенного&quot; и рассчитана на ограниченный круг читателей.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-57"
+                          data-title="Педагогическая рапсодия"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-59 -->
+          <article class="book-card" id="book-59">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Зачала Ведической Арифметики" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Зачала Ведической Арифметики</h2>
+              <p class="book-desc">Зачала Ведической Арифметики</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-59"
+                          data-title="Зачала Ведической Арифметики"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Зачала Ведической Арифметики">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-59"
+                          data-title="Зачала Ведической Арифметики"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-60 -->
+          <article class="book-card" id="book-60">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Тайна строительства склепов для оживления умерших людей" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Тайна строительства склепов для оживления умерших людей</h2>
+              <p class="book-desc">В этой работе изложены основы, хранения умерших людей для последующего их оживления.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">800 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-60"
+                          data-title="Тайна строительства склепов для оживления умерших людей"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="800"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой работе изложены основы, хранения умерших людей для последующего их оживления. Книга относится к серии: &quot;В поисках сокровенного&quot; и рассчитана на широкий круг думающих читателей">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-60"
+                          data-title="Тайна строительства склепов для оживления умерших людей"
+                          data-price="800"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-61 -->
+          <article class="book-card" id="book-61">
+            <div class="book-cover-wrap">
+              
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Краткая история религий" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Краткая история религий</h2>
+              <p class="book-desc">Самый запутанный и самый табуированный вопрос - это вопрос истории религий и их священных книг.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-61"
+                          data-title="Краткая история религий"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Самый запутанный и самый табуированный вопрос - это вопрос истории религий и их священных книг. Поскольку все ныне существующие религии имеют один корень происхождения, мы постарались рассмотреть историяю не одной религии, не одной священной книги, а историю всех религий и их священных книг. В качестве примера взята священная книга католиков, христиан, мормонов и протестонтов - Библия">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-61"
+                          data-title="Краткая история религий"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-62 -->
+          <article class="book-card" id="book-62">
+            <div class="book-cover-wrap">
+              <span class="book-ribbon">Новинка</span>
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Наука изучать прекрасное (В.И. Говоров)" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Наука изучать прекрасное (В.И. Говоров)</h2>
+              <p class="book-desc">Цветная, формат А4. Для кого и для чего написана эта книга? Для узкого круга специалистов или для широкого круга читателей? Первым она приго...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 500 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-62"
+                          data-title="Наука изучать прекрасное (В.И. Говоров)"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1500"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Цветная, формат А4. Для кого и для чего написана эта книга? Для узкого круга специалистов или для широкого круга читателей? Первым она пригодится для написания дисертаций, вторым - покажет образцы совершенного искусства и приобщит их к настоящей культуре. И самое главное, что откроется вашему уму - волшебные свойства Русского Языка, языка Мироздания, науки, культуры и искусства, позволяющие постичь любые тайны окражущего нас Бытия">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-62"
+                          data-title="Наука изучать прекрасное (В.И. Говоров)"
+                          data-price="1500"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-63 -->
+          <article class="book-card" id="book-63">
+            <div class="book-cover-wrap">
+              <span class="book-ribbon">Новинка</span>
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Освобождение от рабства. Малоедение и малопитие - это вечная молодость и..." class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Освобождение от рабства. Малоедение и малопитие - это вечная молодость и...</h2>
+              <p class="book-desc">Эта книга предназначена для всех, кто хочет избавиться от современных иллюзий и вырваться из рабства захватчиков нашей планеты, в котором ок...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">900 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-63"
+                          data-title="Освобождение от рабства. Малоедение и малопитие - это вечная молодость и..."
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="900"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Эта книга предназначена для всех, кто хочет избавиться от современных иллюзий и вырваться из рабства захватчиков нашей планеты, в котором оказалось всё Человечество. Рабство, кое неуклонно ведёт Человека к инволюции, дегенерации, к старению и к смерти. И оно довело нас уже до того, что к нам на планету хотят вселить другую цивилизацию, а всё опущенное Человечество навсегда отправить к праотцам – для чего эту отправку переименовали сегодня в «переход в пятое измерение». Книга будет полезна для бизнесменов, банкиров, директоров фирм и заводов, крупных и не очень крупных чиновников, политиков, знаменитостей, фермеров и для всех тех, кто может принимать решение.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-63"
+                          data-title="Освобождение от рабства. Малоедение и малопитие - это вечная молодость и..."
+                          data-price="900"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-64 -->
+          <article class="book-card" id="book-64">
+            <div class="book-cover-wrap">
+              <span class="book-ribbon">Новинка</span>
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Искусство повитух. Практика рождения гениев" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Искусство повитух. Практика рождения гениев</h2>
+              <p class="book-desc">Книга рассчитана на профессиональных повитух, на девушек и женщин решивших стать мамами, вреде абортов, а также на всех думающих людей котор...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">900 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-64"
+                          data-title="Искусство повитух. Практика рождения гениев"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="900"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="Книга рассчитана на профессиональных повитух, на девушек и женщин решивших стать мамами, вреде абортов, а также на всех думающих людей которые могут отличить истину от иллюзий, в таком важном вопросе как рождение гениального или даже Божественного ребёнка. Эта книга является основой жизни свободных людей, поэтому, возможно в ближайшее время, закулиса будет пытаться всячески её запретить">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-64"
+                          data-title="Искусство повитух. Практика рождения гениев"
+                          data-price="900"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-65 -->
+          <article class="book-card" id="book-65">
+            <div class="book-cover-wrap">
+              <span class="book-ribbon">Новинка</span>
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Последствия апокалипсиса. Происхождение наций и народов" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Последствия апокалипсиса. Происхождение наций и народов</h2>
+              <p class="book-desc">В этой работе вкратце изложены причины появления на земле множества наций и народов и сделана попытка сосчитать количество погибших планет,...</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">1 000 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-65"
+                          data-title="Последствия апокалипсиса. Происхождение наций и народов"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="1000"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В этой работе вкратце изложены причины появления на земле множества наций и народов и сделана попытка сосчитать количество погибших планет, их спутников в Солнечной системе в результате происшедшего апокалипсиса. Книга не подлежит широкому распространению и рассчитана на просветлённых думающих людей">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-65"
+                          data-title="Последствия апокалипсиса. Происхождение наций и народов"
+                          data-price="1000"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Book book-66 -->
+          <article class="book-card" id="book-66">
+            <div class="book-cover-wrap">
+              <span class="book-ribbon">Новинка</span>
+              <img src="assets/images/books/thumbs/default-cover.svg" alt="Надежда есть. Мечта сбывается" class="book-cover-img" loading="lazy" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
+            </div>
+            <div class="book-content">
+              <span class="book-author">Владимир Алексеевич Шемшук</span>
+              <h2 class="book-title">Надежда есть. Мечта сбывается</h2>
+              <p class="book-desc">В книге изложена информация о параллельных цивилизациях, с которыми мы живём бок о бок на Земле и не подозреваем об ихсуществовании.</p>
+              <div class="book-footer">
+                <div class="book-price-block">
+                  <span class="price-val">700 ₽</span>
+                  
+                </div>
+                <div class="book-actions">
+                  <button class="btn-quick-view" 
+                          data-id="book-66"
+                          data-title="Надежда есть. Мечта сбывается"
+                          data-author="Владимир Алексеевич Шемшук"
+                          data-price="700"
+                          data-sku=""
+                          data-cover-thumb="assets/images/books/thumbs/default-cover.svg"
+                          data-cover-full="assets/images/books/default-cover.svg"
+                          data-long-desc="В книге изложена информация о параллельных цивилизациях, с которыми мы живём бок о бок на Земле и не подозреваем об ихсуществовании. Да это и понятно, нам обрубили корни: мы не знаем свой Род, мы не помним свои прошлые жизни. И поэтому с нами не могут связаться наши предки и сообщить нам важную для нас информацию. Это всё равно что иметь телефон без номера. Ну и кто с нами свяжется тогда и поделится информацией!? Знание о Роде и прошлых жизнях – это номер телефона – это центр приёма информации. Мы до сих пор расхлёбываем последствия апокалипсиса. Здесь приведён комплекс мероприятий, позволяющих упредить наступающую катастрофу. Но это станет возможным только в том случае, если каждый человек нашей планеты активно примет участие в осуществлении мероприятий, описанных в этой работе. Тех нескольких сотен подключившихся людей явно недостаточно для выхода из катастрофического кризиса, который грядёт в ближайшее время. Нужно задействовать всё Человечество, тогда мы спасёмся.">
+                    <span>Подробнее</span>
+                  </button>
+                  <button class="btn-add-to-cart" 
+                          data-id="book-66"
+                          data-title="Надежда есть. Мечта сбывается"
+                          data-price="700"
+                          data-thumb="assets/images/books/thumbs/default-cover.svg">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>В корзину</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+
+
+      </section>
+
+      <!-- Quick View Modal (Single Overlay) -->
+      <div class="modal-overlay" id="quickViewModal" aria-hidden="true" role="dialog">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+          <button class="modal-close" id="modalCloseBtn" aria-label="Закрыть окно">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+
+          <div class="modal-body">
+            <div class="modal-cover-column">
+              <div class="modal-cover-frame">
+                <img src="" alt="" id="modalCoverFull" class="modal-cover-img">
+              </div>
+            </div>
+
+            <div class="modal-info-column">
+              <div class="modal-meta-header">
+                <span class="modal-author" id="modalAuthor">В. А. Шемшук</span>
+                <span class="modal-sku" id="modalSku" style="display: none;"></span>
+              </div>
+              <h2 class="modal-title" id="modalTitle">Название книги</h2>
+              <div class="modal-price" id="modalPrice">0 ₽</div>
+              
+              <div class="modal-divider"></div>
+              
+              <div class="modal-desc-wrap">
+                <h3 class="modal-desc-heading">Описание и содержание:</h3>
+                <p class="modal-desc" id="modalLongDesc">Подробное описание...</p>
+              </div>
+
+              <div class="modal-actions">
+                <button class="modal-btn-add" id="modalAddToCartBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                  <span>Добавить в корзину</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© 2020-2026 Владимир Алексеевич Шемшук.</p>
+      <div class="footer-links">
+        <a href="shop.html" class="active">Магазин</a>
+        <span class="sep">•</span>
+        <a href="cart.html">Корзина</a>
+        <span class="sep">•</span>
+        <a href="terms.html">Пользовательское соглашение</a>
+        <span class="sep">•</span>
+        <a href="policy.html">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script src="shop.js"></script>
+  <script src="script.js?v=6"></script>
+</body>
+</html>

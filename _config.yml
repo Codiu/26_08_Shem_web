@@ -1,0 +1,21 @@
+# Jekyll configuration for GitHub Pages
+title: "Шемшук Владимир Алексеевич"
+email: info@shemshuk.net
+description: "Официальный сайт исследователя, писателя Владимира Алексеевича Шемшука"
+baseurl: ""
+url: ""
+
+# Permalinks
+permalink: /blog/:title/
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Collections and excludes
+exclude:
+  - dl/
+  - Backlog.md
+  - README.md
