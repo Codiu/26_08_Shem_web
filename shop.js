@@ -65,31 +65,11 @@
       modal.classList.remove('active');
       document.body.classList.remove('modal-open');
       if (modalCover) {
-        modalCover.style.transformOrigin = 'center center';
-        modalCover.style.transform = 'scale(1)';
         modalCover.style.opacity = '0';
         modalCover.src = '';
       }
       currentModalBook = null;
     }
-
-    // Hover Zoom Lens functionality on Modal Cover
-    const modalCoverFrame = document.querySelector('.modal-cover-frame');
-    if (modalCoverFrame && modalCover) {
-      modalCoverFrame.addEventListener('mousemove', (e) => {
-        const rect = modalCoverFrame.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        modalCover.style.transformOrigin = `${x}% ${y}%`;
-        modalCover.style.transform = 'scale(2.2)';
-      });
-
-      modalCoverFrame.addEventListener('mouseleave', () => {
-        modalCover.style.transformOrigin = 'center center';
-        modalCover.style.transform = 'scale(1)';
-      });
-    }
-
     // Delegate Click Events on Shop Grid
     const shopGrid = document.querySelector('.shop-grid');
     if (shopGrid) {
