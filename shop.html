@@ -28,11 +28,11 @@ title: "Магазин книг В. А. Шемшука"
               {% if thumb_path == nil or thumb_path == '' %}
                 {% assign thumb_path = 'default-cover.svg' %}
               {% endif %}
-              <img src="{{ ('assets/images/books/thumbs/' | append: thumb_path) | relative_url }}" 
+              <img src="assets/images/books/thumbs/{{ thumb_path }}" 
                    alt="{{ book.title | escape }}" 
                    class="book-cover-img" 
                    loading="lazy" 
-                   onerror="this.src='{{ 'assets/images/books/thumbs/default-cover.svg' | relative_url }}'">
+                   onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
             </div>
             <div class="book-content">
               <span class="book-author">Владимир Алексеевич Шемшук</span>
@@ -52,8 +52,8 @@ title: "Магазин книг В. А. Шемшука"
                           data-author="Владимир Алексеевич Шемшук"
                           data-price="{{ book.price }}"
                           data-sku="{{ book.sku | escape }}"
-                          data-cover-thumb="{{ ('assets/images/books/thumbs/' | append: thumb_path) | relative_url }}"
-                          data-cover-full="{{ ('assets/images/books/' | append: thumb_path) | relative_url }}"
+                          data-cover-thumb="assets/images/books/thumbs/{{ thumb_path }}"
+                          data-cover-full="assets/images/books/{{ thumb_path }}"
                           data-long-desc="{{ book.long_desc | escape }}">
                     <span>Подробнее</span>
                   </button>
@@ -61,7 +61,7 @@ title: "Магазин книг В. А. Шемшука"
                           data-id="{{ book.id }}"
                           data-title="{{ book.title | escape }}"
                           data-price="{{ book.price }}"
-                          data-thumb="{{ ('assets/images/books/thumbs/' | append: thumb_path) | relative_url }}">
+                          data-thumb="assets/images/books/thumbs/{{ thumb_path }}">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                     <span>В корзину</span>
                   </button>
@@ -83,7 +83,7 @@ title: "Магазин книг В. А. Шемшука"
     <div class="modal-body">
       <div class="modal-cover-column">
         <div class="modal-cover-frame">
-          <img id="modalCover" src="" alt="" class="modal-cover-img" onerror="this.src='{{ 'assets/images/books/thumbs/default-cover.svg' | relative_url }}'">
+          <img id="modalCover" src="" alt="" class="modal-cover-img" onerror="this.src='assets/images/books/thumbs/default-cover.svg'">
         </div>
       </div>
       <div class="modal-info-column">
