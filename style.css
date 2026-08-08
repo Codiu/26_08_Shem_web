@@ -1988,16 +1988,23 @@ body.modal-open {
 }
 
 .modal-cover-frame {
+  position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   background: #0f172a;
+  height: 420px;
+  cursor: zoom-in;
 }
 
 .modal-cover-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
+  transition: transform 0.1s ease-out;
+  transform-origin: center center;
 }
 
 .modal-info-column {
