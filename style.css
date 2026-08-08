@@ -2000,8 +2000,8 @@ body.modal-open {
 }
 
 .modal-cover-frame:hover {
-  transform: scale(1.04);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  transform: translateY(-10px) scale(1.06);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
 }
 
 .modal-cover-img {
