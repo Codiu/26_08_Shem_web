@@ -41,7 +41,7 @@
         <a href="{{ '/molitva.html' | relative_url }}" {% if page.url contains 'molitva' %}class="active"{% endif %}>МОЛИТВА-ТРЕБА</a>
         <a href="{{ '/blog.html' | relative_url }}" {% if page.url contains 'blog' %}class="active"{% endif %}>БЛОГ</a>
         <a href="{{ '/ob-avtore.html' | relative_url }}" {% if page.url contains 'ob-avtore' %}class="active"{% endif %}>ОБ АВТОРЕ</a>
-        <a href="{{ '/index.html#contacts' | relative_url }}">КОНТАКТЫ</a>
+        <a href="{{ '/contacts.html' | relative_url }}" {% if page.url contains 'contacts' %}class="active"{% endif %}>КОНТАКТЫ</a>
       </div>
 
       <a href="{{ '/cart.html' | relative_url }}" class="nav-cart-btn{% if page.url contains 'cart' %} active{% endif %}" title="Корзина покупок">
