@@ -104,13 +104,18 @@ body.pearl-theme {
 }
 
 .avatar-img {
-  width: 52px;
-  height: 52px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--accent-blue);
-  box-shadow: 0 0 12px var(--accent-glow);
+  box-shadow: 0 0 16px var(--accent-glow);
   flex-shrink: 0;
+  transition: transform var(--transition-smooth);
+}
+
+.avatar-img:hover {
+  transform: scale(1.08);
 }
 
 .brand-text {
@@ -2003,8 +2008,8 @@ body.modal-open {
 }
 
 .modal-cover-frame:hover {
-  transform: scale(1.9);
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+  transform: scale(min(1.5, calc(72vh / 420px)));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   z-index: 50;
 }
 
