@@ -2003,7 +2003,8 @@ body.modal-open {
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: transform 0.1s ease-out;
+  opacity: 0;
+  transition: transform 0.1s ease-out, opacity 0.2s ease-in-out;
   transform-origin: center center;
 }
 

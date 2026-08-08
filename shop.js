@@ -34,7 +34,13 @@
         longDesc: btn.dataset.longDesc
       };
 
-      if (modalCover) modalCover.src = currentModalBook.coverFull || currentModalBook.thumb;
+      if (modalCover) {
+        modalCover.style.opacity = '0';
+        modalCover.onload = () => {
+          modalCover.style.opacity = '1';
+        };
+        modalCover.src = currentModalBook.coverFull || currentModalBook.thumb;
+      }
       if (modalTitle) modalTitle.textContent = currentModalBook.title;
       if (modalAuthor) modalAuthor.textContent = currentModalBook.author;
       if (modalPrice) modalPrice.textContent = new Intl.NumberFormat('ru-RU').format(currentModalBook.price) + ' ₽';
@@ -61,6 +67,8 @@
       if (modalCover) {
         modalCover.style.transformOrigin = 'center center';
         modalCover.style.transform = 'scale(1)';
+        modalCover.style.opacity = '0';
+        modalCover.src = '';
       }
       currentModalBook = null;
     }
