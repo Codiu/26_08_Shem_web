@@ -2005,10 +2005,11 @@ body.modal-open {
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
   z-index: 5;
   transform-origin: center center;
+  --native-max-scale: 1.5;
 }
 
 .modal-cover-frame:hover {
-  transform: scale(min(1.5, calc(72vh / 420px)));
+  transform: scale(min(var(--native-max-scale, 1.5), min(1.5, calc(72vh / 420px))));
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   z-index: 50;
 }

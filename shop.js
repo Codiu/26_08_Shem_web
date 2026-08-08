@@ -38,6 +38,12 @@
         modalCover.style.opacity = '0';
         modalCover.onload = () => {
           modalCover.style.opacity = '1';
+          const naturalH = modalCover.naturalHeight || 600;
+          const nativeMaxScale = Math.max(1, naturalH / 420);
+          const modalCoverFrame = document.querySelector('.modal-cover-frame');
+          if (modalCoverFrame) {
+            modalCoverFrame.style.setProperty('--native-max-scale', nativeMaxScale.toFixed(2));
+          }
         };
         modalCover.src = currentModalBook.coverFull || currentModalBook.thumb;
       }
