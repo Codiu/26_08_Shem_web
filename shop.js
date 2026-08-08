@@ -65,13 +65,6 @@
     const shopGrid = document.querySelector('.shop-grid');
     if (shopGrid) {
       shopGrid.addEventListener('click', (e) => {
-        const quickViewBtn = e.target.closest('.btn-quick-view');
-        if (quickViewBtn) {
-          e.preventDefault();
-          openQuickView(quickViewBtn);
-          return;
-        }
-
         const addCartBtn = e.target.closest('.btn-add-to-cart');
         if (addCartBtn) {
           e.preventDefault();
@@ -95,6 +88,27 @@
               addCartBtn.innerHTML = origHtml;
               addCartBtn.classList.remove('added');
             }, 1600);
+          }
+          return;
+        }
+
+        const quickViewBtn = e.target.closest('.btn-quick-view');
+        if (quickViewBtn) {
+          e.preventDefault();
+          openQuickView(quickViewBtn);
+          return;
+        }
+
+        // If clicked on cover image/wrap or title, open quick view modal
+        const clickedCoverOrTitle = e.target.closest('.book-cover-wrap, .book-title');
+        if (clickedCoverOrTitle) {
+          e.preventDefault();
+          const card = e.target.closest('.book-card');
+          if (card) {
+            const cardQuickBtn = card.querySelector('.btn-quick-view');
+            if (cardQuickBtn) {
+              openQuickView(cardQuickBtn);
+            }
           }
         }
       });

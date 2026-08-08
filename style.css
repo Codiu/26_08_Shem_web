@@ -1321,6 +1321,30 @@ body.pearl-theme {
   letter-spacing: 0.2px;
 }
 
+.book-cover-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 130%;
+  background: #0f172a;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.book-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.35;
+  margin: 0;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.book-title:hover {
+  color: var(--accent-blue);
+}
+
 .blog-title {
   font-family: var(--font-heading);
   font-size: 1.25rem;
