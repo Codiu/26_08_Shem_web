@@ -6,7 +6,7 @@ baseurl: "/26_08_Shem_web"
 url: "https://codiu.github.io"
 
 # Permalinks
-permalink: /blog/:title/
+# Default Jekyll permalinks for pages
 
 # Markdown settings
 markdown: kramdown
