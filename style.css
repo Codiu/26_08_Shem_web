@@ -2006,10 +2006,12 @@ body.modal-open {
   z-index: 5;
   transform-origin: center center;
   --native-max-scale: 1.5;
+  --shift-x: 0px;
+  --shift-y: 0px;
 }
 
 .modal-cover-frame:hover {
-  transform: scale(min(var(--native-max-scale, 1.5), min(1.5, calc(72vh / 420px)))) translateY(10%);
+  transform: translate(var(--shift-x), var(--shift-y)) scale(min(var(--native-max-scale, 1.5), min(1.5, calc(72vh / 420px))));
   box-shadow: 
     0 50px 100px rgba(0, 0, 0, 0.7),
     0 15px 35px rgba(0, 0, 0, 0.5),

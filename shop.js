@@ -19,6 +19,25 @@
 
     let currentModalBook = null;
 
+    const modalCoverFrame = document.querySelector('.modal-cover-frame');
+    if (modalCoverFrame) {
+      modalCoverFrame.addEventListener('mouseenter', () => {
+        const rect = modalCoverFrame.getBoundingClientRect();
+        const centerY = rect.top + rect.height / 2;
+        const centerX = rect.left + rect.width / 2;
+        // Gravitate 85% towards the center of the screen
+        const shiftY = ((window.innerHeight / 2) - centerY) * 0.85;
+        const shiftX = ((window.innerWidth / 2) - centerX) * 0.85;
+        modalCoverFrame.style.setProperty('--shift-y', `${shiftY}px`);
+        modalCoverFrame.style.setProperty('--shift-x', `${shiftX}px`);
+      });
+      // Reset on leave to ensure clean transitions
+      modalCoverFrame.addEventListener('mouseleave', () => {
+        modalCoverFrame.style.setProperty('--shift-y', `0px`);
+        modalCoverFrame.style.setProperty('--shift-x', `0px`);
+      });
+    }
+
     // Open Quick View Modal
     function openQuickView(btn) {
       if (!modal) return;
