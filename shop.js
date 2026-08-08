@@ -8,12 +8,12 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('quickViewModal');
-    const modalCloseBtn = document.getElementById('modalCloseBtn');
-    const modalCover = document.getElementById('modalCoverFull');
+    const modalCloseBtn = document.getElementById('modalClose');
+    const modalCover = document.getElementById('modalCover');
     const modalTitle = document.getElementById('modalTitle');
     const modalAuthor = document.getElementById('modalAuthor');
     const modalPrice = document.getElementById('modalPrice');
-    const modalDesc = document.getElementById('modalLongDesc');
+    const modalDesc = document.getElementById('modalDesc');
     const modalSku = document.getElementById('modalSku');
     const modalAddBtn = document.getElementById('modalAddToCartBtn');
 
