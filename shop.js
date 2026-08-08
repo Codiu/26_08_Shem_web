@@ -22,18 +22,22 @@
     const modalCoverFrame = document.querySelector('.modal-cover-frame');
     if (modalCoverFrame) {
       modalCoverFrame.addEventListener('mouseenter', () => {
+        // Find the center of the image relative to the viewport
         const rect = modalCoverFrame.getBoundingClientRect();
         const centerY = rect.top + rect.height / 2;
-        // Gravitate only 20% towards the vertical center of the screen
-        const shiftY = ((window.innerHeight / 2) - centerY) * 0.20;
-        modalCoverFrame.style.setProperty('--shift-y', `${shiftY}px`);
-        modalCoverFrame.style.setProperty('--shift-x', `0px`);
+        
+        // Calculate the ratio of the center Y to the viewport height (0 to 1)
+        // If image is near the top (e.g. 0.2), transform-origin-y becomes 20%
+        // This makes it expand mostly downwards (towards the center).
+        // If image is at the center (0.5), it expands equally (50%).
+        const originY = (centerY / window.innerHeight) * 100;
+        
+        // Apply the dynamic origin for a mathematically perfect expansion
+        modalCoverFrame.style.transformOrigin = `50% ${originY}%`;
       });
-      // Reset on leave to ensure clean transitions
-      modalCoverFrame.addEventListener('mouseleave', () => {
-        modalCoverFrame.style.setProperty('--shift-y', `0px`);
-        modalCoverFrame.style.setProperty('--shift-x', `0px`);
-      });
+
+      // We don't need mouseleave to reset it, because the next mouseenter will recalculate it, 
+      // and keeping the origin during the mouseleave transition prevents weird snapping.
     }
 
     // Open Quick View Modal
