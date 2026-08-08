@@ -24,12 +24,10 @@
       modalCoverFrame.addEventListener('mouseenter', () => {
         const rect = modalCoverFrame.getBoundingClientRect();
         const centerY = rect.top + rect.height / 2;
-        const centerX = rect.left + rect.width / 2;
-        // Gravitate 85% towards the center of the screen
-        const shiftY = ((window.innerHeight / 2) - centerY) * 0.85;
-        const shiftX = ((window.innerWidth / 2) - centerX) * 0.85;
+        // Gravitate only 20% towards the vertical center of the screen
+        const shiftY = ((window.innerHeight / 2) - centerY) * 0.20;
         modalCoverFrame.style.setProperty('--shift-y', `${shiftY}px`);
-        modalCoverFrame.style.setProperty('--shift-x', `${shiftX}px`);
+        modalCoverFrame.style.setProperty('--shift-x', `0px`);
       });
       // Reset on leave to ensure clean transitions
       modalCoverFrame.addEventListener('mouseleave', () => {
