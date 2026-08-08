@@ -2,8 +2,8 @@
 title: "Шемшук Владимир Алексеевич"
 email: info@shemshuk.net
 description: "Официальный сайт исследователя, писателя Владимира Алексеевича Шемшука"
-baseurl: ""
-url: ""
+baseurl: "/26_08_Shem_web"
+url: "https://codiu.github.io"
 
 # Permalinks
 permalink: /blog/:title/
