@@ -148,6 +148,15 @@
         const clientAddress = document.getElementById('clientAddress')?.value || '';
         const clientNotes = document.getElementById('clientNotes')?.value || '';
 
+        // Generate a chronological order ID (e.g. 260809-1523 for YYMMDD-HHMM)
+        const d = new Date();
+        const yy = d.getFullYear().toString().slice(-2);
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        const hh = String(d.getHours()).padStart(2, '0');
+        const min = String(d.getMinutes()).padStart(2, '0');
+        const orderId = `${yy}${mm}${dd}-${hh}${min}`;
+
         let fullMessage = `📦 СОСТАВ ЗАКАЗА №${orderId}:\n`;
         fullMessage += `-------------------------------------------\n`;
         cart.forEach((item, index) => {
