@@ -146,6 +146,65 @@
         </div>
 
         <!-- Right Column: Checkout Form & Total -->
+<div class="cart-page-wrapper">
+      
+      <!-- Cart Hero -->
+      <div class="cart-page-header">
+        <h1 class="cart-page-title">Корзина и оформление заказа</h1>
+        <p class="cart-page-sub">Проверьте выбранные книги и заполните контактные данные для доставки</p>
+      </div>
+
+      <!-- Empty Cart State -->
+      <div class="cart-empty-state" id="cartEmptyState" style="display: none;">
+        <div class="empty-icon-wrap">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        </div>
+        <h2 class="empty-title">В вашей корзине пока нет товаров</h2>
+        <p class="empty-desc">Выберите интересующие вас книги в официальном каталоге автора.</p>
+        <a href="shop.html" class="btn-goto-shop">
+          <span>Перейти в каталог книг</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Order Success State -->
+      <div class="order-success-card" id="orderSuccessView" style="display: none;">
+        <div class="success-icon-wrap">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <h2 class="success-title">Спасибо за заказ!</h2>
+        <p class="success-text">
+          Ваша заявка успешно принята в обработку. В ближайшее время наш специалист свяжется с вами по указанному телефону для подтверждения заказа и деталей отправки.
+        </p>
+        <div class="success-actions">
+          <a href="shop.html" class="btn-success-shop">Вернуться в каталог</a>
+          <a href="index.html" class="btn-success-home">На главную страницу</a>
+        </div>
+      </div>
+
+      <!-- Main Cart & Checkout Content Layout -->
+      <div class="cart-layout-grid" id="cartContentLayout">
+        
+        <!-- Left Column: Items List -->
+        <div class="cart-items-section">
+          <div class="section-box-header">
+            <h2 class="box-title">Состав заказа</h2>
+            <span class="box-badge">Печатные книги</span>
+          </div>
+
+          <div class="cart-items-list" id="cartItemsList">
+            <!-- Rendered dynamically by cart-page.js -->
+          </div>
+
+          <div class="cart-back-link">
+            <a href="shop.html">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Продолжить покупки в каталоге</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Checkout Form & Total -->
         <div class="checkout-form-section">
           <div class="checkout-card">
             <h2 class="checkout-title">Оформление доставки</h2>
@@ -162,33 +221,54 @@
               </div>
             </div>
 
-            <form action="https://api.web3forms.com/submit" method="POST" id="checkoutForm" class="checkout-html-form">
-              <!-- Web3Forms Config -->
-              <input type="hidden" name="access_key" value="94dae2c5-472c-4971-a11a-6e66880f9dbc">
-              <input type="hidden" name="subject" value="Новый заказ книг с сайта В.А. Шемшука">
-              <input type="hidden" name="from_name" value="Магазин книг В.А. Шемшука">
-              <input type="hidden" name="message" id="orderItemsField">
+            <form id="checkoutForm" class="checkout-html-form">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="clientLastName">Фамилия <span class="required">*</span></label>
+                  <input type="text" id="clientLastName" required placeholder="Иванов" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="clientFirstName">Имя <span class="required">*</span></label>
+                  <input type="text" id="clientFirstName" required placeholder="Иван" class="form-input">
+                </div>
+              </div>
 
               <div class="form-group">
-                <label for="clientName">ФИО получателя <span class="required">*</span></label>
-                <input type="text" id="clientName" name="name" required placeholder="Иванов Иван Иванович" class="form-input">
+                <label for="clientMiddleName">Отчество</label>
+                <input type="text" id="clientMiddleName" placeholder="Иванович" class="form-input">
               </div>
 
               <div class="form-row-2">
                 <div class="form-group">
                   <label for="clientPhone">Телефон <span class="required">*</span></label>
-                  <input type="tel" id="clientPhone" name="phone" required placeholder="+7 (999) 000-00-00" class="form-input">
+                  <input type="tel" id="clientPhone" required placeholder="+7 (999) 000-00-00" class="form-input">
                 </div>
 
                 <div class="form-group">
                   <label for="clientEmail">Email <span class="required">*</span></label>
-                  <input type="email" id="clientEmail" name="email" required placeholder="name@example.com" class="form-input">
+                  <input type="email" id="clientEmail" required placeholder="name@example.com" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="clientZip">Индекс <span class="required">*</span></label>
+                  <input type="text" id="clientZip" required placeholder="123456" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="clientCity">Город <span class="required">*</span></label>
+                  <input type="text" id="clientCity" required placeholder="Москва" class="form-input">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="clientAddress">Адрес доставки и комментарий</label>
-                <textarea id="clientAddress" name="address" rows="3" placeholder="Укажите город, почтовый индекс, адрес доставки или пожелания к отправке..." class="form-textarea"></textarea>
+                <label for="clientAddress">Адрес доставки <span class="required">*</span></label>
+                <input type="text" id="clientAddress" required placeholder="ул. Ленина, д. 1, кв. 2" class="form-input">
+              </div>
+
+              <div class="form-group">
+                <label for="clientNotes">Примечания к заказу</label>
+                <textarea id="clientNotes" rows="3" placeholder="Дополнительные пожелания..." class="form-textarea"></textarea>
               </div>
 
               <button type="submit" class="btn-submit-order" id="checkoutSubmitBtn">
@@ -223,6 +303,7 @@
 
   <script src="cart.js?v=18"></script>
   <script src="shop.js?v=18"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="cart-page.js?v=18"></script>
   <script src="script.js?v=18"></script>
 </body>

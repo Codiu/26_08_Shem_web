@@ -138,21 +138,40 @@
         orderSummaryText += `==============================\n`;
         orderSummaryText += `ИТОГО К ОПЛАТЕ: ${totals.formattedTotal} (${totals.count} товаров)\n`;
 
-        const clientName = document.getElementById('clientName')?.value || '';
+        const clientLastName = document.getElementById('clientLastName')?.value || '';
+        const clientFirstName = document.getElementById('clientFirstName')?.value || '';
+        const clientMiddleName = document.getElementById('clientMiddleName')?.value || '';
         const clientPhone = document.getElementById('clientPhone')?.value || '';
         const clientEmail = document.getElementById('clientEmail')?.value || '';
+        const clientZip = document.getElementById('clientZip')?.value || '';
+        const clientCity = document.getElementById('clientCity')?.value || '';
         const clientAddress = document.getElementById('clientAddress')?.value || '';
+        const clientNotes = document.getElementById('clientNotes')?.value || '';
 
-        // Build full formatted text in pure Russian
-        let fullMessage = `ДАННЫЕ ПОКУПАТЕЛЯ:\n`;
-        fullMessage += `------------------------------\n`;
-        fullMessage += `ФИО: ${clientName}\n`;
-        fullMessage += `Телефон: ${clientPhone}\n`;
-        fullMessage += `Email: ${clientEmail}\n`;
-        fullMessage += `Адрес / Комментарий: ${clientAddress || 'Не указан'}\n\n`;
-        fullMessage += orderSummaryText;
+        // Build full formatted text in pure Russian matching the professional template
+        let fullMessage = `[Выберите книги:\n`;
+        cart.forEach((item) => {
+          fullMessage += `${item.title} ${item.price}\n`;
+        });
+        
+        fullMessage += `\nЭлектронная почта:\n${clientEmail}\n`;
+        fullMessage += `\nТелефон:\n${clientPhone}\n`;
+        fullMessage += `\nИмя:\n${clientFirstName}\n`;
+        fullMessage += `\nФамилия:\n${clientLastName}\n`;
+        
+        if (clientMiddleName) {
+          fullMessage += `\nОтчество:\n${clientMiddleName}\n`;
+        }
+        
+        fullMessage += `\nИндекс:\n${clientZip}\n`;
+        fullMessage += `\nГород:\n${clientCity}\n`;
+        fullMessage += `\nАдрес доставки:\n${clientAddress}\n`;
+        
+        if (clientNotes) {
+          fullMessage += `\nПримечания к заказу:\n${clientNotes}\n`;
+        }
 
-        if (orderItemsField) orderItemsField.value = orderSummaryText;
+        if (orderItemsField) orderItemsField.value = fullMessage;
         if (orderTotalField) orderTotalField.value = totals.formattedTotal;
 
         // Visual loading state on button
@@ -164,21 +183,26 @@
           `;
         }
 
-        const formData = new FormData(checkoutForm);
-        formData.set('name', clientName);
-        formData.set('email', clientEmail);
-        formData.set('phone', clientPhone);
-        formData.set('message', fullMessage);
+        const EMAILJS_PUBLIC_KEY = 'ZBY1t1jhJbqinZJYe';
+        const EMAILJS_SERVICE_ID = 'service_u6tcyvm'; 
+        const EMAILJS_TEMPLATE_ID = 'template_t4flego'; 
+
+        const templateParams = {
+          customer_name: `${clientFirstName} ${clientLastName}`,
+          customer_email: clientEmail,
+          customer_phone: clientPhone,
+          message: fullMessage
+        };
 
         try {
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-          });
+          const response = await emailjs.send(
+            EMAILJS_SERVICE_ID, 
+            EMAILJS_TEMPLATE_ID, 
+            templateParams, 
+            EMAILJS_PUBLIC_KEY
+          );
 
-          const result = await response.json();
-
-          if (result.success) {
+          if (response.status === 200) {
             // Clear cart
             window.Cart.clearCart();
 
@@ -190,18 +214,14 @@
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
-            alert('Произошла ошибка при отправке: ' + (result.message || 'Попробуйте снова позже'));
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = `<span>Подтвердить заказ</span>`;
-            }
+            throw new Error('EmailJS returned status ' + response.status);
           }
         } catch (error) {
           console.error('Submission error:', error);
-          alert('Не удалось связаться с сервером отправки. Проверьте интернет-соединение.');
+          alert('Не удалось отправить заказ. Пожалуйста, убедитесь, что в коде (cart-page.js) указаны правильные Service ID и Template ID.');
           if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = `<span>Подтвердить заказ</span>`;
+            submitBtn.innerHTML = `<span>Подтвердить и оформить заказ</span>`;
           }
         }
       });
