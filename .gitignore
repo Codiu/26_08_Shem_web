@@ -1,0 +1,10 @@
+# Environment variables / Secrets
+.env
+.env.local
+*.log
+
+# Dependencies & Build outputs
+node_modules/
+_site/
+.jekyll-cache/
+.jekyll-metadata
