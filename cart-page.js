@@ -190,6 +190,7 @@
         const templateParams = {
           customer_name: `${clientFirstName} ${clientLastName}`,
           customer_email: clientEmail,
+          email: clientEmail, // Added for the TO: {{email}} field
           customer_phone: clientPhone,
           message: fullMessage
         };
