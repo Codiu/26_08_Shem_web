@@ -78,7 +78,14 @@ title: "Корзина покупок"
               </div>
             </div>
 
-            <form id="checkoutForm" class="checkout-html-form">
+                        <form id="checkoutForm" class="checkout-html-form">
+              
+              <!-- Section 1: Личные данные -->
+              <div class="checkout-section-header">
+                <div class="step-badge">1</div>
+                <h3>Контактные данные</h3>
+              </div>
+              
               <div class="form-row-2">
                 <div class="form-group">
                   <label for="clientLastName">Фамилия <span class="required">*</span></label>
@@ -107,6 +114,12 @@ title: "Корзина покупок"
                 </div>
               </div>
 
+              <!-- Section 2: Доставка -->
+              <div class="checkout-section-header" style="margin-top: 10px;">
+                <div class="step-badge">2</div>
+                <h3>Доставка</h3>
+              </div>
+
               <div class="form-row-2">
                 <div class="form-group">
                   <label for="clientZip">Индекс <span class="required">*</span></label>
@@ -128,14 +141,15 @@ title: "Корзина покупок"
                 <textarea id="clientNotes" rows="3" placeholder="Дополнительные пожелания..." class="form-textarea"></textarea>
               </div>
 
-              <button type="submit" class="btn-submit-order" id="checkoutSubmitBtn">
-                <span>Подтвердить и оформить заказ</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </button>
-
-              <p class="form-disclaimer">
-                Отправляя форму, вы соглашаетесь с <a href="policy.html" target="_blank">Политикой конфиденциальности</a>.
-              </p>
+              <div class="checkout-submit-wrapper">
+                <button type="submit" class="btn-submit-order" id="checkoutSubmitBtn">
+                  <span>Подтвердить заказ</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <p class="form-disclaimer">
+                  Нажимая кнопку, вы соглашаетесь с <a href="policy.html" target="_blank">Политикой конфиденциальности</a>.
+                </p>
+              </div>
             </form>
           </div>
         </div>
