@@ -218,7 +218,8 @@
           }
         } catch (error) {
           console.error('Submission error:', error);
-          alert('Не удалось отправить заказ. Пожалуйста, убедитесь, что в коде (cart-page.js) указаны правильные Service ID и Template ID.');
+          const errorMsg = error.text || error.message || 'Неизвестная ошибка';
+          alert('Ошибка EmailJS: ' + errorMsg + '\n\nУбедитесь, что Service ID, Template ID верны и домен разрешен в настройках EmailJS.');
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.innerHTML = `<span>Подтвердить и оформить заказ</span>`;
