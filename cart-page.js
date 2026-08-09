@@ -148,27 +148,28 @@
         const clientAddress = document.getElementById('clientAddress')?.value || '';
         const clientNotes = document.getElementById('clientNotes')?.value || '';
 
-        // Build full formatted text in pure Russian matching the professional template
-        let fullMessage = `[Выберите книги:\n`;
-        cart.forEach((item) => {
-          fullMessage += `${item.title} ${item.price}\n`;
+        let fullMessage = `📦 СОСТАВ ЗАКАЗА:\n`;
+        fullMessage += `-------------------------------------------\n`;
+        cart.forEach((item, index) => {
+          fullMessage += `${index + 1}. ${item.title}\n   Стоимость: ${item.price}\n`;
         });
-        
-        fullMessage += `\nЭлектронная почта:\n${clientEmail}\n`;
-        fullMessage += `\nТелефон:\n${clientPhone}\n`;
-        fullMessage += `\nИмя:\n${clientFirstName}\n`;
-        fullMessage += `\nФамилия:\n${clientLastName}\n`;
-        
-        if (clientMiddleName) {
-          fullMessage += `\nОтчество:\n${clientMiddleName}\n`;
-        }
-        
-        fullMessage += `\nИндекс:\n${clientZip}\n`;
-        fullMessage += `\nГород:\n${clientCity}\n`;
-        fullMessage += `\nАдрес доставки:\n${clientAddress}\n`;
+        fullMessage += `-------------------------------------------\n`;
+        fullMessage += `💰 ИТОГО: ${totals.formattedTotal}\n\n`;
+
+        fullMessage += `👤 КОНТАКТНЫЕ ДАННЫЕ:\n`;
+        fullMessage += `-------------------------------------------\n`;
+        fullMessage += `Покупатель: ${clientLastName} ${clientFirstName} ${clientMiddleName}`.trim() + `\n`;
+        fullMessage += `Телефон: ${clientPhone}\n`;
+        fullMessage += `Email: ${clientEmail}\n\n`;
+
+        fullMessage += `🚚 ДОСТАВКА:\n`;
+        fullMessage += `-------------------------------------------\n`;
+        fullMessage += `Адрес: ${clientZip}, г. ${clientCity}, ${clientAddress}\n`;
         
         if (clientNotes) {
-          fullMessage += `\nПримечания к заказу:\n${clientNotes}\n`;
+          fullMessage += `\n📝 ПРИМЕЧАНИЯ К ЗАКАЗУ:\n`;
+          fullMessage += `-------------------------------------------\n`;
+          fullMessage += `${clientNotes}\n`;
         }
 
         if (orderItemsField) orderItemsField.value = fullMessage;
