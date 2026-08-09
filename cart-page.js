@@ -148,7 +148,7 @@
         const clientAddress = document.getElementById('clientAddress')?.value || '';
         const clientNotes = document.getElementById('clientNotes')?.value || '';
 
-        let fullMessage = `📦 СОСТАВ ЗАКАЗА:\n`;
+        let fullMessage = `📦 СОСТАВ ЗАКАЗА №${orderId}:\n`;
         fullMessage += `-------------------------------------------\n`;
         cart.forEach((item, index) => {
           fullMessage += `${index + 1}. ${item.title}\n   Стоимость: ${item.price}\n`;
@@ -189,6 +189,7 @@
         const EMAILJS_TEMPLATE_ID = 'template_t4flego'; 
 
         const templateParams = {
+          order_id: orderId,
           customer_name: `${clientFirstName} ${clientLastName}`,
           customer_email: clientEmail,
           email: clientEmail, // Added for the TO: {{email}} field
