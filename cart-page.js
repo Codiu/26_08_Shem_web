@@ -138,6 +138,20 @@
         orderSummaryText += `==============================\n`;
         orderSummaryText += `ИТОГО К ОПЛАТЕ: ${totals.formattedTotal} (${totals.count} товаров)\n`;
 
+        const clientName = document.getElementById('clientName')?.value || '';
+        const clientPhone = document.getElementById('clientPhone')?.value || '';
+        const clientEmail = document.getElementById('clientEmail')?.value || '';
+        const clientAddress = document.getElementById('clientAddress')?.value || '';
+
+        // Build full formatted text in pure Russian
+        let fullMessage = `ДАННЫЕ ПОКУПАТЕЛЯ:\n`;
+        fullMessage += `------------------------------\n`;
+        fullMessage += `ФИО: ${clientName}\n`;
+        fullMessage += `Телефон: ${clientPhone}\n`;
+        fullMessage += `Email: ${clientEmail}\n`;
+        fullMessage += `Адрес / Комментарий: ${clientAddress || 'Не указан'}\n\n`;
+        fullMessage += orderSummaryText;
+
         if (orderItemsField) orderItemsField.value = orderSummaryText;
         if (orderTotalField) orderTotalField.value = totals.formattedTotal;
 
@@ -151,6 +165,10 @@
         }
 
         const formData = new FormData(checkoutForm);
+        formData.set('name', clientName);
+        formData.set('email', clientEmail);
+        formData.set('phone', clientPhone);
+        formData.set('message', fullMessage);
 
         try {
           const response = await fetch('https://api.web3forms.com/submit', {
