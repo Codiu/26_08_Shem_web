@@ -79,29 +79,53 @@ title: "Корзина покупок"
             </div>
 
             <form id="checkoutForm" class="checkout-html-form">
-              <input type="hidden" name="Состав заказа" id="orderItemsField">
-              <input type="hidden" name="Итоговая сумма" id="orderTotalField">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="clientLastName">Фамилия <span class="required">*</span></label>
+                  <input type="text" id="clientLastName" required placeholder="Иванов" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="clientFirstName">Имя <span class="required">*</span></label>
+                  <input type="text" id="clientFirstName" required placeholder="Иван" class="form-input">
+                </div>
+              </div>
 
               <div class="form-group">
-                <label for="clientName">ФИО получателя <span class="required">*</span></label>
-                <input type="text" id="clientName" name="ФИО_клиента" required placeholder="Иванов Иван Иванович" class="form-input">
+                <label for="clientMiddleName">Отчество</label>
+                <input type="text" id="clientMiddleName" placeholder="Иванович" class="form-input">
               </div>
 
               <div class="form-row-2">
                 <div class="form-group">
                   <label for="clientPhone">Телефон <span class="required">*</span></label>
-                  <input type="tel" id="clientPhone" name="Телефон" required placeholder="+7 (999) 000-00-00" class="form-input">
+                  <input type="tel" id="clientPhone" required placeholder="+7 (999) 000-00-00" class="form-input">
                 </div>
 
                 <div class="form-group">
                   <label for="clientEmail">Email <span class="required">*</span></label>
-                  <input type="email" id="clientEmail" name="Email" required placeholder="name@example.com" class="form-input">
+                  <input type="email" id="clientEmail" required placeholder="name@example.com" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="clientZip">Индекс <span class="required">*</span></label>
+                  <input type="text" id="clientZip" required placeholder="123456" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="clientCity">Город <span class="required">*</span></label>
+                  <input type="text" id="clientCity" required placeholder="Москва" class="form-input">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="clientAddress">Адрес доставки и комментарий</label>
-                <textarea id="clientAddress" name="Адрес_и_комментарий" rows="3" placeholder="Укажите город, почтовый индекс, адрес доставки или пожелания к отправке..." class="form-textarea"></textarea>
+                <label for="clientAddress">Адрес доставки <span class="required">*</span></label>
+                <input type="text" id="clientAddress" required placeholder="ул. Ленина, д. 1, кв. 2" class="form-input">
+              </div>
+
+              <div class="form-group">
+                <label for="clientNotes">Примечания к заказу</label>
+                <textarea id="clientNotes" rows="3" placeholder="Дополнительные пожелания..." class="form-textarea"></textarea>
               </div>
 
               <button type="submit" class="btn-submit-order" id="checkoutSubmitBtn">
