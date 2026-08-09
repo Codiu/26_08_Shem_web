@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина покупок</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=18">
+</head>
+<body class="pearl-theme">
+
+  <!-- Dynamic Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+<!-- Pearl Integrated Header -->
+<header class="header">
+  <div class="header-inner">
+    <!-- Top Row: Brand Logo & Official Sites List -->
+    <div class="header-top">
+      <a href="{{ '/index.html' | relative_url }}" class="header-brand">
+        <img src="assets/images/author/shemshuk-avatar.png" alt="Шемшук В. А." class="avatar-img" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <span class="brand-title">Владимир Алексеевич Шемшук</span>
+          <span class="brand-sub">Официальный сайт</span>
+        </div>
+      </a>
+
+      <!-- Official Sites Pills -->
+      <div class="header-sites">
+        <span class="sites-label">Другие проекты:</span>
+        <div class="sites-pills">
+          <a href="https://shemshuk-book.ru" target="_blank" rel="noopener" class="site-pill" title="Официальный магазин электронных книг">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>Электронные книги <small>(shemshuk-book.ru)</small></span>
+          </a>
+          <a href="https://youtube.com/@shemshuk" target="_blank" rel="noopener" class="site-pill youtube-pill" title="Официальный YouTube Канал">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>YouTube канал</span>
+          </a>
+        </div>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Bottom Row: Integrated Main Navigation + Cart Button on Right -->
+    <nav class="header-nav">
+      <div class="nav-links">
+        <a href="{{ '/index.html' | relative_url }}" >ГЛАВНАЯ</a>
+        <a href="{{ '/shop.html' | relative_url }}" >МАГАЗИН</a>
+        <a href="{{ '/shkola.html' | relative_url }}" >ШКОЛА</a>
+        <a href="#">КОНЦЕРТ</a>
+        <a href="{{ '/molitva.html' | relative_url }}" >МОЛИТВА-ТРЕБА</a>
+        <a href="{{ '/blog.html' | relative_url }}" >БЛОГ</a>
+        <a href="{{ '/ob-avtore.html' | relative_url }}" >ОБ АВТОРЕ</a>
+        <a href="{{ '/contacts.html' | relative_url }}" >КОНТАКТЫ</a>
+      </div>
+
+      <a href="{{ '/cart.html' | relative_url }}" class="nav-cart-btn active" title="Корзина покупок">
+        <div class="cart-icon-wrap">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="cart-count-badge" style="display: none;">0</span>
+        </div>
+        <span>КОРЗИНА</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html">ГЛАВНАЯ</a>
+    <a href="shop.html">МАГАЗИН</a>
+    <a href="cart.html">КОРЗИНА</a>
+    <a href="shkola.html">ШКОЛА</a>
+    <a href="#">КОНЦЕРТ</a>
+    <a href="molitva.html">МОЛИТВА-ТРЕБА</a>
+    <a href="blog.html">БЛОГ</a>
+    <a href="ob-avtore.html">ОБ АВТОРЕ</a>
+    <a href="index.html#contacts">КОНТАКТЫ</a>
+  </div>
+
+  <!-- Main Page Container -->
+  <main class="page-container">
+<div class="cart-page-wrapper">
+      
+      <!-- Cart Hero -->
+      <div class="cart-page-header">
+        <h1 class="cart-page-title">Корзина и оформление заказа</h1>
+        <p class="cart-page-sub">Проверьте выбранные книги и заполните контактные данные для доставки</p>
+      </div>
+
+      <!-- Empty Cart State -->
+      <div class="cart-empty-state" id="cartEmptyState" style="display: none;">
+        <div class="empty-icon-wrap">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        </div>
+        <h2 class="empty-title">В вашей корзине пока нет товаров</h2>
+        <p class="empty-desc">Выберите интересующие вас книги в официальном каталоге автора.</p>
+        <a href="shop.html" class="btn-goto-shop">
+          <span>Перейти в каталог книг</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Order Success State -->
+      <div class="order-success-card" id="orderSuccessView" style="display: none;">
+        <div class="success-icon-wrap">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <h2 class="success-title">Спасибо за заказ!</h2>
+        <p class="success-text">
+          Ваша заявка успешно принята в обработку. В ближайшее время наш специалист свяжется с вами по указанному телефону для подтверждения заказа и деталей отправки.
+        </p>
+        <div class="success-actions">
+          <a href="shop.html" class="btn-success-shop">Вернуться в каталог</a>
+          <a href="index.html" class="btn-success-home">На главную страницу</a>
+        </div>
+      </div>
+
+      <!-- Main Cart & Checkout Content Layout -->
+      <div class="cart-layout-grid" id="cartContentLayout">
+        
+        <!-- Left Column: Items List -->
+        <div class="cart-items-section">
+          <div class="section-box-header">
+            <h2 class="box-title">Состав заказа</h2>
+            <span class="box-badge">Печатные книги</span>
+          </div>
+
+          <div class="cart-items-list" id="cartItemsList">
+            <!-- Rendered dynamically by cart-page.js -->
+          </div>
+
+          <div class="cart-back-link">
+            <a href="shop.html">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Продолжить покупки в каталоге</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Checkout Form & Total -->
+<div class="cart-page-wrapper">
+      
+      <!-- Cart Hero -->
+      <div class="cart-page-header">
+        <h1 class="cart-page-title">Корзина и оформление заказа</h1>
+        <p class="cart-page-sub">Проверьте выбранные книги и заполните контактные данные для доставки</p>
+      </div>
+
+      <!-- Empty Cart State -->
+      <div class="cart-empty-state" id="cartEmptyState" style="display: none;">
+        <div class="empty-icon-wrap">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        </div>
+        <h2 class="empty-title">В вашей корзине пока нет товаров</h2>
+        <p class="empty-desc">Выберите интересующие вас книги в официальном каталоге автора.</p>
+        <a href="shop.html" class="btn-goto-shop">
+          <span>Перейти в каталог книг</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Order Success State -->
+      <div class="order-success-card" id="orderSuccessView" style="display: none;">
+        <div class="success-icon-wrap">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <h2 class="success-title">Спасибо за заказ!</h2>
+        <p class="success-text">
+          Ваша заявка успешно принята в обработку. В ближайшее время наш специалист свяжется с вами по указанному телефону для подтверждения заказа и деталей отправки.
+        </p>
+        <div class="success-actions">
+          <a href="shop.html" class="btn-success-shop">Вернуться в каталог</a>
+          <a href="index.html" class="btn-success-home">На главную страницу</a>
+        </div>
+      </div>
+
+      <!-- Main Cart & Checkout Content Layout -->
+      <div class="cart-layout-grid" id="cartContentLayout">
+        
+        <!-- Left Column: Items List -->
+        <div class="cart-items-section">
+          <div class="section-box-header">
+            <h2 class="box-title">Состав заказа</h2>
+            <span class="box-badge">Печатные книги</span>
+          </div>
+
+          <div class="cart-items-list" id="cartItemsList">
+            <!-- Rendered dynamically by cart-page.js -->
+          </div>
+
+          <div class="cart-back-link">
+            <a href="shop.html">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span>Продолжить покупки в каталоге</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Checkout Form & Total -->
+        <div class="checkout-form-section">
+          <div class="checkout-card">
+            <h2 class="checkout-title">Оформление доставки</h2>
+            <div class="checkout-divider"></div>
+
+            <div class="order-totals-summary">
+              <div class="summary-line">
+                <span>Стоимость книг:</span>
+                <strong id="cartSubtotal">0 ₽</strong>
+              </div>
+              <div class="summary-line total-highlight">
+                <span>Итого к оплате:</span>
+                <strong id="cartGrandTotal">0 ₽</strong>
+              </div>
+            </div>
+
+            <form id="checkoutForm" class="checkout-html-form">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="clientLastName">Фамилия <span class="required">*</span></label>
+                  <input type="text" id="clientLastName" required placeholder="Иванов" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="clientFirstName">Имя <span class="required">*</span></label>
+                  <input type="text" id="clientFirstName" required placeholder="Иван" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="clientMiddleName">Отчество</label>
+                <input type="text" id="clientMiddleName" placeholder="Иванович" class="form-input">
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="clientPhone">Телефон <span class="required">*</span></label>
+                  <input type="tel" id="clientPhone" required placeholder="+7 (999) 000-00-00" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label for="clientEmail">Email <span class="required">*</span></label>
+                  <input type="email" id="clientEmail" required placeholder="name@example.com" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="clientZip">Индекс <span class="required">*</span></label>
+                  <input type="text" id="clientZip" required placeholder="123456" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="clientCity">Город <span class="required">*</span></label>
+                  <input type="text" id="clientCity" required placeholder="Москва" class="form-input">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="clientAddress">Адрес доставки <span class="required">*</span></label>
+                <input type="text" id="clientAddress" required placeholder="ул. Ленина, д. 1, кв. 2" class="form-input">
+              </div>
+
+              <div class="form-group">
+                <label for="clientNotes">Примечания к заказу</label>
+                <textarea id="clientNotes" rows="3" placeholder="Дополнительные пожелания..." class="form-textarea"></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit-order" id="checkoutSubmitBtn">
+                <span>Подтвердить и оформить заказ</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </button>
+
+              <p class="form-disclaimer">
+                Отправляя форму, вы соглашаетесь с <a href="policy.html" target="_blank">Политикой конфиденциальности</a>.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>© 2020-2026 Владимир Алексеевич Шемшук.</p>
+    <div class="footer-links">
+      <a href="{{ '/terms.html' | relative_url }}">Пользовательское соглашение</a>
+      <span class="sep">•</span>
+      <a href="{{ '/policy.html' | relative_url }}">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="cart.js?v=18"></script>
+  <script src="shop.js?v=18"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="cart-page.js?v=18"></script>
+  <script src="script.js?v=18"></script>
+</body>
+</html>
