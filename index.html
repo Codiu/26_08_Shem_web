@@ -8,18 +8,29 @@ title: Официальный сайт В. А. Шемшука
   <!-- Split Grid: News & Top Books -->
   <section class="home-split-grid">
     
-    <!-- Left: Blog / News -->
+    <!-- Left: Blog / News with Images -->
     <div class="home-news-column">
       <div class="section-header">
         <h2>Что нового?</h2>
         <a href="{{ '/blog.html' | relative_url }}" class="view-all-link">Все статьи &rarr;</a>
       </div>
       <div class="news-list">
-        {% for post in site.posts limit:4 %}
+        {% for post in site.posts limit:3 %}
         <article class="news-card">
-          <span class="news-date">{{ post.date | date: "%d.%m.%Y" }}</span>
-          <h3 class="news-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 22 }}</p>
+          {% assign post_cover = post.cover %}
+          {% if post_cover == nil or post_cover == '' %}
+            {% assign post_cover = '/assets/images/blog/stars-sky-cover.jpg' %}
+          {% endif %}
+          
+          <div class="news-card-thumb">
+            <img src="{{ post_cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
+          </div>
+          
+          <div class="news-card-body">
+            <span class="news-date">{{ post.date | date: "%d.%m.%Y" }}</span>
+            <h3 class="news-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 18 }}</p>
+          </div>
         </article>
         {% endfor %}
       </div>
@@ -66,7 +77,7 @@ title: Официальный сайт В. А. Шемшука
     </div>
   </section>
 
-  <!-- Navigation Cards (Only 3 distinct main paths: School, Blog, Prayer) -->
+  <!-- Navigation Cards (4 main paths: School, Shop, Concerts/Music, Prayer) -->
   <section class="home-nav-cards">
     <a href="{{ '/shkola.html' | relative_url }}" class="nav-card card-school">
       <div class="nav-card-icon">🎓</div>
@@ -76,12 +87,17 @@ title: Официальный сайт В. А. Шемшука
     <a href="{{ '/shop.html' | relative_url }}" class="nav-card card-shop">
       <div class="nav-card-icon">📚</div>
       <h3>Каталог книг</h3>
-      <p>Перейти в полный магазин автографов и изданий</p>
+      <p>Перейти в магазин трудов и автографов</p>
+    </a>
+    <a href="#" class="nav-card card-concert">
+      <div class="nav-card-icon">🎵</div>
+      <h3>Музыка и Концерты</h3>
+      <p>Музыкальные записи и творчество</p>
     </a>
     <a href="{{ '/molitva.html' | relative_url }}" class="nav-card card-prayer">
       <div class="nav-card-icon">🕊️</div>
       <h3>Молитва</h3>
-      <p>Духовные практики и тексты</p>
+      <p>Духовные практики и сакральные тексты</p>
     </a>
   </section>
 </div>
