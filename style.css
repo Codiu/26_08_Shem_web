@@ -2900,6 +2900,11 @@ body.modal-open {
   gap: 2rem;
 }
 
+.home-shop-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -3105,7 +3110,7 @@ body.modal-open {
 
 /* Home Quote of the Day Card (Subtle & Understated Footnote) */
 .home-quote-card {
-  margin-top: 1.25rem;
+  margin-top: auto !important;
   background: rgba(15, 23, 42, 0.35) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
