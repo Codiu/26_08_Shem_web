@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Deterministic "Quote of the Day" Calendar Picker
+  // Deterministic "Quote of the Day" Calendar Picker with Seeded Cycle Shuffle
   const quoteText = document.getElementById('quoteText');
   if (quoteText && window.SHEMSHUK_QUOTES && window.SHEMSHUK_QUOTES.length > 0) {
     const N = window.SHEMSHUK_QUOTES.length;
@@ -185,9 +185,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
     const epochDays = Math.floor(now.getTime() / (1000 * 60 * 60 * 24));
     
-    // Sequential non-repeating cycle per calendar day
-    const quoteIndex = Math.abs(epochDays) % N;
-    
+    const cycle = Math.floor(epochDays / N);
+    const dayInCycle = Math.abs(epochDays % N);
+
+    // Seeded pseudo-random generator based on cycle number
+    let seed = Math.abs((cycle + 1) * 9301 + 49297);
+    function seededRandom() {
+      seed = (seed * 9301 + 49297) % 233280;
+      return seed / 233280;
+    }
+
+    // Generate deterministic shuffled permutation of [0..N-1] for this cycle
+    const cycleOrder = Array.from({ length: N }, (_, i) => i);
+    for (let i = N - 1; i > 0; i--) {
+      const j = Math.floor(seededRandom() * (i + 1));
+      const temp = cycleOrder[i];
+      cycleOrder[i] = cycleOrder[j];
+      cycleOrder[j] = temp;
+    }
+
+    const quoteIndex = cycleOrder[dayInCycle];
     const selectedQuote = window.SHEMSHUK_QUOTES[quoteIndex];
     if (selectedQuote && selectedQuote.text) {
       quoteText.textContent = selectedQuote.text;
