@@ -3097,6 +3097,77 @@ body.modal-open {
   background-color: var(--accent-hover);
 }
 
+/* Home Quote of the Day Card */
+.home-quote-card {
+  margin-top: 1.25rem;
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-quote-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.quote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quote-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.quote-symbol {
+  font-family: Georgia, serif;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: rgba(129, 140, 248, 0.35);
+  font-style: italic;
+}
+
+.quote-text {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--text-dark);
+}
+
+.quote-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.25rem;
+}
+
+.quote-author {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
 /* Navigation Cards */
 .home-nav-cards {
   display: grid;

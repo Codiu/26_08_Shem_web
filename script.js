@@ -175,4 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileDrawer.classList.toggle('active');
     });
   }
+
+  // Dynamic Quote of the Day Picker
+  const quoteText = document.getElementById('quoteText');
+  if (quoteText && window.SHEMSHUK_QUOTES && window.SHEMSHUK_QUOTES.length > 0) {
+    const randomIndex = Math.floor(Math.random() * window.SHEMSHUK_QUOTES.length);
+    const selectedQuote = window.SHEMSHUK_QUOTES[randomIndex];
+    if (selectedQuote && selectedQuote.text) {
+      quoteText.textContent = selectedQuote.text;
+    }
+  }
 });

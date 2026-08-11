@@ -72,8 +72,23 @@ title: Официальный сайт В. А. Шемшука
                 </div>
               </article>
             {% endif %}
-          {% endfor %}
         </div>
+
+        <!-- Dynamic Quote Widget (Thought of the Day) -->
+        <div class="home-quote-card" id="homeQuoteCard">
+          <div class="quote-header">
+            <span class="quote-badge">✦ МЫСЛЬ ДНЯ</span>
+            <span class="quote-symbol">“</span>
+          </div>
+          <p class="quote-text" id="quoteText">Соприкосновение со святыми людьми делает человека на период контакта тоже святым...</p>
+          <div class="quote-footer">
+            <span class="quote-author">В. А. Шемшук</span>
+          </div>
+        </div>
+
+        <script>
+          window.SHEMSHUK_QUOTES = {{ site.data.quotes | jsonify }};
+        </script>
       </div>
     </section>
 
