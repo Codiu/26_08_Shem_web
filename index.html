@@ -4,22 +4,6 @@ title: Официальный сайт В. А. Шемшука
 ---
 
 <div class="home-page">
-  <!-- Hero Section -->
-  <section class="home-hero">
-    <div class="home-hero-content">
-      <div class="home-hero-text">
-        <h1 class="hero-title">Владимир Шемшук</h1>
-        <p class="hero-subtitle">Официальный сайт русского исследователя, писателя и основателя Русской Волшебной Школы.</p>
-        <div class="hero-actions">
-          <a href="{{ '/shop.html' | relative_url }}" class="btn-hero-primary">В магазин книг</a>
-          <a href="{{ '/shkola.html' | relative_url }}" class="btn-hero-secondary">О Школе</a>
-        </div>
-      </div>
-      <div class="home-hero-image">
-        <img src="{{ '/assets/images/shemshuk_photo.jpg' | relative_url }}" alt="Владимир Шемшук">
-      </div>
-    </div>
-  </section>
 
   <!-- Split Grid: News & Top Books -->
   <section class="home-split-grid">
@@ -31,11 +15,11 @@ title: Официальный сайт В. А. Шемшука
         <a href="{{ '/blog.html' | relative_url }}" class="view-all-link">Все статьи &rarr;</a>
       </div>
       <div class="news-list">
-        {% for post in site.posts limit:3 %}
+        {% for post in site.posts limit:4 %}
         <article class="news-card">
           <span class="news-date">{{ post.date | date: "%d.%m.%Y" }}</span>
           <h3 class="news-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+          <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 22 }}</p>
         </article>
         {% endfor %}
       </div>
@@ -47,40 +31,33 @@ title: Официальный сайт В. А. Шемшука
         <h2>Топ продаж</h2>
         <a href="{{ '/shop.html' | relative_url }}" class="view-all-link">Весь каталог &rarr;</a>
       </div>
-      <div class="shop-grid home-shop-grid">
-        {% for book in site.data.books limit:3 %}
+      
+      <div class="home-books-list">
+        {% assign rendered_count = 0 %}
+        {% for book in site.data.books %}
           {% assign vis = book.visible | downcase %}
-          {% if vis == 'true' %}
-            <article class="book-card" id="{{ book.id }}">
-              <div class="book-cover-wrap">
+          {% if vis == 'true' and rendered_count < 3 %}
+            {% assign rendered_count = rendered_count | plus: 1 %}
+            {% assign thumb_path = book.cover %}
+            {% if thumb_path == nil or thumb_path == '' %}
+              {% assign thumb_path = 'default-cover.svg' %}
+            {% endif %}
+
+            <article class="home-book-card" id="{{ book.id }}">
+              <div class="home-book-thumb">
                 {% if book.ribbon and book.ribbon != '' %}
-                  <span class="book-ribbon">{{ book.ribbon }}</span>
-                {% endif %}
-                {% assign thumb_path = book.cover %}
-                {% if thumb_path == nil or thumb_path == '' %}
-                  {% assign thumb_path = 'default-cover.svg' %}
+                  <span class="book-ribbon-mini">{{ book.ribbon }}</span>
                 {% endif %}
                 <img src="{{ '/assets/images/books/thumbs/' | append: thumb_path | relative_url }}" 
                      alt="{{ book.title | escape }}" 
-                     class="book-cover" loading="lazy">
+                     loading="lazy">
               </div>
-              <div class="book-info">
-                <span class="book-author">Владимир Шемшук</span>
-                <h3 class="book-title">{{ book.title }}</h3>
-                <p class="book-desc">{{ book.short_desc }}</p>
-                
-                <div class="book-buy-area">
-                  <div class="book-price-block">
-                    <span class="book-price">{{ book.price }} ₽</span>
-                    {% if book.old_price and book.old_price != '0' and book.old_price != '' %}
-                      <span class="book-old-price">{{ book.old_price }} ₽</span>
-                    {% endif %}
-                  </div>
-                  <button class="btn-buy add-to-cart-btn" data-id="{{ book.id }}" data-title="{{ book.title | escape }}" data-price="{{ book.price }}" data-cover="{{ thumb_path }}">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                    <span>В корзину</span>
-                  </button>
-                </div>
+              <div class="home-book-details">
+                <h3 class="home-book-title">{{ book.title }}</h3>
+                <div class="home-book-price">{{ book.price }} ₽</div>
+                <button class="btn-buy-mini add-to-cart-btn" data-id="{{ book.id }}" data-title="{{ book.title | escape }}" data-price="{{ book.price }}" data-cover="{{ thumb_path }}">
+                  <span>В корзину</span>
+                </button>
               </div>
             </article>
           {% endif %}
@@ -89,22 +66,22 @@ title: Официальный сайт В. А. Шемшука
     </div>
   </section>
 
-  <!-- Navigation Cards -->
+  <!-- Navigation Cards (Only 3 distinct main paths: School, Blog, Prayer) -->
   <section class="home-nav-cards">
     <a href="{{ '/shkola.html' | relative_url }}" class="nav-card card-school">
       <div class="nav-card-icon">🎓</div>
       <h3>Русская Волшебная Школа</h3>
-      <p>Записаться на обучение</p>
+      <p>Записаться на обучение и узнать о курсах</p>
     </a>
-    <a href="{{ '/blog.html' | relative_url }}" class="nav-card card-blog">
-      <div class="nav-card-icon">📜</div>
-      <h3>Статьи и публикации</h3>
-      <p>Читать блог автора</p>
+    <a href="{{ '/shop.html' | relative_url }}" class="nav-card card-shop">
+      <div class="nav-card-icon">📚</div>
+      <h3>Каталог книг</h3>
+      <p>Перейти в полный магазин автографов и изданий</p>
     </a>
     <a href="{{ '/molitva.html' | relative_url }}" class="nav-card card-prayer">
       <div class="nav-card-icon">🕊️</div>
       <h3>Молитва</h3>
-      <p>Духовные практики</p>
+      <p>Духовные практики и тексты</p>
     </a>
   </section>
 </div>
