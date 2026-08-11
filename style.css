@@ -584,36 +584,7 @@ body.pearl-theme {
   box-shadow: var(--panel-shadow);
 }
 
-.author-photo-frame {
-  position: relative;
-  width: 100%;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-  background: #0f172a;
-  cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
-  z-index: 5;
-  transform-origin: 50% 50%;
-  --native-max-scale: 1.45;
-}
 
-.author-photo-frame:hover {
-  transform: scale(var(--native-max-scale, 1.45));
-  box-shadow: 
-    0 50px 100px rgba(0, 0, 0, 0.7),
-    0 15px 35px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.15);
-  z-index: 50;
-}
-
-.author-photo {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: opacity 0.2s ease;
-}
 
 .author-photo-caption {
   margin-top: 8px;

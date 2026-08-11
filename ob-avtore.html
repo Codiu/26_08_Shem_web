@@ -9,10 +9,10 @@ title: Об Авторе
 
       <div class="about-content-grid">
         
-        <!-- Left: Author Portrait Image -->
+        <!-- Left: Author Portrait Image (Reusing Quick View modal cover frame component) -->
         <div class="author-photo-wrapper">
-          <div class="author-photo-frame">
-            <img src="{{ '/assets/images/author/shemshuk-author.jpg' | relative_url }}" alt="Владимир Алексеевич Шемшук" class="author-photo" onerror="this.src='{{ '/assets/images/author/shemshuk-avatar.png' | relative_url }}'">
+          <div class="modal-cover-frame" style="height: auto; aspect-ratio: 3/4;">
+            <img src="{{ '/assets/images/author/shemshuk-author.jpg' | relative_url }}" alt="Владимир Алексеевич Шемшук" class="modal-cover-img" onerror="this.src='{{ '/assets/images/author/shemshuk-avatar.png' | relative_url }}'">
           </div>
           <div class="author-photo-caption">
             <strong>Владимир Алексеевич Шемшук</strong>
