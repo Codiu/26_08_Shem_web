@@ -3097,6 +3097,12 @@ body.modal-open {
   background-color: var(--accent-hover);
 }
 
+.btn-buy-mini.added {
+  background-color: #16a34a !important;
+  color: #ffffff !important;
+  border-color: #16a34a !important;
+}
+
 /* Home Quote of the Day Card */
 .home-quote-card {
   margin-top: 1.25rem;

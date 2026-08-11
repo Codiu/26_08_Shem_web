@@ -202,16 +202,16 @@
         Cart.addToCart(bookData, 1);
 
         // Visual feedback on the button
-        const spanText = addBtn.querySelector('span');
-        if (spanText) {
-          const originalText = spanText.textContent;
-          spanText.textContent = 'В корзине';
-          addBtn.classList.add('added');
-          setTimeout(() => {
-            spanText.textContent = originalText;
-            addBtn.classList.remove('added');
-          }, 1600);
-        }
+        const origHtml = addBtn.innerHTML;
+        addBtn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:3px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Добавлено</span>
+        `;
+        addBtn.classList.add('added');
+        setTimeout(() => {
+          addBtn.innerHTML = origHtml;
+          addBtn.classList.remove('added');
+        }, 1600);
       }
     });
 
