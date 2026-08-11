@@ -2047,7 +2047,7 @@ body.modal-open {
 }
 
 .modal-cover-frame:hover {
-  transform: scale(var(--native-max-scale, min(1.5, calc(72vh / 420px))));
+  transform: scale(min(var(--native-max-scale, 1.5), min(1.5, calc(72vh / 420px))));
   box-shadow: 
     0 50px 100px rgba(0, 0, 0, 0.7),
     0 15px 35px rgba(0, 0, 0, 0.5),
