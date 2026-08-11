@@ -3137,16 +3137,13 @@ body.modal-open {
   align-items: center;
 }
 
+.quote-topic,
 .quote-badge {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--text-muted) !important;
-  text-transform: uppercase;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  opacity: 0.8;
+  letter-spacing: 0.04em;
+  color: var(--accent-blue) !important;
+  opacity: 0.85;
 }
 
 .quote-symbol {

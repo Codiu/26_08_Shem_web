@@ -178,8 +178,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Deterministic "Quote of the Day" Calendar Picker with Seeded Cycle Shuffle
   const quoteText = document.getElementById('quoteText');
-  if (quoteText && window.SHEMSHUK_QUOTES && window.SHEMSHUK_QUOTES.length > 0) {
-    const N = window.SHEMSHUK_QUOTES.length;
+  const quoteTopic = document.getElementById('quoteTopic');
+  const quoteAuthor = document.getElementById('quoteAuthor');
+
+  let rawQuotes = window.SHEMSHUK_QUOTES;
+  let quotesList = [];
+  if (rawQuotes) {
+    if (Array.isArray(rawQuotes.quotes)) {
+      quotesList = rawQuotes.quotes;
+    } else if (Array.isArray(rawQuotes)) {
+      quotesList = rawQuotes;
+    }
+  }
+
+  if (quoteText && quotesList.length > 0) {
+    const N = quotesList.length;
     
     // Calculate current day index (days since Jan 1 1970 UTC)
     const now = new Date();
@@ -205,9 +218,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const quoteIndex = cycleOrder[dayInCycle];
-    const selectedQuote = window.SHEMSHUK_QUOTES[quoteIndex];
-    if (selectedQuote && selectedQuote.text) {
-      quoteText.textContent = selectedQuote.text;
+    const selectedQuote = quotesList[quoteIndex];
+
+    if (selectedQuote) {
+      quoteText.textContent = selectedQuote.quote || selectedQuote.text || '';
+      if (quoteTopic) {
+        quoteTopic.textContent = selectedQuote.overview || 'МЫСЛЬ ДНЯ';
+      }
+      if (quoteAuthor && selectedQuote.source) {
+        quoteAuthor.textContent = '— ' + selectedQuote.source;
+      }
     }
   }
 });
