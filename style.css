@@ -1911,11 +1911,26 @@ body.modal-open {
   box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25) !important;
 }
 
+.btn-add-to-cart.in-cart .btn-text-hover,
+.btn-buy-mini.in-cart .btn-text-hover {
+  display: none;
+}
+
+.btn-add-to-cart.in-cart:hover .btn-text-default,
+.btn-buy-mini.in-cart:hover .btn-text-default {
+  display: none;
+}
+
+.btn-add-to-cart.in-cart:hover .btn-text-hover,
+.btn-buy-mini.in-cart:hover .btn-text-hover {
+  display: inline;
+}
+
 .btn-add-to-cart.in-cart:hover,
 .btn-buy-mini.in-cart:hover {
-  background-color: #15803d !important;
-  border-color: #15803d !important;
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35) !important;
+  background-color: #dc2626 !important;
+  border-color: #dc2626 !important;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35) !important;
 }
 
 /* ==========================================================================

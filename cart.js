@@ -74,8 +74,20 @@
     // Remove single item from cart
     removeFromCart: function (id) {
       let cart = this.getCart();
-      cart = cart.filter(item => item.id !== String(id));
+      cart = cart.filter(item => String(item.id) !== String(id));
       this.saveCart(cart);
+    },
+
+    // Toggle item in/out of cart
+    toggleCart: function (book) {
+      const cart = this.getCart();
+      const existingIndex = cart.findIndex(item => String(item.id) === String(book.id));
+      if (existingIndex > -1) {
+        this.removeFromCart(book.id);
+        this.showToast(`«${book.title || 'Книга'}» удалена из корзины`);
+      } else {
+        this.addToCart(book, 1);
+      }
     },
 
     // Clear entire cart
@@ -141,7 +153,8 @@
           btn.classList.add('in-cart');
           btn.innerHTML = `
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>В корзине</span>
+            <span class="btn-text-default">В корзине</span>
+            <span class="btn-text-hover">Удалить</span>
           `;
         } else {
           btn.classList.remove('in-cart');
@@ -221,12 +234,6 @@
       if (addBtn) {
         e.preventDefault();
 
-        // If already in cart, navigate to cart page
-        if (addBtn.classList.contains('in-cart')) {
-          window.location.href = 'cart.html';
-          return;
-        }
-
         const bookId = addBtn.dataset.id;
         const bookTitle = addBtn.dataset.title;
         const bookPrice = addBtn.dataset.price;
@@ -239,7 +246,7 @@
           thumb: 'assets/images/books/thumbs/' + coverFilename
         };
 
-        Cart.addToCart(bookData, 1);
+        Cart.toggleCart(bookData);
 
         // Pulse feedback animation
         addBtn.classList.add('added-pulse');
