@@ -176,6 +176,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Dynamic Transform-Origin for Author Photo Cards (Quick View spring behavior)
+  document.querySelectorAll('.author-photo-wrapper, .home-hero-image img').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      const rect = el.getBoundingClientRect();
+      const centerY = rect.top + rect.height / 2;
+      const originY = Math.max(10, Math.min(90, (centerY / window.innerHeight) * 100));
+      el.style.transformOrigin = `50% ${originY}%`;
+    });
+  });
+
   // Deterministic "Quote of the Day" Calendar Picker with Seeded Cycle Shuffle
   const quoteText = document.getElementById('quoteText');
   const quoteTopic = document.getElementById('quoteTopic');
