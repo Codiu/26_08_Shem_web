@@ -225,9 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (quoteTopic) {
         quoteTopic.textContent = selectedQuote.overview || 'МЫСЛЬ ДНЯ';
       }
-      if (quoteAuthor && selectedQuote.source) {
-        quoteAuthor.textContent = '— ' + selectedQuote.source;
-      }
     }
   }
 });
