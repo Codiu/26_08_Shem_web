@@ -56,9 +56,7 @@
       };
 
       if (modalCover) {
-        modalCover.style.opacity = '0';
         modalCover.onload = () => {
-          modalCover.style.opacity = '1';
           const naturalH = modalCover.naturalHeight || 600;
           const nativeMaxScale = Math.max(1, naturalH / 420);
           const modalCoverFrame = document.querySelector('.modal-cover-frame');
@@ -92,8 +90,7 @@
       modal.classList.remove('active');
       document.body.classList.remove('modal-open');
       if (modalCover) {
-        modalCover.style.opacity = '0';
-        modalCover.src = '';
+        modalCover.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // Transparent 1x1 gif
       }
       currentModalBook = null;
     }
