@@ -182,6 +182,39 @@
   document.addEventListener('DOMContentLoaded', () => {
     Cart.updateHeaderUI();
 
+    // Global Add to Cart listener (primarily for index.html / home page)
+    document.addEventListener('click', (e) => {
+      const addBtn = e.target.closest('.add-to-cart-btn');
+      if (addBtn) {
+        e.preventDefault();
+        const bookId = addBtn.dataset.id;
+        const bookTitle = addBtn.dataset.title;
+        const bookPrice = addBtn.dataset.price;
+        const coverFilename = addBtn.dataset.cover || 'default-cover.svg';
+        
+        const bookData = {
+          id: bookId,
+          title: bookTitle,
+          price: bookPrice,
+          thumb: 'assets/images/books/thumbs/' + coverFilename
+        };
+
+        Cart.addToCart(bookData, 1);
+
+        // Visual feedback on the button
+        const spanText = addBtn.querySelector('span');
+        if (spanText) {
+          const originalText = spanText.textContent;
+          spanText.textContent = 'В корзине';
+          addBtn.classList.add('added');
+          setTimeout(() => {
+            spanText.textContent = originalText;
+            addBtn.classList.remove('added');
+          }, 1600);
+        }
+      }
+    });
+
     // Listen for custom cart events
     window.addEventListener('cart:updated', () => {
       Cart.updateHeaderUI();
