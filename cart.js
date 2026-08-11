@@ -97,7 +97,7 @@
       };
     },
 
-    // Update header & floating widgets
+    // Update header & floating widgets & button states
     updateHeaderUI: function () {
       const totals = this.getCartTotals();
       
@@ -117,6 +117,40 @@
       if (!isCartPage) {
         this.updateFloatingWidget(totals);
       }
+
+      // Sync button states on the page
+      this.syncButtonStates();
+    },
+
+    // Synchronize all add-to-cart button states on the page based on cart contents
+    syncButtonStates: function () {
+      const cart = this.getCart();
+      const buttons = document.querySelectorAll('.btn-add-to-cart, .add-to-cart-btn, .btn-buy-mini');
+
+      buttons.forEach(btn => {
+        const bookId = btn.dataset.id;
+        if (!bookId) return;
+
+        // Store original html if not saved yet
+        if (!btn.dataset.defaultHtml) {
+          btn.dataset.defaultHtml = btn.innerHTML;
+        }
+
+        const cartItem = cart.find(item => String(item.id) === String(bookId));
+        if (cartItem && cartItem.quantity > 0) {
+          const qtyText = cartItem.quantity > 1 ? ` (${cartItem.quantity})` : '';
+          btn.classList.add('in-cart');
+          btn.innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>В корзине${qtyText}</span>
+          `;
+        } else {
+          btn.classList.remove('in-cart');
+          if (btn.dataset.defaultHtml) {
+            btn.innerHTML = btn.dataset.defaultHtml;
+          }
+        }
+      });
     },
 
     // Floating cart widget management
@@ -201,17 +235,11 @@
 
         Cart.addToCart(bookData, 1);
 
-        // Visual feedback on the button
-        const origHtml = addBtn.innerHTML;
-        addBtn.innerHTML = `
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          <span>Добавлено</span>
-        `;
-        addBtn.classList.add('added');
+        // Pulse feedback animation
+        addBtn.classList.add('added-pulse');
         setTimeout(() => {
-          addBtn.innerHTML = origHtml;
-          addBtn.classList.remove('added');
-        }, 1600);
+          addBtn.classList.remove('added-pulse');
+        }, 500);
       }
     });
 

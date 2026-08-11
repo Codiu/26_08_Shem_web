@@ -225,6 +225,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (quoteTopic) {
         quoteTopic.textContent = selectedQuote.overview || 'МЫСЛЬ ДНЯ';
       }
+      if (quoteAuthor) {
+        quoteAuthor.textContent = selectedQuote.author ? ('— ' + selectedQuote.author) : '— В. А. Шемшук';
+      }
     }
   }
 });

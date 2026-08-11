@@ -1901,9 +1901,21 @@ body.modal-open {
   box-shadow: 0 4px 12px var(--accent-glow);
 }
 
-.btn-add-to-cart.added {
-  background: #16a34a;
-  border-color: #16a34a;
+.btn-add-to-cart.added,
+.btn-add-to-cart.in-cart,
+.btn-buy-mini.added,
+.btn-buy-mini.in-cart {
+  background-color: #16a34a !important;
+  color: #ffffff !important;
+  border-color: #16a34a !important;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25) !important;
+}
+
+.btn-add-to-cart.in-cart:hover,
+.btn-buy-mini.in-cart:hover {
+  background-color: #15803d !important;
+  border-color: #15803d !important;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35) !important;
 }
 
 /* ==========================================================================
