@@ -2934,6 +2934,7 @@ body.modal-open {
   gap: 2rem;
 }
 
+.home-news-column,
 .home-shop-column {
   display: flex;
   flex-direction: column;
@@ -2944,7 +2945,7 @@ body.modal-open {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
   border-bottom: 2px solid rgba(56, 189, 248, 0.35);
   padding-bottom: 0.6rem;
 }
