@@ -271,6 +271,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (quoteAuthor) {
         quoteAuthor.textContent = selectedQuote.author ? ('— ' + selectedQuote.author) : '— В. А. Шемшук';
       }
+
+      // Плавное проявление темы и текста цитаты (рамка и автор уже видны)
+      quoteText.style.transition = 'opacity 0.8s ease';
+      if (quoteTopic) quoteTopic.style.transition = 'opacity 0.6s ease 0.15s';
+
+      // Небольшой таймаут чтобы браузер успел применить transition до смены opacity
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          quoteText.style.opacity = '1';
+          if (quoteTopic) quoteTopic.style.opacity = '1';
+        });
+      });
     }
   }
 });
