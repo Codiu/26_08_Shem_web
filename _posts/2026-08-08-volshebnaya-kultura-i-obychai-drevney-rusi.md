@@ -1,9 +1,12 @@
 ---
 layout: post
-title: Русская волшебная культура и сакральные обычаи предков
+title: "Русская волшебная культура и сакральные обычаи предков"
+type: "video"
+tag: "YouTube"
 date: 2026-08-08
-category: Волшебная культура
-cover: /assets/images/blog/stars-sky-cover.jpg
+category: "Волшебная культура"
+cover: "/assets/images/blog/stars-sky-cover.jpg"
+excerpt_separator: <!--more-->
 ---
 
 

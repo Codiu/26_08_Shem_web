@@ -9,84 +9,38 @@ title: Блог — Владимир Алексеевич Шемшук
     </div>
 
     <div class="blog-feed-grid">
-      
-      <!-- Video Post -->
+      {% for post in site.posts %}
       <article class="blog-card">
         <div class="blog-card-cover">
-          <img src="assets/images/blog/stars-sky-cover.jpg" alt="Новое видео на YouTube">
+          {% assign cover = post.cover | default: 'assets/images/blog/stars-sky-cover.jpg' %}
+          <img src="{{ cover | relative_url }}" alt="{{ post.title | escape }}">
+          
+          {% if post.type == 'video' %}
           <div class="video-play-overlay">▶</div>
+          {% endif %}
         </div>
         <div class="blog-card-body">
           <div class="blog-meta">
-            <span class="blog-date">08.08.2026</span>
-            <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999;">YouTube</span>
+            <span class="blog-date">{{ post.date | date: "%d.%m.%Y" }}</span>
+            {% if post.type == 'video' %}
+              <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999;">YouTube</span>
+            {% elsif post.type == 'meeting' %}
+              <span class="blog-tag" style="background: rgba(0, 255, 128, 0.2); color: #80ffbf;">Встреча</span>
+            {% elsif post.type == 'news' %}
+              <span class="blog-tag">Новость</span>
+            {% else %}
+              <span class="blog-tag">{{ post.tag | default: 'Статья' }}</span>
+            {% endif %}
           </div>
-          <h2 class="blog-title">Новое видео: Ответы на вопросы зрителей</h2>
-          <p class="blog-excerpt">Смотрите новую запись эфира на нашем YouTube канале. Обсуждаем последние события, мироустройство и отвечаем на самые частые вопросы.</p>
-          <a href="#" class="blog-read-more">
-            <span>Смотреть видео</span>
+          <h2 class="blog-title">{{ post.title }}</h2>
+          <p class="blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+          <a href="{{ post.url | relative_url }}" class="blog-read-more">
+            <span>Читать далее</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
       </article>
-
-      <!-- Meeting Post -->
-      <article class="blog-card">
-        <div class="blog-card-cover">
-          <img src="assets/images/blog/stars-sky-cover.jpg" alt="Встреча с читателями">
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-meta">
-            <span class="blog-date">01.08.2026</span>
-            <span class="blog-tag" style="background: rgba(0, 255, 128, 0.2); color: #80ffbf;">Встреча</span>
-          </div>
-          <h2 class="blog-title">Анонс: Встреча с читателями в Москве</h2>
-          <p class="blog-excerpt">Дорогие друзья! Приглашаем вас на живую встречу с Владимиром Алексеевичем. В программе: презентация новых книг, ответы на вопросы, автограф-сессия.</p>
-          <a href="#" class="blog-read-more">
-            <span>Узнать подробности</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- News Post -->
-      <article class="blog-card">
-        <div class="blog-card-cover">
-          <img src="assets/images/blog/stars-sky-cover.jpg" alt="Новая книга">
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-meta">
-            <span class="blog-date">25.07.2026</span>
-            <span class="blog-tag">Новость</span>
-          </div>
-          <h2 class="blog-title">Вышла из печати новая книга!</h2>
-          <p class="blog-excerpt">Долгожданный тираж новой книги уже поступил на наш склад. Спешите оформить предзаказ в разделе Магазин, количество экземпляров в первой партии ограничено.</p>
-          <a href="#" class="blog-read-more">
-            <span>Перейти в магазин</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- Article Post -->
-      <article class="blog-card">
-        <div class="blog-card-cover">
-          <img src="assets/images/blog/stars-sky-cover.jpg" alt="Статья">
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-meta">
-            <span class="blog-date">10.07.2026</span>
-            <span class="blog-tag">Статья</span>
-          </div>
-          <h2 class="blog-title">Заметка: О важности изучения наследия предков</h2>
-          <p class="blog-excerpt">Небольшая статья-размышление о том, как знания прошлого помогают нам в современном мире ориентироваться в потоке информации и сохранять ясность ума.</p>
-          <a href="#" class="blog-read-more">
-            <span>Читать статью</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
-
+      {% endfor %}
     </div>
 
   

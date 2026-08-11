@@ -1,6 +1,8 @@
 ---
 layout: post
-title: "Природные методы оздоровления: основы славянской здравы и долголетия"
+title: "Древние методы оздоровления"
+type: "news"
+tag: "Новость"
 date: 2026-08-01
 category: "Оздоровление"
 cover: "/assets/images/blog/stars-sky-cover.jpg"

@@ -25,11 +25,23 @@ title: Официальный сайт В. А. Шемшука
             <div class="news-card-body">
               <div class="news-header-row">
                 <div class="news-title-group">
-                  <span class="news-date">{{ post.date | date: "%d.%m.%Y" }}</span>
+                  <span class="news-date">
+                    {{ post.date | date: "%d.%m.%Y" }}
+                    {% if post.type == 'video' %}
+                      <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-size: 0.75rem;">YouTube</span>
+                    {% elsif post.type == 'meeting' %}
+                      <span class="blog-tag" style="background: rgba(0, 255, 128, 0.2); color: #80ffbf; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-size: 0.75rem;">Встреча</span>
+                    {% elsif post.type == 'news' %}
+                      <span class="blog-tag" style="background: rgba(129, 140, 248, 0.15); color: #818cf8; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-size: 0.75rem;">Новость</span>
+                    {% endif %}
+                  </span>
                   <h3 class="news-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
                 </div>
-                <div class="news-card-thumb">
+                <div class="news-card-thumb" style="position: relative;">
                   <img src="{{ post_cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
+                  {% if post.type == 'video' %}
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; background: rgba(0,0,0,0.6); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid white;">▶</div>
+                  {% endif %}
                 </div>
               </div>
               <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 18 }}</p>
