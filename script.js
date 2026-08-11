@@ -72,6 +72,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Cache pre-rendered orbs for massive performance boost on low-end GPUs
+  const orbCache = {};
+  const orbColors = ['56, 189, 248', '99, 102, 241', '192, 132, 252', '245, 158, 11'];
+  
+  function getPreRenderedOrb(color, radius) {
+    const key = `${color}-${Math.round(radius)}`;
+    if (orbCache[key]) return orbCache[key];
+    
+    const offCanvas = document.createElement('canvas');
+    const size = radius * 2;
+    offCanvas.width = size;
+    offCanvas.height = size;
+    const octx = offCanvas.getContext('2d');
+    
+    const grad = octx.createRadialGradient(radius, radius, 0, radius, radius, radius);
+    grad.addColorStop(0, `rgba(${color}, 1)`); // Max alpha, we scale alpha on drawImage
+    grad.addColorStop(0.5, `rgba(${color}, 0.4)`);
+    grad.addColorStop(1, `rgba(${color}, 0)`);
+    
+    octx.beginPath();
+    octx.arc(radius, radius, radius, 0, Math.PI * 2);
+    octx.fillStyle = grad;
+    octx.fill();
+    
+    orbCache[key] = offCanvas;
+    return offCanvas;
+  }
+
   // Large Soft Glowing Orbs
   class GlowingOrb {
     constructor() {
@@ -85,9 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
       this.vx = (Math.random() - 0.5) * 0.4;
       this.vy = (Math.random() - 0.5) * 0.4;
       this.alpha = Math.random() * 0.15 + 0.08;
-      // Palette: Soft Cyan, Deep Indigo, Warm Gold Accent
-      const colors = ['56, 189, 248', '99, 102, 241', '192, 132, 252', '245, 158, 11'];
-      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.color = orbColors[Math.floor(Math.random() * orbColors.length)];
+      this.img = getPreRenderedOrb(this.color, this.radius);
     }
 
     update() {
@@ -99,68 +126,74 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     draw() {
-      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-      grad.addColorStop(0, `rgba(${this.color}, ${this.alpha * 1.5})`);
-      grad.addColorStop(0.5, `rgba(${this.color}, ${this.alpha * 0.6})`);
-      grad.addColorStop(1, `rgba(${this.color}, 0)`);
-
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
+      ctx.globalAlpha = this.alpha;
+      ctx.drawImage(this.img, this.x - this.radius, this.y - this.radius);
+      ctx.globalAlpha = 1.0; // Reset
     }
   }
 
   // Initialize elements
-  const particleCount = Math.min(Math.floor(window.innerWidth / 12), 70);
+  // Drastically reduce particle count for low-end GPUs, keeping the aesthetic
+  const particleCount = Math.min(Math.floor(window.innerWidth / 40), 30);
   for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle());
   }
 
-  const orbCount = Math.min(Math.floor(window.innerWidth / 160), 12);
+  const orbCount = Math.min(Math.floor(window.innerWidth / 200), 8);
   for (let i = 0; i < orbCount; i++) {
     glowingOrbs.push(new GlowingOrb());
   }
 
   function drawConnections() {
     const maxDist = 120;
+    const maxDistSq = maxDist * maxDist; // Use squared distance for performance
+    
+    ctx.lineWidth = 0.8;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const distSq = dx * dx + dy * dy;
 
-        if (dist < maxDist) {
+        if (distSq < maxDistSq) {
+          const dist = Math.sqrt(distSq);
           const alpha = (1 - dist / maxDist) * 0.25;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = `rgba(129, 140, 248, ${alpha})`;
-          ctx.lineWidth = 0.8;
           ctx.stroke();
         }
       }
     }
   }
 
+  // Use a variable to track if we should animate to save CPU when off-screen
+  let isScrolling = false;
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    isScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => { isScrolling = false; }, 100);
+  }, { passive: true });
+
   function animate() {
-    ctx.clearRect(0, 0, width, height);
+    // Only render if browser window is visible and not heavily scrolling (helps mid-range laptops)
+    if (!document.hidden && !isScrolling) {
+      ctx.clearRect(0, 0, width, height);
 
-    // Draw background glowing orbs first
-    glowingOrbs.forEach(orb => {
-      orb.update();
-      orb.draw();
-    });
+      glowingOrbs.forEach(orb => {
+        orb.update();
+        orb.draw();
+      });
 
-    // Draw particle constellation connections
-    drawConnections();
+      drawConnections();
 
-    // Draw particles on top
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
-
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+    }
     requestAnimationFrame(animate);
   }
 
