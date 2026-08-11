@@ -3,8 +3,8 @@
   <div class="header-inner">
     <!-- Top Row: Brand Logo & Official Sites List -->
     <div class="header-top">
-      <a href="index.html" class="header-brand">
-        <img src="assets/images/author/shemshuk-avatar.png" alt="Шемшук В. А." class="avatar-img" onerror="this.style.display='none'">
+      <a href="{{ '/index.html' | relative_url }}" class="header-brand">
+        <img src="{{ '/assets/images/author/shemshuk-avatar.png' | relative_url }}" alt="Шемшук В. А." class="avatar-img" onerror="this.style.display='none'">
         <div class="brand-text">
           <span class="brand-title">Владимир Алексеевич Шемшук</span>
           <span class="brand-sub">Официальный сайт</span>
@@ -34,17 +34,17 @@
     <!-- Bottom Row: Integrated Main Navigation + Cart Button on Right -->
     <nav class="header-nav">
       <div class="nav-links">
-        <a href="index.html" {% if page.url == '/' or page.url == '/index.html' %}class="active"{% endif %}>ГЛАВНАЯ</a>
-        <a href="shop.html" {% if page.url contains 'shop' %}class="active"{% endif %}>МАГАЗИН</a>
-        <a href="shkola.html" {% if page.url contains 'shkola' %}class="active"{% endif %}>ШКОЛА</a>
+        <a href="{{ '/index.html' | relative_url }}" {% if page.url == '/' or page.url == '/index.html' %}class="active"{% endif %}>ГЛАВНАЯ</a>
+        <a href="{{ '/shop.html' | relative_url }}" {% if page.url contains 'shop' %}class="active"{% endif %}>МАГАЗИН</a>
+        <a href="{{ '/shkola.html' | relative_url }}" {% if page.url contains 'shkola' %}class="active"{% endif %}>ШКОЛА</a>
         <a href="#">КОНЦЕРТ</a>
-        <a href="molitva.html" {% if page.url contains 'molitva' %}class="active"{% endif %}>МОЛИТВА-ТРЕБА</a>
-        <a href="blog.html" {% if page.url contains 'blog' %}class="active"{% endif %}>БЛОГ</a>
-        <a href="ob-avtore.html" {% if page.url contains 'ob-avtore' %}class="active"{% endif %}>ОБ АВТОРЕ</a>
-        <a href="contacts.html" {% if page.url contains 'contacts' %}class="active"{% endif %}>КОНТАКТЫ</a>
+        <a href="{{ '/molitva.html' | relative_url }}" {% if page.url contains 'molitva' %}class="active"{% endif %}>МОЛИТВА-ТРЕБА</a>
+        <a href="{{ '/blog.html' | relative_url }}" {% if page.url contains 'blog' %}class="active"{% endif %}>БЛОГ</a>
+        <a href="{{ '/ob-avtore.html' | relative_url }}" {% if page.url contains 'ob-avtore' %}class="active"{% endif %}>ОБ АВТОРЕ</a>
+        <a href="{{ '/contacts.html' | relative_url }}" {% if page.url contains 'contacts' %}class="active"{% endif %}>КОНТАКТЫ</a>
       </div>
 
-      <a href="cart.html" class="nav-cart-btn{% if page.url contains 'cart' %} active{% endif %}" title="Корзина покупок">
+      <a href="{{ '/cart.html' | relative_url }}" class="nav-cart-btn{% if page.url contains 'cart' %} active{% endif %}" title="Корзина покупок">
         <div class="cart-icon-wrap">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
           <span class="cart-count-badge" style="display: none;">0</span>
