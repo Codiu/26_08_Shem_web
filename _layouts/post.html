@@ -16,8 +16,14 @@ layout: default
   <header class="post-header">
     <div class="blog-meta">
       <span class="blog-date">{{ page.date | date: "%d.%m.%Y" }}</span>
-      {% if page.category %}
-        <span class="blog-tag">{{ page.category }}</span>
+      {% if page.type == 'video' %}
+        <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999;">YouTube</span>
+      {% elsif page.type == 'meeting' %}
+        <span class="blog-tag" style="background: rgba(0, 255, 128, 0.2); color: #80ffbf;">Встреча</span>
+      {% elsif page.type == 'news' %}
+        <span class="blog-tag">Новость</span>
+      {% else %}
+        <span class="blog-tag">{{ page.tag | default: page.category | default: 'Статья' }}</span>
       {% endif %}
     </div>
     <h1 class="post-title">{{ page.title }}</h1>
