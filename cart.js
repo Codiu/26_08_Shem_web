@@ -138,11 +138,10 @@
 
         const cartItem = cart.find(item => String(item.id) === String(bookId));
         if (cartItem && cartItem.quantity > 0) {
-          const qtyText = cartItem.quantity > 1 ? ` (${cartItem.quantity})` : '';
           btn.classList.add('in-cart');
           btn.innerHTML = `
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>В корзине${qtyText}</span>
+            <span>В корзине</span>
           `;
         } else {
           btn.classList.remove('in-cart');
@@ -221,6 +220,13 @@
       const addBtn = e.target.closest('.add-to-cart-btn');
       if (addBtn) {
         e.preventDefault();
+
+        // If already in cart, navigate to cart page
+        if (addBtn.classList.contains('in-cart')) {
+          window.location.href = 'cart.html';
+          return;
+        }
+
         const bookId = addBtn.dataset.id;
         const bookTitle = addBtn.dataset.title;
         const bookPrice = addBtn.dataset.price;

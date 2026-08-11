@@ -104,6 +104,13 @@
         const addCartBtn = e.target.closest('.btn-add-to-cart');
         if (addCartBtn) {
           e.preventDefault();
+
+          // If already in cart, navigate to cart page
+          if (addCartBtn.classList.contains('in-cart')) {
+            window.location.href = 'cart.html';
+            return;
+          }
+
           const bookData = {
             id: addCartBtn.dataset.id,
             title: addCartBtn.dataset.title,
