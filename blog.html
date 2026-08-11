@@ -11,14 +11,16 @@ title: Блог — Владимир Алексеевич Шемшук
     <div class="blog-feed-grid">
       {% for post in site.posts %}
       <article class="blog-card">
-        <div class="blog-card-cover">
-          {% assign cover = post.cover | default: 'assets/images/blog/stars-sky-cover.jpg' %}
-          <img src="{{ cover | relative_url }}" alt="{{ post.title | escape }}">
-          
-          {% if post.type == 'video' %}
-          <div class="video-play-overlay">▶</div>
-          {% endif %}
-        </div>
+        <a href="{{ post.url | relative_url }}" class="blog-card-cover-link">
+          <div class="blog-card-cover">
+            {% assign cover = post.cover | default: 'assets/images/blog/stars-sky-cover.jpg' %}
+            <img src="{{ cover | relative_url }}" alt="{{ post.title | escape }}">
+            
+            {% if post.type == 'video' %}
+            <div class="video-play-overlay">▶</div>
+            {% endif %}
+          </div>
+        </a>
         <div class="blog-card-body">
           <div class="blog-meta">
             <span class="blog-date">{{ post.date | date: "%d.%m.%Y" }}</span>
@@ -32,7 +34,7 @@ title: Блог — Владимир Алексеевич Шемшук
               <span class="blog-tag">{{ post.tag | default: 'Статья' }}</span>
             {% endif %}
           </div>
-          <h2 class="blog-title">{{ post.title }}</h2>
+          <h2 class="blog-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
           <p class="blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
           <a href="{{ post.url | relative_url }}" class="blog-read-more">
             <span>Читать далее</span>

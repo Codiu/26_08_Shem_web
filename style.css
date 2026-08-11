@@ -3405,6 +3405,22 @@ body.modal-open {
   line-height: 1.3;
 }
 
+.blog-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.blog-title a:hover {
+  color: var(--accent-blue);
+}
+
+.blog-card-cover-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .blog-excerpt {
   color: var(--text-muted);
   font-size: 0.95rem;
