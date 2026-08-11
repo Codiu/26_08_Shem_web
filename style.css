@@ -3087,19 +3087,23 @@ body.modal-open {
 
 .btn-buy-mini {
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   padding: 0.4rem 0.8rem;
   background-color: var(--accent-blue);
   color: #ffffff;
-  border: none;
+  border: 1px solid var(--accent-blue);
   border-radius: var(--radius-md);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-buy-mini:hover {
   background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .btn-buy-mini.added {
