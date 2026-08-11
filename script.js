@@ -176,13 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Dynamic Transform-Origin for Author Photo Cards (Quick View spring behavior)
-  document.querySelectorAll('.author-photo-wrapper, .home-hero-image img').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      const rect = el.getBoundingClientRect();
+  // Dynamic Transform-Origin for Author Photo Frame (Exact Quick View expansion formula)
+  document.querySelectorAll('.author-photo-frame').forEach(frame => {
+    frame.addEventListener('mouseenter', () => {
+      const rect = frame.getBoundingClientRect();
       const centerY = rect.top + rect.height / 2;
-      const originY = Math.max(10, Math.min(90, (centerY / window.innerHeight) * 100));
-      el.style.transformOrigin = `50% ${originY}%`;
+      const originY = (centerY / window.innerHeight) * 100;
+      frame.style.transformOrigin = `50% ${originY}%`;
     });
   });
 

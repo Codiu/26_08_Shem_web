@@ -11,7 +11,9 @@ title: Об Авторе
         
         <!-- Left: Author Portrait Image -->
         <div class="author-photo-wrapper">
-          <img src="assets/images/author/shemshuk-author.jpg" alt="Владимир Алексеевич Шемшук" class="author-photo" onerror="this.src='assets/images/author/shemshuk-avatar.png'">
+          <div class="author-photo-frame">
+            <img src="{{ '/assets/images/author/shemshuk-author.jpg' | relative_url }}" alt="Владимир Алексеевич Шемшук" class="author-photo" onerror="this.src='{{ '/assets/images/author/shemshuk-avatar.png' | relative_url }}'">
+          </div>
           <div class="author-photo-caption">
             <strong>Владимир Алексеевич Шемшук</strong>
             <span>Писатель, биолог, исследователь</span>
