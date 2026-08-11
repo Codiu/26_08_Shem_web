@@ -176,11 +176,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Dynamic Quote of the Day Picker
+  // Deterministic "Quote of the Day" Calendar Picker
   const quoteText = document.getElementById('quoteText');
   if (quoteText && window.SHEMSHUK_QUOTES && window.SHEMSHUK_QUOTES.length > 0) {
-    const randomIndex = Math.floor(Math.random() * window.SHEMSHUK_QUOTES.length);
-    const selectedQuote = window.SHEMSHUK_QUOTES[randomIndex];
+    const N = window.SHEMSHUK_QUOTES.length;
+    
+    // Calculate current day index (days since Jan 1 1970 UTC)
+    const now = new Date();
+    const epochDays = Math.floor(now.getTime() / (1000 * 60 * 60 * 24));
+    
+    // Sequential non-repeating cycle per calendar day
+    const quoteIndex = Math.abs(epochDays) % N;
+    
+    const selectedQuote = window.SHEMSHUK_QUOTES[quoteIndex];
     if (selectedQuote && selectedQuote.text) {
       quoteText.textContent = selectedQuote.text;
     }
