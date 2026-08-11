@@ -56,15 +56,42 @@
       };
 
       if (modalCover) {
-        modalCover.onload = () => {
-          const naturalH = modalCover.naturalHeight || 600;
-          const nativeMaxScale = Math.max(1, naturalH / 420);
-          const modalCoverFrame = document.querySelector('.modal-cover-frame');
-          if (modalCoverFrame) {
-            modalCoverFrame.style.setProperty('--native-max-scale', nativeMaxScale.toFixed(2));
-          }
+        // 1. Instantly display the thumbnail (already in browser cache from the shop grid)
+        modalCover.src = currentModalBook.thumb || 'assets/images/books/thumbs/default-cover.svg';
+        
+        // 2. Clear any previous onerror handler to prevent loops
+        modalCover.onerror = () => {
+          modalCover.onerror = null;
+          modalCover.src = 'assets/images/books/thumbs/default-cover.svg';
         };
-        modalCover.src = currentModalBook.coverFull || currentModalBook.thumb;
+
+        // 3. Progressively load the full resolution cover in the background
+        if (currentModalBook.coverFull && currentModalBook.coverFull !== currentModalBook.thumb) {
+          const fullImg = new Image();
+          fullImg.onload = () => {
+            modalCover.src = currentModalBook.coverFull;
+            
+            // Adjust max-scale based on the real size of the full image
+            const naturalH = fullImg.naturalHeight || 600;
+            const nativeMaxScale = Math.max(1, naturalH / 420);
+            const modalCoverFrame = document.querySelector('.modal-cover-frame');
+            if (modalCoverFrame) {
+              modalCoverFrame.style.setProperty('--native-max-scale', nativeMaxScale.toFixed(2));
+            }
+          };
+          // We don't need onerror for fullImg because if it fails, we just keep showing the thumbnail!
+          fullImg.src = currentModalBook.coverFull;
+        } else {
+          // If there is no full cover, just calculate max-scale based on the thumbnail
+          modalCover.onload = () => {
+            const naturalH = modalCover.naturalHeight || 600;
+            const nativeMaxScale = Math.max(1, naturalH / 420);
+            const modalCoverFrame = document.querySelector('.modal-cover-frame');
+            if (modalCoverFrame) {
+              modalCoverFrame.style.setProperty('--native-max-scale', nativeMaxScale.toFixed(2));
+            }
+          };
+        }
       }
       if (modalTitle) modalTitle.textContent = currentModalBook.title;
       if (modalAuthor) modalAuthor.textContent = currentModalBook.author;
