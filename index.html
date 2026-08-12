@@ -41,7 +41,7 @@ title: Официальный сайт В. А. Шемшука
                 {% endif %}
               </div>
               <h3 class="news-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-              <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
+              <p class="news-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
             </div>
           </article>
           {% endfor %}
