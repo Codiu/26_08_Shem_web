@@ -2944,6 +2944,7 @@ body.modal-open {
   display: grid;
   grid-template-columns: 1.8fr 1.2fr;
   gap: 2rem;
+  align-items: start; /* Align columns naturally at the top */
 }
 
 .home-news-column,
@@ -2998,13 +2999,13 @@ body.modal-open {
   border-radius: var(--radius-lg);
   border: 1px solid var(--panel-border);
   box-shadow: var(--panel-shadow);
-  padding: 1.1rem 1.3rem;
+  padding: 1.25rem 1.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: row;
   align-items: center; /* Vertically center image and content */
-  gap: 1.25rem;
-  height: 195px; /* Balanced height to align with shop column */
+  gap: 1.5rem;
+  height: 215px; /* Large, spacious height per request */
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -3015,13 +3016,13 @@ body.modal-open {
 }
 
 .news-card-thumb {
-  flex: 0 0 210px; /* 210px widescreen 16:9 preview */
-  width: 210px;
+  flex: 0 0 240px; /* Large 240px width for 16:9 preview */
+  width: 240px;
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   display: block;
 }
 
@@ -3041,7 +3042,7 @@ body.modal-open {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   min-width: 0;
 }
 
@@ -3053,14 +3054,14 @@ body.modal-open {
 }
 
 .news-date {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   font-weight: 500;
 }
 
 .news-title {
   font-family: var(--font-heading);
-  font-size: 1.15rem; /* Balanced title size */
+  font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.2rem;
   line-height: 1.3;
@@ -3082,11 +3083,11 @@ body.modal-open {
 
 .news-excerpt {
   color: var(--text-body);
-  line-height: 1.45;
-  font-size: 0.88rem;
+  line-height: 1.5;
+  font-size: 0.92rem;
   margin: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -3195,7 +3196,7 @@ body.modal-open {
 
 /* Home Quote of the Day Card (Subtle & Understated Footnote) */
 .home-quote-card {
-  margin-top: auto;
+  margin-top: 0;
   background: rgba(15, 23, 42, 0.35) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
