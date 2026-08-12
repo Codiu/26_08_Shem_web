@@ -2999,13 +2999,13 @@ body.modal-open {
   border-radius: var(--radius-lg);
   border: 1px solid var(--panel-border);
   box-shadow: var(--panel-shadow);
-  padding: 1.35rem 1.5rem;
+  padding: 1.2rem 1.35rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1.5rem;
-  min-height: 220px; /* Taller, weightier cards */
+  gap: 1.2rem;
+  min-height: 190px;
   height: auto;
   box-sizing: border-box;
 }
@@ -3016,13 +3016,13 @@ body.modal-open {
 }
 
 .news-card-thumb {
-  flex: 0 0 clamp(180px, 35%, 230px);
-  width: clamp(180px, 35%, 230px);
+  flex: 0 0 160px; /* Optimized 160px width to free up massive horizontal space for titles */
+  width: 160px;
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
   display: block;
 }
 
@@ -3048,24 +3048,24 @@ body.modal-open {
 .news-meta {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.35rem;
+  gap: 0.65rem;
+  margin-bottom: 0.3rem;
 }
 
 .news-date {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   font-weight: 500;
 }
 
 .news-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+  font-size: 1.1rem; /* Optimal readable font size */
   font-weight: 700;
-  margin-bottom: 0.65rem; /* Noticeable margin before excerpt */
+  margin-bottom: 0.5rem; /* Distinct margin before excerpt */
   line-height: 1.35;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Allows up to 3 full lines for titles */
+  -webkit-line-clamp: 3; /* Allows up to 3 full lines for complete titles */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -3082,8 +3082,8 @@ body.modal-open {
 
 .news-excerpt {
   color: var(--text-body);
-  line-height: 1.5;
-  font-size: 0.9rem;
+  line-height: 1.45;
+  font-size: 0.88rem;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
