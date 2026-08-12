@@ -286,37 +286,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Automatic Infinite Scroll for Blog
+  // Automatic Infinite Scroll for Blog (Dual Trigger: Scroll + IntersectionObserver)
   const blogCards = Array.from(document.querySelectorAll('.blog-feed-grid .blog-card'));
-  const blogSentinel = document.getElementById('blog-sentinel');
-
   if (blogCards.length > 0) {
     const BATCH_SIZE = 9;
     let visibleCount = BATCH_SIZE;
+    let isLoadingBlog = false;
 
     function loadNextBlogBatch() {
-      if (visibleCount >= blogCards.length) return;
+      if (isLoadingBlog || visibleCount >= blogCards.length) return;
+      isLoadingBlog = true;
 
       const nextLimit = visibleCount + BATCH_SIZE;
       for (let i = visibleCount; i < nextLimit && i < blogCards.length; i++) {
-        blogCards[i].style.display = '';
+        if (blogCards[i]) {
+          blogCards[i].style.display = '';
+        }
       }
       visibleCount = nextLimit;
 
+      const blogSentinel = document.getElementById('blog-sentinel');
       if (visibleCount >= blogCards.length && blogSentinel) {
         blogSentinel.style.display = 'none';
       }
+
+      setTimeout(() => { isLoadingBlog = false; }, 200);
     }
 
+    function checkBlogScroll() {
+      if (visibleCount >= blogCards.length) return;
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const bodyHeight = document.documentElement.scrollHeight;
+      if (bodyHeight - scrollPosition < 400) {
+        loadNextBlogBatch();
+      }
+    }
+
+    window.addEventListener('scroll', checkBlogScroll, { passive: true });
+    window.addEventListener('resize', checkBlogScroll, { passive: true });
+
+    const blogSentinel = document.getElementById('blog-sentinel');
     if (blogSentinel && 'IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            loadNextBlogBatch();
-          }
-        });
+        if (entries[0].isIntersecting) {
+          loadNextBlogBatch();
+        }
       }, { rootMargin: '300px' });
-
       observer.observe(blogSentinel);
     }
   }

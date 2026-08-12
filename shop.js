@@ -204,37 +204,53 @@
       }
     });
 
-    // Automatic Infinite Scroll for Shop
-    const shopSentinel = document.getElementById('shop-sentinel');
+    // Automatic Infinite Scroll for Shop (Dual Trigger: Scroll + IntersectionObserver)
     if (shopGrid) {
-      let currentlyShown = 12;
-      const batchSize = 12;
       const allBooks = Array.from(shopGrid.querySelectorAll('.book-card'));
       const totalBooks = allBooks.length;
+      let currentlyShown = 12;
+      const batchSize = 12;
+      let isLoading = false;
 
       function loadNextBatch() {
-        if (currentlyShown >= totalBooks) return;
+        if (isLoading || currentlyShown >= totalBooks) return;
+        isLoading = true;
 
         const nextLimit = currentlyShown + batchSize;
         for (let i = currentlyShown; i < nextLimit && i < totalBooks; i++) {
-          allBooks[i].style.display = '';
+          if (allBooks[i]) {
+            allBooks[i].style.display = '';
+          }
         }
         currentlyShown = nextLimit;
 
+        const shopSentinel = document.getElementById('shop-sentinel');
         if (currentlyShown >= totalBooks && shopSentinel) {
           shopSentinel.style.display = 'none';
         }
+
+        setTimeout(() => { isLoading = false; }, 200);
       }
 
+      function checkScroll() {
+        if (currentlyShown >= totalBooks) return;
+        const scrollPosition = window.innerHeight + window.scrollY;
+        const bodyHeight = document.documentElement.scrollHeight;
+        if (bodyHeight - scrollPosition < 400) {
+          loadNextBatch();
+        }
+      }
+
+      window.addEventListener('scroll', checkScroll, { passive: true });
+      window.addEventListener('resize', checkScroll, { passive: true });
+
+      const shopSentinel = document.getElementById('shop-sentinel');
       if (shopSentinel && 'IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              loadNextBatch();
-            }
-          });
-        }, { rootMargin: '300px' }); // Preload when user gets within 300px of bottom
-
+          if (entries[0].isIntersecting) {
+            loadNextBatch();
+          }
+        }, { rootMargin: '300px' });
         observer.observe(shopSentinel);
       }
     }
