@@ -9,7 +9,6 @@ const headerHtml = fs.readFileSync(path.join(includesDir, 'header.html'), 'utf8'
 const footerHtml = fs.readFileSync(path.join(includesDir, 'footer.html'), 'utf8');
 
 const pages = [
-  { file: 'index.html', title: 'Владимир Алексеевич Шемшук — Официальный сайт', active: 'index.html' },
   { file: 'shop.html', title: 'Магазин книг В. А. Шемшука', active: 'shop.html' },
   { file: 'cart.html', title: 'Корзина покупок', active: 'cart.html' },
   { file: 'shkola.html', title: 'Школа В. А. Шемшука', active: 'shkola.html' },
