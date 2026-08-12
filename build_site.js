@@ -12,7 +12,6 @@ const pages = [
   { file: 'index.html', title: 'Владимир Алексеевич Шемшук — Официальный сайт', active: 'index.html' },
   { file: 'shop.html', title: 'Магазин книг В. А. Шемшука', active: 'shop.html' },
   { file: 'cart.html', title: 'Корзина покупок', active: 'cart.html' },
-  { file: 'blog.html', title: 'Блог и статьи В. А. Шемшука', active: 'blog.html' },
   { file: 'shkola.html', title: 'Школа В. А. Шемшука', active: 'shkola.html' },
   { file: 'molitva.html', title: 'Молитва-Треба', active: 'molitva.html' },
   { file: 'ob-avtore.html', title: 'Об авторе — В. А. Шемшук', active: 'ob-avtore.html' },
