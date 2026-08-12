@@ -204,30 +204,39 @@
       }
     });
 
-    // Shop Load More Button Logic
-    const loadMoreBtn = document.getElementById('shop-load-more-btn');
-    if (loadMoreBtn && shopGrid) {
-      let currentlyShown = 12; // We show 12 initially
-      const batchSize = 12; // Load in batches of 12
-      
+    // Automatic Infinite Scroll for Shop
+    const shopSentinel = document.getElementById('shop-sentinel');
+    if (shopGrid) {
+      let currentlyShown = 12;
+      const batchSize = 12;
       const allBooks = Array.from(shopGrid.querySelectorAll('.book-card'));
       const totalBooks = allBooks.length;
-      
-      loadMoreBtn.addEventListener('click', () => {
+
+      function loadNextBatch() {
+        if (currentlyShown >= totalBooks) return;
+
         const nextLimit = currentlyShown + batchSize;
-        
-        // Unhide the next batch
         for (let i = currentlyShown; i < nextLimit && i < totalBooks; i++) {
           allBooks[i].style.display = '';
         }
-        
         currentlyShown = nextLimit;
-        
-        // Hide button if all are shown
-        if (currentlyShown >= totalBooks) {
-          loadMoreBtn.parentElement.style.display = 'none';
+
+        if (currentlyShown >= totalBooks && shopSentinel) {
+          shopSentinel.style.display = 'none';
         }
-      });
+      }
+
+      if (shopSentinel && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              loadNextBatch();
+            }
+          });
+        }, { rootMargin: '300px' }); // Preload when user gets within 300px of bottom
+
+        observer.observe(shopSentinel);
+      }
     }
 
   });
