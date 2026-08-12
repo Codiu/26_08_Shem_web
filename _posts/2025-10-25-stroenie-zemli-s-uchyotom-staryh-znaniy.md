@@ -2,6 +2,7 @@
 layout: post
 title: "Строение земли с учётом старых знаний"
 date: 2025-10-25
+type: video
 category: "Статьи"
 cover: "assets/images/blog/7c94ef_maxresdefault.jpg"
 excerpt_separator: <!--more-->

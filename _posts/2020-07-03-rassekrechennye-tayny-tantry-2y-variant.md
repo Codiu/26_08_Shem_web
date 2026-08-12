@@ -2,6 +2,7 @@
 layout: post
 title: "Рассекреченные тайны тантры 2й вариант"
 date: 2020-07-03
+type: article
 category: "Статьи"
 cover: "assets/images/blog/651264_mqdefault.jpg"
 excerpt_separator: <!--more-->

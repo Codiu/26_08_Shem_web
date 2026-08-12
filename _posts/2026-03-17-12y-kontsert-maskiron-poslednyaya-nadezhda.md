@@ -1,7 +1,9 @@
 ---
 layout: post
 title: "12й концерт Маскирон - Последняя надежда"
+published: false
 date: 2026-03-17
+type: video
 category: "Статьи"
 cover: "https://i.ytimg.com/vi/-qPpwoyUdbc/maxresdefault.jpg"
 excerpt_separator: <!--more-->

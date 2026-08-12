@@ -2,6 +2,7 @@
 layout: post
 title: "Кто стоит за провокацией с короновирусом"
 date: 2020-04-06
+type: article
 category: "Статьи"
 excerpt_separator: <!--more-->
 ---

@@ -2,6 +2,7 @@
 layout: post
 title: "Обращение к людям всей планеты"
 date: 2018-07-13
+type: article
 category: "Статьи"
 cover: "assets/images/blog/81bdb4_01968a39bad84894bcef03390f1c7ae2.jpg"
 excerpt_separator: <!--more-->

@@ -2,6 +2,7 @@
 layout: post
 title: "Беседа Гончарова и Шемшука - Меры и Чудесные Дары Сидхи"
 date: 2025-03-12
+type: video
 category: "Статьи"
 cover: "assets/images/blog/df397a_hqdefault.jpg"
 excerpt_separator: <!--more-->

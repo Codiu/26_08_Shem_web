@@ -2,6 +2,7 @@
 layout: post
 title: "Как предвидеть события"
 date: 2025-12-01
+type: video
 category: "Статьи"
 cover: "assets/images/blog/6da362_maxresdefault.jpg"
 excerpt_separator: <!--more-->

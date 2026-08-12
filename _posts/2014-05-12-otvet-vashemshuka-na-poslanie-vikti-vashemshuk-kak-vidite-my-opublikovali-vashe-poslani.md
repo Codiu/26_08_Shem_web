@@ -2,6 +2,7 @@
 layout: post
 title: "Ответ ВАШемшука на Послание Викти ВАШемшук Как видите мы опубликовали Ваше послани"
 date: 2014-05-12
+type: article
 category: "Статьи"
 excerpt_separator: <!--more-->
 ---

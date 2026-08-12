@@ -2,6 +2,7 @@
 layout: post
 title: "Переселение на Немезиду уже давно началось"
 date: 2011-01-07
+type: article
 category: "Статьи"
 excerpt_separator: <!--more-->
 ---

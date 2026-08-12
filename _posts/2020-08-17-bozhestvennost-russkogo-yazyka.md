@@ -2,6 +2,7 @@
 layout: post
 title: "Божественность Русского языка"
 date: 2020-08-17
+type: article
 category: "Статьи"
 cover: "assets/images/blog/0d0a1d_mqdefault.jpg"
 excerpt_separator: <!--more-->

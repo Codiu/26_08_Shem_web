@@ -80,6 +80,10 @@ def process_post(filename):
     cover_image = ""
     category = "Статьи"
     
+    is_video = False
+    if "youtube.com" in content.lower() or "rutube.ru" in content.lower() or "youtu.be" in content.lower() or "смотреть видео" in content.lower():
+        is_video = True
+
     cover_match = re.search(r'!\[Обложка\]\(([^)]+)\)', content)
     if not cover_match:
         cover_match = re.search(r'!\[\]\((images/[^)]+)\)', content)
@@ -161,6 +165,7 @@ def process_post(filename):
         "layout: post",
         f'title: "{title}"',
         f"date: {date_str}",
+        f'type: {"video" if is_video else "article"}',
         'category: "Статьи"',
     ]
     if cover_image:

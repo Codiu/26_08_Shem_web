@@ -2,6 +2,7 @@
 layout: post
 title: "Молитва о ВеликоРуссии условие которое поможет нам победить"
 date: 2015-01-21
+type: article
 category: "Статьи"
 excerpt_separator: <!--more-->
 ---

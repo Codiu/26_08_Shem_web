@@ -2,6 +2,7 @@
 layout: post
 title: "Обращение к непризнанным учёным изобретателям и первооткрывателям"
 date: 2018-07-13
+type: article
 category: "Статьи"
 cover: "assets/images/blog/6e4aba_26f3fa_10924de34d3741af94f031a0bd126de1~mv2.jpg"
 excerpt_separator: <!--more-->

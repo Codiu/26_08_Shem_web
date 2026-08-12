@@ -285,4 +285,40 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+
+  // Blog Load More Pagination
+  const blogCards = document.querySelectorAll('.blog-feed-grid .blog-card');
+  const loadMoreBtn = document.getElementById('blog-load-more-btn');
+
+  if (blogCards.length > 0) {
+    const BATCH_SIZE = 9;
+    let visibleCount = BATCH_SIZE;
+
+    function updateBlogVisibility() {
+      blogCards.forEach((card, index) => {
+        if (index < visibleCount) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (loadMoreBtn) {
+        if (visibleCount >= blogCards.length) {
+          loadMoreBtn.style.display = 'none';
+        } else {
+          loadMoreBtn.style.display = 'inline-block';
+        }
+      }
+    }
+
+    updateBlogVisibility();
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        visibleCount += BATCH_SIZE;
+        updateBlogVisibility();
+      });
+    }
+  }
 });

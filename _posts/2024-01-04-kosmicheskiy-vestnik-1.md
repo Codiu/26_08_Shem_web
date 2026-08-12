@@ -2,6 +2,7 @@
 layout: post
 title: "Космический вестник 1"
 date: 2024-01-04
+type: video
 category: "Статьи"
 cover: "assets/images/blog/7463b2_maxresdefault.jpg"
 excerpt_separator: <!--more-->

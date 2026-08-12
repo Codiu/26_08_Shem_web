@@ -2,6 +2,7 @@
 layout: post
 title: "Смертельная опасность"
 date: 2020-09-12
+type: article
 category: "Статьи"
 cover: "assets/images/blog/e3ee5f_mqdefault.jpg"
 excerpt_separator: <!--more-->

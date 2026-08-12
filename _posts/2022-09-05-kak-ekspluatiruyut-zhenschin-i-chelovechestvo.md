@@ -2,6 +2,7 @@
 layout: post
 title: "Как эксплуатируют женщин и человечество"
 date: 2022-09-05
+type: video
 category: "Статьи"
 cover: "assets/images/blog/d6a679_sddefault.jpg"
 excerpt_separator: <!--more-->

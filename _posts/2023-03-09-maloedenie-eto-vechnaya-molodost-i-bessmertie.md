@@ -2,6 +2,7 @@
 layout: post
 title: "Малоедение  это вечная молодость и бессмертие"
 date: 2023-03-09
+type: video
 category: "Статьи"
 cover: "assets/images/blog/b49c36_sddefault.jpg"
 excerpt_separator: <!--more-->

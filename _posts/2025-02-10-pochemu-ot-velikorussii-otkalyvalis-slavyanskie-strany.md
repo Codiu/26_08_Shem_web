@@ -2,6 +2,7 @@
 layout: post
 title: "Почему от Великоруссии откалывались Славянские страны"
 date: 2025-02-10
+type: video
 category: "Статьи"
 cover: "assets/images/blog/83482d_maxresdefault.jpg"
 excerpt_separator: <!--more-->

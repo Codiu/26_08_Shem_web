@@ -2,6 +2,7 @@
 layout: post
 title: "Прогноз иллюзии рабства"
 date: 2022-03-15
+type: video
 category: "Статьи"
 cover: "assets/images/blog/bb8664_hqdefault.jpg"
 excerpt_separator: <!--more-->

@@ -2,6 +2,7 @@
 layout: post
 title: "Предсказания о России Прорицатели ясновидцы и астрологи о будущем России"
 date: 2010-11-28
+type: article
 category: "Статьи"
 cover: "assets/images/blog/efe04d_26f3fa_7558cd87ca0f4396addd7a4c2784b877~mv2.jpg"
 excerpt_separator: <!--more-->

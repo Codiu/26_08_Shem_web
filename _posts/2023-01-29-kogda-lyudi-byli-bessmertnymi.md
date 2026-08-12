@@ -2,6 +2,7 @@
 layout: post
 title: "Когда люди были бессмертными"
 date: 2023-01-29
+type: video
 category: "Статьи"
 cover: "assets/images/blog/349052_c6fba9_375b091a1ad947f196971fbe96f582ca~mv2.jpg"
 excerpt_separator: <!--more-->

@@ -2,6 +2,7 @@
 layout: post
 title: "Невероятные новости"
 date: 2021-01-16
+type: video
 category: "Статьи"
 cover: "assets/images/blog/878c3c_hqdefault.jpg"
 excerpt_separator: <!--more-->

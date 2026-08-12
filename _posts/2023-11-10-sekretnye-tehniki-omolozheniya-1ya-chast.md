@@ -2,6 +2,7 @@
 layout: post
 title: "Секретные техники омоложения - 1я часть"
 date: 2023-11-10
+type: video
 category: "Статьи"
 cover: "assets/images/blog/e84914_maxresdefault.jpg"
 excerpt_separator: <!--more-->

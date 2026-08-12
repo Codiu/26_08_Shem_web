@@ -2,6 +2,7 @@
 layout: post
 title: "Происхождение наций"
 date: 2023-11-02
+type: video
 category: "Статьи"
 cover: "assets/images/blog/dbff93_hqdefault.jpg"
 excerpt_separator: <!--more-->

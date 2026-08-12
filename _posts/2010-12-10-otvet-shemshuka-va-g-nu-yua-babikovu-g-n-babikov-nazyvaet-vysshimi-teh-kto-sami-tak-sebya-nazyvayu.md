@@ -2,6 +2,7 @@
 layout: post
 title: "Ответ Шемшука ВА г-ну ЮА Бабикову г-н Бабиков называет высшими тех кто сами так себя называю"
 date: 2010-12-10
+type: article
 category: "Статьи"
 excerpt_separator: <!--more-->
 ---
