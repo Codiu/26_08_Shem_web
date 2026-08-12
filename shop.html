@@ -15,10 +15,12 @@ title: Магазин книг В. А. Шемшука
   <!-- Books Storefront Grid dynamically generated from _data/books.csv -->
   <section class="shop-container">
     <div class="shop-grid">
+      {% assign visible_count = 0 %}
       {% for book in site.data.books %}
         {% assign vis = book.visible | downcase %}
         {% if vis == 'true' %}
-          <article class="book-card" id="{{ book.id }}">
+          {% assign visible_count = visible_count | plus: 1 %}
+          <article class="book-card" id="{{ book.id }}" {% if visible_count > 12 %}style="display: none;"{% endif %}>
             <div class="book-cover-wrap">
               {% if book.ribbon and book.ribbon != '' %}
                 <span class="book-ribbon">{{ book.ribbon }}</span>
@@ -71,6 +73,12 @@ title: Магазин книг В. А. Шемшука
         {% endif %}
       {% endfor %}
     </div>
+
+    {% if visible_count > 12 %}
+    <div class="shop-load-more-container" style="text-align: center; margin: 40px 0 20px 0;">
+      <button id="shop-load-more-btn" class="btn btn-secondary" style="padding: 12px 30px; font-weight: 600; cursor: pointer;">ПОКАЗАТЬ ЕЩЁ КНИГИ</button>
+    </div>
+    {% endif %}
   </section>
 </div>
 

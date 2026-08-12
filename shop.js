@@ -204,5 +204,31 @@
       }
     });
 
+    // Shop Load More Button Logic
+    const loadMoreBtn = document.getElementById('shop-load-more-btn');
+    if (loadMoreBtn && shopGrid) {
+      let currentlyShown = 12; // We show 12 initially
+      const batchSize = 12; // Load in batches of 12
+      
+      const allBooks = Array.from(shopGrid.querySelectorAll('.book-card'));
+      const totalBooks = allBooks.length;
+      
+      loadMoreBtn.addEventListener('click', () => {
+        const nextLimit = currentlyShown + batchSize;
+        
+        // Unhide the next batch
+        for (let i = currentlyShown; i < nextLimit && i < totalBooks; i++) {
+          allBooks[i].style.display = '';
+        }
+        
+        currentlyShown = nextLimit;
+        
+        // Hide button if all are shown
+        if (currentlyShown >= totalBooks) {
+          loadMoreBtn.parentElement.style.display = 'none';
+        }
+      });
+    }
+
   });
 })();
