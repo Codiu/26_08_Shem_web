@@ -150,14 +150,24 @@
 
         const cartItem = cart.find(item => String(item.id) === String(bookId));
         if (cartItem && cartItem.quantity > 0) {
-          btn.classList.add('in-cart');
-          btn.innerHTML = `
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span class="btn-text-default">В корзине</span>
-            <span class="btn-text-hover">Удалить</span>
-          `;
+          if (!btn.classList.contains('in-cart')) {
+            btn.classList.add('in-cart');
+            btn.classList.add('hover-locked'); // Lock hover state to prevent instant red flash
+            
+            btn.addEventListener('mouseleave', function unlockHover() {
+              btn.classList.remove('hover-locked');
+              btn.removeEventListener('mouseleave', unlockHover);
+            }, { once: true });
+            
+            btn.innerHTML = `
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span class="btn-text-default">В корзине</span>
+              <span class="btn-text-hover">Удалить</span>
+            `;
+          }
         } else {
           btn.classList.remove('in-cart');
+          btn.classList.remove('hover-locked');
           if (btn.dataset.defaultHtml) {
             btn.innerHTML = btn.dataset.defaultHtml;
           }

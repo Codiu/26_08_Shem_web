@@ -1927,18 +1927,18 @@ body.modal-open {
   display: none;
 }
 
-.btn-add-to-cart.in-cart:hover .btn-text-default,
-.btn-buy-mini.in-cart:hover .btn-text-default {
+.btn-add-to-cart.in-cart:not(.hover-locked):hover .btn-text-default,
+.btn-buy-mini.in-cart:not(.hover-locked):hover .btn-text-default {
   display: none;
 }
 
-.btn-add-to-cart.in-cart:hover .btn-text-hover,
-.btn-buy-mini.in-cart:hover .btn-text-hover {
+.btn-add-to-cart.in-cart:not(.hover-locked):hover .btn-text-hover,
+.btn-buy-mini.in-cart:not(.hover-locked):hover .btn-text-hover {
   display: inline;
 }
 
-.btn-add-to-cart.in-cart:hover,
-.btn-buy-mini.in-cart:hover {
+.btn-add-to-cart.in-cart:not(.hover-locked):hover,
+.btn-buy-mini.in-cart:not(.hover-locked):hover {
   background-color: #dc2626 !important;
   border-color: #dc2626 !important;
   box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35) !important;
