@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const albumsData = JSON.parse(dataScript.textContent);
   
+  // Resolve dynamic base URL for GitHub Pages
+  const basePath = window.location.pathname.includes('/26_08_Shem_web') ? '/26_08_Shem_web' : '';
+  
+  function getFullAudioUrl(fileUrl) {
+    if (!fileUrl) return '';
+    if (fileUrl.startsWith('http://') || fileUrl.startsWith('https://')) return fileUrl;
+    const cleanPath = fileUrl.startsWith('/') ? fileUrl : '/' + fileUrl;
+    return basePath + cleanPath;
+  }
+
   // Flatten all tracks for Radio Mode
   const allTracks = [];
   albumsData.forEach(album => {
@@ -29,13 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const nowPlayingText = document.getElementById('nowPlayingText');
   const vinylRecord = document.getElementById('vinylRecord');
 
-  let currentTrackIndex = -1;
   let isRadioMode = false;
-  let currentPlaylist = []; // Array of tracks currently active
+  let currentPlaylist = [];
   let playlistIndex = 0;
-
-  // Track row play buttons
-  const trackPlayBtns = document.querySelectorAll('.track-play-btn');
 
   function updatePlayPauseUI(isPlaying) {
     if (isPlaying) {
@@ -50,22 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function playTrack(track) {
-    audio.src = track.file;
+    if (!track) return;
+    
+    const fullUrl = getFullAudioUrl(track.file);
+    audio.src = fullUrl;
+    
+    nowPlayingText.innerHTML = `<strong>${track.title}</strong><br><small>${track.albumTitle}</small>`;
+    mainControls.classList.add('hidden');
+    playbackControls.classList.remove('hidden');
+
+    // Highlight active track in the list
+    document.querySelectorAll('.track-row.active').forEach(el => el.classList.remove('active'));
+    const activeRow = document.querySelector(`.track-row[data-track-id="${track.id}"]`);
+    if (activeRow) activeRow.classList.add('active');
+
     audio.play().then(() => {
       updatePlayPauseUI(true);
-      nowPlayingText.innerHTML = `<strong>${track.title}</strong><br><small>${track.albumTitle}</small>`;
-      
-      // Hide radio button, show playback controls
-      mainControls.classList.add('hidden');
-      playbackControls.classList.remove('hidden');
-
-      // Highlight active track in the list
-      document.querySelectorAll('.track-row.active').forEach(el => el.classList.remove('active'));
-      const activeRow = document.querySelector(`.track-row[data-track-id="${track.id}"]`);
-      if (activeRow) activeRow.classList.add('active');
-
     }).catch(err => {
-      console.error("Playback failed", err);
+      console.error("Audio playback error:", err, "URL attempted:", fullUrl);
+      updatePlayPauseUI(false);
     });
   }
 
@@ -75,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       playlistIndex++;
       if (playlistIndex >= currentPlaylist.length) {
-        playlistIndex = 0; // loop back
+        playlistIndex = 0;
       }
       playTrack(currentPlaylist[playlistIndex]);
     }
@@ -83,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function playPrevTrack() {
     if (isRadioMode) {
-      playRandomTrack(); // prev on radio is just another random track
+      playRandomTrack();
     } else {
       playlistIndex--;
       if (playlistIndex < 0) {
@@ -106,8 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btnPlayPause.addEventListener('click', () => {
     if (audio.paused) {
-      audio.play();
-      updatePlayPauseUI(true);
+      audio.play().then(() => updatePlayPauseUI(true)).catch(console.error);
     } else {
       audio.pause();
       updatePlayPauseUI(false);
@@ -119,24 +127,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   audio.addEventListener('ended', playNextTrack);
 
-  // Manual track selection
-  trackPlayBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const row = e.target.closest('.track-row');
+  // Click on track row to play
+  document.querySelectorAll('.track-row').forEach(row => {
+    row.addEventListener('click', (e) => {
+      // Ignore click if download button was clicked
+      if (e.target.closest('.track-download-btn')) return;
+
       const trackId = row.dataset.trackId;
       const albumCard = row.closest('.album-card');
-      const albumId = albumCard.dataset.albumId;
+      const albumId = albumCard ? albumCard.dataset.albumId : null;
 
-      // Find album and track
+      if (!albumId) return;
+
       const album = albumsData.find(a => a.id === albumId);
-      const track = album.tracks.find(t => t.id === trackId);
-      
-      // Setup manual playlist mode
+      if (!album) return;
+
       isRadioMode = false;
       currentPlaylist = album.tracks.map(t => ({...t, albumTitle: album.title}));
       playlistIndex = currentPlaylist.findIndex(t => t.id === trackId);
 
-      playTrack(currentPlaylist[playlistIndex]);
+      if (playlistIndex !== -1) {
+        playTrack(currentPlaylist[playlistIndex]);
+      }
     });
   });
 });
