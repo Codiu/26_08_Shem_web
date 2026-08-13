@@ -49,16 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeTrack = null;
 
   // Calculate needle angle on the vinyl record
-  // Rest position: -28deg
-  // Track 1 (edge): -10deg
-  // Last track (near center label): +10deg
+  // Rest position: -33deg
+  // Track 1 (outer edge): -19deg
+  // Last track end (near center label): +11deg
   function getTonearmAngle(track, progress = 0) {
-    if (!track) return -28;
+    if (!track) return -33;
     const total = track.totalTracks || 1;
     const idx = track.trackIndex !== undefined ? track.trackIndex : 0;
     const slice = 1 / total;
     const ratio = Math.min(1, Math.max(0, (idx + progress) * slice));
-    return -10 + (ratio * 20);
+    return -19 + (ratio * 30);
   }
 
   function updatePlayPauseUI(isPlaying) {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       iconPause.style.display = 'none';
       vinylRecord.classList.remove('spinning');
       if (tonearm) {
-        tonearm.style.setProperty('--arm-angle', '-28deg');
+        tonearm.style.setProperty('--arm-angle', '-33deg');
       }
     }
   }
@@ -88,7 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullUrl = getFullAudioUrl(track.file);
     audio.src = fullUrl;
     
-    nowPlayingText.innerHTML = `<strong>${track.title}</strong><br><small>${track.albumTitle}</small>`;
+    const trackNum = (track.trackIndex !== undefined) ? (track.trackIndex + 1) : '';
+    const trackPrefix = trackNum ? `${trackNum}. ` : '';
+    nowPlayingText.innerHTML = `<strong>${trackPrefix}${track.title}</strong><br><small>${track.albumTitle}</small>`;
     mainControls.classList.add('hidden');
     playbackControls.classList.remove('hidden');
 
