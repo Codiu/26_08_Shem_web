@@ -37,7 +37,7 @@
         <a href="{{ '/index.html' | relative_url }}" {% if page.url == '/' or page.url == '/index.html' %}class="active"{% endif %}>ГЛАВНАЯ</a>
         <a href="{{ '/shop.html' | relative_url }}" {% if page.url contains 'shop.html' or page.url contains '/shop/' %}class="active"{% endif %}>МАГАЗИН</a>
         <a href="{{ '/shkola.html' | relative_url }}" {% if page.url contains 'shkola.html' or page.url contains '/shkola/' %}class="active"{% endif %}>ШКОЛА</a>
-        <a href="#">КОНЦЕРТ</a>
+        <a href="{{ '/concerts.html' | relative_url }}" {% if page.url contains 'concerts.html' or page.url contains '/concerts/' %}class="active"{% endif %}>КОНЦЕРТЫ</a>
         <a href="{{ '/molitva.html' | relative_url }}" {% if page.url contains 'molitva.html' or page.url contains '/molitva/' %}class="active"{% endif %}>МОЛИТВА-ТРЕБА</a>
         <a href="{{ '/blog.html' | relative_url }}" {% if page.url contains '/blog' %}class="active"{% endif %}>БЛОГ</a>
         <a href="{{ '/ob-avtore.html' | relative_url }}" {% if page.url contains 'ob-avtore.html' or page.url contains '/ob-avtore/' %}class="active"{% endif %}>ОБ АВТОРЕ</a>

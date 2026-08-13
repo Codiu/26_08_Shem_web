@@ -1,0 +1,663 @@
+- id: album_01
+  title: Концерт 1
+  tracks:
+  - id: album_01_01
+    title: Песнь Кондару
+    file: /assets/audio/concerts/album_01/track_01.mp3
+  - id: album_01_02
+    title: Свентовит Либерта
+    file: /assets/audio/concerts/album_01/track_02.mp3
+  - id: album_01_03
+    title: Славь Лайла
+    file: /assets/audio/concerts/album_01/track_03.mp3
+  - id: album_01_04
+    title: Явь.Птица Удачи
+    file: /assets/audio/concerts/album_01/track_04.mp3
+  - id: album_01_05
+    title: Навь Снег кружится
+    file: /assets/audio/concerts/album_01/track_05.mp3
+  - id: album_01_06
+    title: Таня Феличита
+    file: /assets/audio/concerts/album_01/track_06.mp3
+  - id: album_01_07
+    title: Лада Малиновый звон
+    file: /assets/audio/concerts/album_01/track_07.mp3
+  - id: album_01_08
+    title: Ярило.Чингисхан
+    file: /assets/audio/concerts/album_01/track_08.mp3
+  - id: album_01_09
+    title: Род Фадеев Танцуй Россия
+    file: /assets/audio/concerts/album_01/track_09.mp3
+  - id: album_01_10
+    title: Перун Гимн восх Солнцу Анимал
+    file: /assets/audio/concerts/album_01/track_10.mp3
+  - id: album_01_11
+    title: Жель Al Bano and R Power
+    file: /assets/audio/concerts/album_01/track_11.mp3
+  - id: album_01_12
+    title: Ра Boney M. - Rasputin
+    file: /assets/audio/concerts/album_01/track_12.mp3
+  - id: album_01_13
+    title: Мара Al Bano and Power
+    file: /assets/audio/concerts/album_01/track_13.mp3
+  - id: album_01_14
+    title: Хорс  Eruption-
+    file: /assets/audio/concerts/album_01/track_14.mp3
+  - id: album_01_15
+    title: Радегаст. Бест Тина Тернер
+    file: /assets/audio/concerts/album_01/track_15.mp3
+  - id: album_01_16
+    title: Естудей
+    file: /assets/audio/concerts/album_01/track_16.mp3
+- id: album_02
+  title: Концерт 2
+  tracks:
+  - id: album_02_01
+    title: Слава Трояну
+    file: /assets/audio/concerts/album_02/track_01.mp3
+  - id: album_02_02
+    title: Навь(Адамо, падает снег)
+    file: /assets/audio/concerts/album_02/track_02.mp3
+  - id: album_02_03
+    title: Дый
+    file: /assets/audio/concerts/album_02/track_03.mp3
+  - id: album_02_04
+    title: Купала
+    file: /assets/audio/concerts/album_02/track_04.mp3
+  - id: album_02_05
+    title: Солнце
+    file: /assets/audio/concerts/album_02/track_05.mp3
+  - id: album_02_06
+    title: Австралия
+    file: /assets/audio/concerts/album_02/track_06.mp3
+  - id: album_02_07
+    title: Сварог
+    file: /assets/audio/concerts/album_02/track_07.mp3
+  - id: album_02_08
+    title: Мы Великороссы
+    file: /assets/audio/concerts/album_02/track_08.mp3
+  - id: album_02_09
+    title: Москва
+    file: /assets/audio/concerts/album_02/track_09.mp3
+  - id: album_02_10
+    title: Радегаст
+    file: /assets/audio/concerts/album_02/track_10.mp3
+  - id: album_02_11
+    title: Весты день
+    file: /assets/audio/concerts/album_02/track_11.mp3
+  - id: album_02_12
+    title: Навь
+    file: /assets/audio/concerts/album_02/track_12.mp3
+  - id: album_02_13
+    title: Десана
+    file: /assets/audio/concerts/album_02/track_13.mp3
+  - id: album_02_14
+    title: Славяне
+    file: /assets/audio/concerts/album_02/track_14.mp3
+  - id: album_02_15
+    title: Кострома
+    file: /assets/audio/concerts/album_02/track_15.mp3
+- id: album_03
+  title: Концерт 3
+  tracks:
+  - id: album_03_01
+    title: Берегиня
+    file: /assets/audio/concerts/album_03/track_01.mp3
+  - id: album_03_02
+    title: Перун
+    file: /assets/audio/concerts/album_03/track_02.mp3
+  - id: album_03_03
+    title: Стрибог
+    file: /assets/audio/concerts/album_03/track_03.mp3
+  - id: album_03_04
+    title: Числобог
+    file: /assets/audio/concerts/album_03/track_04.mp3
+  - id: album_03_05
+    title: Ярило
+    file: /assets/audio/concerts/album_03/track_05.mp3
+  - id: album_03_06
+    title: Братич
+    file: /assets/audio/concerts/album_03/track_06.mp3
+  - id: album_03_07
+    title: Купала
+    file: /assets/audio/concerts/album_03/track_07.mp3
+  - id: album_03_08
+    title: Яровит
+    file: /assets/audio/concerts/album_03/track_08.mp3
+  - id: album_03_09
+    title: Дай Бог
+    file: /assets/audio/concerts/album_03/track_09.mp3
+  - id: album_03_10
+    title: Криденс(Купала)
+    file: /assets/audio/concerts/album_03/track_10.mp3
+  - id: album_03_11
+    title: Ослад
+    file: /assets/audio/concerts/album_03/track_11.mp3
+  - id: album_03_12
+    title: Леля
+    file: /assets/audio/concerts/album_03/track_12.mp3
+  - id: album_03_13
+    title: Вей
+    file: /assets/audio/concerts/album_03/track_13.mp3
+  - id: album_03_14
+    title: Таня
+    file: /assets/audio/concerts/album_03/track_14.mp3
+  - id: album_03_15
+    title: Марина
+    file: /assets/audio/concerts/album_03/track_15.mp3
+  - id: album_03_16
+    title: Хима
+    file: /assets/audio/concerts/album_03/track_16.mp3
+- id: album_04
+  title: Концерт 4
+  tracks:
+  - id: album_04_01
+    title: Перун Армия
+    file: /assets/audio/concerts/album_04/track_01.mp3
+  - id: album_04_02
+    title: Жель Шарзан
+    file: /assets/audio/concerts/album_04/track_02.mp3
+  - id: album_04_03
+    title: Берегиня Бесаме
+    file: /assets/audio/concerts/album_04/track_03.mp3
+  - id: album_04_04
+    title: Лада Малиновый звон
+    file: /assets/audio/concerts/album_04/track_04.mp3
+  - id: album_04_05
+    title: Ярило
+    file: /assets/audio/concerts/album_04/track_05.mp3
+  - id: album_04_06
+    title: Дажбог
+    file: /assets/audio/concerts/album_04/track_06.mp3
+  - id: album_04_07
+    title: Леля
+    file: /assets/audio/concerts/album_04/track_07.mp3
+  - id: album_04_08
+    title: Навь Снег кружится
+    file: /assets/audio/concerts/album_04/track_08.mp3
+  - id: album_04_09
+    title: Свентовит Либерта
+    file: /assets/audio/concerts/album_04/track_09.mp3
+  - id: album_04_10
+    title: Славь Лайла
+    file: /assets/audio/concerts/album_04/track_10.mp3
+  - id: album_04_11
+    title: Род Фадеев
+    file: /assets/audio/concerts/album_04/track_11.mp3
+  - id: album_04_12
+    title: Таня
+    file: /assets/audio/concerts/album_04/track_12.mp3
+  - id: album_04_13
+    title: Ярило.Чингисхан
+    file: /assets/audio/concerts/album_04/track_13.mp3
+  - id: album_04_14
+    title: Естудей
+    file: /assets/audio/concerts/album_04/track_14.mp3
+  - id: album_04_15
+    title: Радегаст. Бест Тина Тернер
+    file: /assets/audio/concerts/album_04/track_15.mp3
+  - id: album_04_16
+    title: Явь Синяя птица
+    file: /assets/audio/concerts/album_04/track_16.mp3
+  - id: album_04_17
+    title: Криденс(Купала)
+    file: /assets/audio/concerts/album_04/track_17.mp3
+  - id: album_04_18
+    title: Ослад
+    file: /assets/audio/concerts/album_04/track_18.mp3
+  - id: album_04_19
+    title: Вей
+    file: /assets/audio/concerts/album_04/track_19.mp3
+  - id: album_04_20
+    title: Марина
+    file: /assets/audio/concerts/album_04/track_20.mp3
+- id: album_05
+  title: Концерт 5
+  tracks:
+  - id: album_05_01
+    title: Арконтан.Конь
+    file: /assets/audio/concerts/album_05/track_01.mp3
+  - id: album_05_02
+    title: В лунном сиянье
+    file: /assets/audio/concerts/album_05/track_02.mp3
+  - id: album_05_03
+    title: Веселая кадриль
+    file: /assets/audio/concerts/album_05/track_03.mp3
+  - id: album_05_04
+    title: Девы дивные.порушка пораня
+    file: /assets/audio/concerts/album_05/track_04.mp3
+  - id: album_05_05
+    title: Жель.Ноченька лунная
+    file: /assets/audio/concerts/album_05/track_05.mp3
+  - id: album_05_06
+    title: Из за острова
+    file: /assets/audio/concerts/album_05/track_06.mp3
+  - id: album_05_07
+    title: Казачья воля
+    file: /assets/audio/concerts/album_05/track_07.mp3
+  - id: album_05_08
+    title: Конь
+    file: /assets/audio/concerts/album_05/track_08.mp3
+  - id: album_05_09
+    title: Кострома.Мой костёр
+    file: /assets/audio/concerts/album_05/track_09.mp3
+  - id: album_05_10
+    title: Лада.Веселая кадриль
+    file: /assets/audio/concerts/album_05/track_10.mp3
+  - id: album_05_11
+    title: Лада.Течёт ручей
+    file: /assets/audio/concerts/album_05/track_11.mp3
+  - id: album_05_12
+    title: Леля.Миленький ты мой
+    file: /assets/audio/concerts/album_05/track_12.mp3
+  - id: album_05_13
+    title: Магощь.В лунном сиянье
+    file: /assets/audio/concerts/album_05/track_13.mp3
+  - id: album_05_14
+    title: Магощь.Из за острова
+    file: /assets/audio/concerts/album_05/track_14.mp3
+  - id: album_05_15
+    title: Миленький ты мой
+    file: /assets/audio/concerts/album_05/track_15.mp3
+  - id: album_05_16
+    title: Мой костёр
+    file: /assets/audio/concerts/album_05/track_16.mp3
+  - id: album_05_17
+    title: Москва златоглавая
+    file: /assets/audio/concerts/album_05/track_17.mp3
+  - id: album_05_18
+    title: На улице дождик
+    file: /assets/audio/concerts/album_05/track_18.mp3
+  - id: album_05_19
+    title: Ноченька лунная
+    file: /assets/audio/concerts/album_05/track_19.mp3
+  - id: album_05_20
+    title: Ой мороз мороз
+    file: /assets/audio/concerts/album_05/track_20.mp3
+  - id: album_05_21
+    title: По дону гуляет
+    file: /assets/audio/concerts/album_05/track_21.mp3
+  - id: album_05_22
+    title: порушка пораня
+    file: /assets/audio/concerts/album_05/track_22.mp3
+  - id: album_05_23
+    title: Противостояние.На улице дождик
+    file: /assets/audio/concerts/album_05/track_23.mp3
+  - id: album_05_24
+    title: Род.Ой мороз мороз
+    file: /assets/audio/concerts/album_05/track_24.mp3
+  - id: album_05_25
+    title: Скаморох.По дону гуляет
+    file: /assets/audio/concerts/album_05/track_25.mp3
+  - id: album_05_26
+    title: Танец богов.Казачья воля
+    file: /assets/audio/concerts/album_05/track_26.mp3
+  - id: album_05_27
+    title: Течёт ручей
+    file: /assets/audio/concerts/album_05/track_27.mp3
+  - id: album_05_28
+    title: Чёрный ворон
+    file: /assets/audio/concerts/album_05/track_28.mp3
+- id: album_06
+  title: Концерт 6
+  tracks:
+  - id: album_06_01
+    title: На безымянной высоте
+    file: /assets/audio/concerts/album_06/track_01.mp3
+  - id: album_06_02
+    title: Огонек
+    file: /assets/audio/concerts/album_06/track_02.mp3
+  - id: album_06_03
+    title: Темная ночь
+    file: /assets/audio/concerts/album_06/track_03.mp3
+  - id: album_06_04
+    title: Мы за ценой не постоим
+    file: /assets/audio/concerts/album_06/track_04.mp3
+  - id: album_06_05
+    title: Эх дороги
+    file: /assets/audio/concerts/album_06/track_05.mp3
+  - id: album_06_06
+    title: Катюша
+    file: /assets/audio/concerts/album_06/track_06.mp3
+  - id: album_06_07
+    title: Москвичи
+    file: /assets/audio/concerts/album_06/track_07.mp3
+  - id: album_06_08
+    title: Журавли
+    file: /assets/audio/concerts/album_06/track_08.mp3
+  - id: album_06_09
+    title: Тальянка
+    file: /assets/audio/concerts/album_06/track_09.mp3
+  - id: album_06_10
+    title: Тучи в голубом
+    file: /assets/audio/concerts/album_06/track_10.mp3
+  - id: album_06_11
+    title: Смуглянка
+    file: /assets/audio/concerts/album_06/track_11.mp3
+  - id: album_06_12
+    title: а.Синий платочек
+    file: /assets/audio/concerts/album_06/track_12.mp3
+  - id: album_06_13
+    title: Майский вальс
+    file: /assets/audio/concerts/album_06/track_13.mp3
+  - id: album_06_14
+    title: Баллада о матери
+    file: /assets/audio/concerts/album_06/track_14.mp3
+- id: album_07
+  title: Концерт 7
+  tracks:
+  - id: album_07_01
+    title: Ой то не вечер Мама
+    file: /assets/audio/concerts/album_07/track_01.mp3
+  - id: album_07_02
+    title: Я назову планету именем твоим Ра Пантеон
+    file: /assets/audio/concerts/album_07/track_02.mp3
+  - id: album_07_03
+    title: Хафанана Правь
+    file: /assets/audio/concerts/album_07/track_03.mp3
+  - id: album_07_04
+    title: Контакт. Высадка. Трава у дома Контакт Высадка
+    file: /assets/audio/concerts/album_07/track_04.mp3
+  - id: album_07_05
+    title: Молодая Магощь
+    file: /assets/audio/concerts/album_07/track_05.mp3
+  - id: album_07_06
+    title: Московский озорной гуляка Русь
+    file: /assets/audio/concerts/album_07/track_06.mp3
+  - id: album_07_07
+    title: Вернись Правь, Правь
+    file: /assets/audio/concerts/album_07/track_07.mp3
+  - id: album_07_08
+    title: По французской стороне Бубенич
+    file: /assets/audio/concerts/album_07/track_08.mp3
+  - id: album_07_09
+    title: Распрягайте хлопцы кони Один
+    file: /assets/audio/concerts/album_07/track_09.mp3
+  - id: album_07_10
+    title: Я поднимаю свой бокал Милич
+    file: /assets/audio/concerts/album_07/track_10.mp3
+  - id: album_07_11
+    title: Гранитный камушек Лада
+    file: /assets/audio/concerts/album_07/track_11.mp3
+  - id: album_07_12
+    title: Батька атаман СвятоСлав
+    file: /assets/audio/concerts/album_07/track_12.mp3
+  - id: album_07_13
+    title: Ты, ты, ты Призыв Лебединцев
+    file: /assets/audio/concerts/album_07/track_13.mp3
+  - id: album_07_14
+    title: Окрасился месяц багряный ЯроСлав
+    file: /assets/audio/concerts/album_07/track_14.mp3
+  - id: album_07_15
+    title: Берега берега Гера
+    file: /assets/audio/concerts/album_07/track_15.mp3
+- id: album_08
+  title: Концерт 8 - Часть 1
+  tracks:
+  - id: album_08_01
+    title: Брусилов
+    file: /assets/audio/concerts/album_08/track_01.mp3
+  - id: album_08_02
+    title: Мехико
+    file: /assets/audio/concerts/album_08/track_02.mp3
+  - id: album_08_03
+    title: Жукоов
+    file: /assets/audio/concerts/album_08/track_03.mp3
+  - id: album_08_04
+    title: Реки вавилона
+    file: /assets/audio/concerts/album_08/track_04.mp3
+  - id: album_08_05
+    title: Кенисберг. Смоки Вот кен ай ду
+    file: /assets/audio/concerts/album_08/track_05.mp3
+  - id: album_08_06
+    title: Казак
+    file: /assets/audio/concerts/album_08/track_06.mp3
+  - id: album_08_07
+    title: Буй Буй
+    file: /assets/audio/concerts/album_08/track_07.mp3
+  - id: album_08_08
+    title: Однозвучно гремит колокольчик
+    file: /assets/audio/concerts/album_08/track_08.mp3
+  - id: album_08_09
+    title: Все что в жизни есть у меня
+    file: /assets/audio/concerts/album_08/track_09.mp3
+  - id: album_08_10
+    title: Не для тебя
+    file: /assets/audio/concerts/album_08/track_10.mp3
+  - id: album_08_11
+    title: Ой у лузе
+    file: /assets/audio/concerts/album_08/track_11.mp3
+  - id: album_08_12
+    title: Пой солдат
+    file: /assets/audio/concerts/album_08/track_12.mp3
+  - id: album_08_13
+    title: Новогодний блюз
+    file: /assets/audio/concerts/album_08/track_13.mp3
+  - id: album_08_14
+    title: Дым над водой
+    file: /assets/audio/concerts/album_08/track_14.mp3
+  - id: album_08_15
+    title: Энигма
+    file: /assets/audio/concerts/album_08/track_15.mp3
+  - id: album_08_16
+    title: Лебединое озеро
+    file: /assets/audio/concerts/album_08/track_16.mp3
+- id: album_09
+  title: Концерт 8 - Часть 2
+  tracks:
+  - id: album_09_01
+    title: Братец луи
+    file: /assets/audio/concerts/album_09/track_01.mp3
+  - id: album_09_02
+    title: Кукуруза
+    file: /assets/audio/concerts/album_09/track_02.mp3
+  - id: album_09_03
+    title: Гори гори моя звезда
+    file: /assets/audio/concerts/album_09/track_03.mp3
+  - id: album_09_04
+    title: Галина
+    file: /assets/audio/concerts/album_09/track_04.mp3
+  - id: album_09_05
+    title: Лет ит би
+    file: /assets/audio/concerts/album_09/track_05.mp3
+  - id: album_09_06
+    title: Лейся песня на просторе
+    file: /assets/audio/concerts/album_09/track_06.mp3
+  - id: album_09_07
+    title: Ой то не вечер Мама
+    file: /assets/audio/concerts/album_09/track_07.mp3
+  - id: album_09_08
+    title: Распрягайте хлопцы кони
+    file: /assets/audio/concerts/album_09/track_08.mp3
+  - id: album_09_09
+    title: Вечерний звон
+    file: /assets/audio/concerts/album_09/track_09.mp3
+  - id: album_09_10
+    title: Батька атаман СвятоСлав
+    file: /assets/audio/concerts/album_09/track_10.mp3
+  - id: album_09_11
+    title: Окрасился месяц багряный ЯроСлав
+    file: /assets/audio/concerts/album_09/track_11.mp3
+  - id: album_09_12
+    title: Смоки брест
+    file: /assets/audio/concerts/album_09/track_12.mp3
+  - id: album_09_13
+    title: Высоцкий Осовец Охота на волков
+    file: /assets/audio/concerts/album_09/track_13.mp3
+  - id: album_09_14
+    title: Берега берега Гера
+    file: /assets/audio/concerts/album_09/track_14.mp3
+- id: album_10
+  title: Концерт 10
+  tracks:
+  - id: album_10_01
+    title: Бриорей Облади
+    file: /assets/audio/concerts/album_10/track_01.mp3
+  - id: album_10_02
+    title: Владимир
+    file: /assets/audio/concerts/album_10/track_02.mp3
+  - id: album_10_03
+    title: Карбышев
+    file: /assets/audio/concerts/album_10/track_03.mp3
+  - id: album_10_04
+    title: Котовский
+    file: /assets/audio/concerts/album_10/track_04.mp3
+  - id: album_10_05
+    title: Крик Семли
+    file: /assets/audio/concerts/album_10/track_05.mp3
+  - id: album_10_06
+    title: Ленин
+    file: /assets/audio/concerts/album_10/track_06.mp3
+  - id: album_10_07
+    title: Песнь Моля
+    file: /assets/audio/concerts/album_10/track_07.mp3
+  - id: album_10_08
+    title: Пирун
+    file: /assets/audio/concerts/album_10/track_08.mp3
+  - id: album_10_09
+    title: Рокосовский
+    file: /assets/audio/concerts/album_10/track_09.mp3
+  - id: album_10_10
+    title: Сталин
+    file: /assets/audio/concerts/album_10/track_10.mp3
+  - id: album_10_11
+    title: Щорс
+    file: /assets/audio/concerts/album_10/track_11.mp3
+  - id: album_10_12
+    title: Махно
+    file: /assets/audio/concerts/album_10/track_12.mp3
+- id: album_11
+  title: Концерт 10 - Часть 2
+  tracks:
+  - id: album_11_01
+    title: Блаж любви Пусть всегда будет солнце
+    file: /assets/audio/concerts/album_11/track_01.mp3
+  - id: album_11_02
+    title: Блюхеру Восточная песня
+    file: /assets/audio/concerts/album_11/track_02.mp3
+  - id: album_11_03
+    title: Бриорей Барабан
+    file: /assets/audio/concerts/album_11/track_03.mp3
+  - id: album_11_04
+    title: Дыбенко Тэйлор
+    file: /assets/audio/concerts/album_11/track_04.mp3
+  - id: album_11_05
+    title: Есть разум Литтл Тони
+    file: /assets/audio/concerts/album_11/track_05.mp3
+  - id: album_11_06
+    title: Жизнь есть жизнь
+    file: /assets/audio/concerts/album_11/track_06.mp3
+  - id: album_11_07
+    title: Ключ мира Баккара
+    file: /assets/audio/concerts/album_11/track_07.mp3
+  - id: album_11_08
+    title: Лада и любовь Комиссар
+    file: /assets/audio/concerts/album_11/track_08.mp3
+  - id: album_11_09
+    title: Маресьев Билли Джойл
+    file: /assets/audio/concerts/album_11/track_09.mp3
+  - id: album_11_10
+    title: Маршал Егоров Тортилла
+    file: /assets/audio/concerts/album_11/track_10.mp3
+  - id: album_11_11
+    title: Мать Семля Мама мария
+    file: /assets/audio/concerts/album_11/track_11.mp3
+  - id: album_11_12
+    title: О перуне  Битлз
+    file: /assets/audio/concerts/album_11/track_12.mp3
+  - id: album_11_13
+    title: Пархоменко Бонни тейлор
+    file: /assets/audio/concerts/album_11/track_13.mp3
+  - id: album_11_14
+    title: Святой огонь Арабески
+    file: /assets/audio/concerts/album_11/track_14.mp3
+  - id: album_11_15
+    title: Сердца людей Сердце
+    file: /assets/audio/concerts/album_11/track_15.mp3
+  - id: album_11_16
+    title: СпасМагомет Червоны гитары
+    file: /assets/audio/concerts/album_11/track_16.mp3
+  - id: album_11_17
+    title: Твист Скаже5м всем звёздам
+    file: /assets/audio/concerts/album_11/track_17.mp3
+  - id: album_11_18
+    title: Терем При лужке
+    file: /assets/audio/concerts/album_11/track_18.mp3
+  - id: album_11_19
+    title: Ты бог
+    file: /assets/audio/concerts/album_11/track_19.mp3
+  - id: album_11_20
+    title: Ты человек
+    file: /assets/audio/concerts/album_11/track_20.mp3
+  - id: album_11_21
+    title: Фрунзе  Смоки
+    file: /assets/audio/concerts/album_11/track_21.mp3
+  - id: album_11_22
+    title: Эти глаза напротив
+    file: /assets/audio/concerts/album_11/track_22.mp3
+  - id: album_11_23
+    title: Якир Арго
+    file: /assets/audio/concerts/album_11/track_23.mp3
+- id: album_12
+  title: Концерт 11
+  tracks:
+  - id: album_12_01
+    title: Колчак
+    file: /assets/audio/concerts/album_12/track_01.mp3
+  - id: album_12_02
+    title: Кутепов на замену
+    file: /assets/audio/concerts/album_12/track_02.mp3
+  - id: album_12_03
+    title: Лада
+    file: /assets/audio/concerts/album_12/track_03.mp3
+  - id: album_12_04
+    title: Набад
+    file: /assets/audio/concerts/album_12/track_04.mp3
+  - id: album_12_05
+    title: Рок вокруг Семли
+    file: /assets/audio/concerts/album_12/track_05.mp3
+  - id: album_12_06
+    title: малиновский
+    file: /assets/audio/concerts/album_12/track_06.mp3
+  - id: album_12_07
+    title: Чапаев
+    file: /assets/audio/concerts/album_12/track_07.mp3
+  - id: album_12_08
+    title: Чудо сигнал
+    file: /assets/audio/concerts/album_12/track_08.mp3
+  - id: album_12_09
+    title: Ярилин луч на замену
+    file: /assets/audio/concerts/album_12/track_09.mp3
+  - id: album_12_10
+    title: Брусилов
+    file: /assets/audio/concerts/album_12/track_10.mp3
+  - id: album_12_11
+    title: Воскресе на замену
+    file: /assets/audio/concerts/album_12/track_11.mp3
+  - id: album_12_12
+    title: Врангель
+    file: /assets/audio/concerts/album_12/track_12.mp3
+  - id: album_12_13
+    title: Год Магощи
+    file: /assets/audio/concerts/album_12/track_13.mp3
+  - id: album_12_14
+    title: Зина
+    file: /assets/audio/concerts/album_12/track_14.mp3
+  - id: album_12_15
+    title: Каждый день и каждый час
+    file: /assets/audio/concerts/album_12/track_15.mp3
+  - id: album_12_16
+    title: Блаж вселенной
+    file: /assets/audio/concerts/album_12/track_16.mp3
+  - id: album_12_17
+    title: Бриорей
+    file: /assets/audio/concerts/album_12/track_17.mp3
+  - id: album_12_18
+    title: Гастелло
+    file: /assets/audio/concerts/album_12/track_18.mp3
+  - id: album_12_19
+    title: Праведный раж
+    file: /assets/audio/concerts/album_12/track_19.mp3
+  - id: album_12_20
+    title: Сердце не камень
+    file: /assets/audio/concerts/album_12/track_20.mp3

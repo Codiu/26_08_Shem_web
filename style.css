@@ -3507,3 +3507,336 @@ body.modal-open {
 .blog-read-more:hover svg {
   transform: translateX(4px);
 }
+
+/* ==========================================================================
+   CONCERTS PAGE (AUDIO PLAYER)
+   ========================================================================== */
+
+.concerts-page {
+  padding: 4rem 0;
+  min-height: 80vh;
+}
+
+.player-hero {
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--panel-shadow);
+  padding: 3rem;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+@media (max-width: 768px) {
+  .player-hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
+
+.player-visuals {
+  flex: 0 0 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.vinyl-record {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a1a1a 30%, #000 70%);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 0 0 4px #333, inset 0 0 10px rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.5s ease;
+}
+
+.vinyl-center {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-blue), #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vinyl-hole {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--panel-bg);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Spinning Animation */
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.vinyl-record.spinning {
+  animation: spin 3s linear infinite;
+}
+
+.player-controls-container {
+  flex: 1;
+}
+
+.player-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.player-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.player-subtitle strong {
+  color: var(--accent-blue);
+  font-size: 1.25rem;
+}
+
+.main-controls.hidden, .playback-controls.hidden {
+  display: none !important;
+}
+
+.main-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-radio {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn-radio:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+  background: #2563eb;
+}
+
+.playback-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .playback-controls {
+    justify-content: center;
+  }
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.icon-btn:hover {
+  background: rgba(0,0,0,0.05);
+  color: var(--accent-blue);
+}
+
+.play-pause-btn {
+  background: var(--accent-blue);
+  color: white;
+  width: 64px;
+  height: 64px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.play-pause-btn:hover {
+  background: #2563eb;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Albums List */
+.albums-section {
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+.albums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.album-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--panel-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.album-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0,0,0,0.01);
+}
+
+.album-icon {
+  color: var(--accent-blue);
+}
+
+.album-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+}
+
+.album-tracks-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  background: rgba(0,0,0,0.05);
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.album-tracks {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.track-row {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.2s ease;
+  gap: 12px;
+}
+
+.track-row:last-child {
+  border-bottom: none;
+}
+
+.track-row:hover {
+  background: #f8fafc;
+}
+
+.track-row.active {
+  background: #eff6ff;
+  border-left: 4px solid var(--accent-blue);
+  padding-left: calc(1.25rem - 4px);
+}
+
+.track-play-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.track-row:hover .track-play-btn {
+  color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.track-row.active .track-play-btn {
+  color: var(--accent-blue);
+}
+
+.track-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-number {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.track-title {
+  color: var(--text-dark);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-row.active .track-title {
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+.track-download-btn {
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.track-download-btn:hover {
+  color: var(--accent-blue);
+}
