@@ -14,13 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return basePath + cleanPath;
   }
 
-  // Flatten all tracks for Radio Mode
+  // Flatten all tracks for Radio Mode with album tracking
   const allTracks = [];
   albumsData.forEach(album => {
-    album.tracks.forEach(track => {
+    const total = album.tracks.length;
+    album.tracks.forEach((track, idx) => {
       allTracks.push({
         ...track,
-        albumTitle: album.title
+        albumTitle: album.title,
+        trackIndex: idx,
+        totalTracks: total
       });
     });
   });
@@ -38,26 +41,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainControls = document.querySelector('.main-controls');
   const nowPlayingText = document.getElementById('nowPlayingText');
   const vinylRecord = document.getElementById('vinylRecord');
+  const tonearm = document.getElementById('tonearm');
 
   let isRadioMode = false;
   let currentPlaylist = [];
   let playlistIndex = 0;
+  let activeTrack = null;
+
+  // Calculate needle angle on the vinyl record
+  // Rest position: -28deg
+  // Track 1 (edge): -10deg
+  // Last track (near center label): +10deg
+  function getTonearmAngle(track, progress = 0) {
+    if (!track) return -28;
+    const total = track.totalTracks || 1;
+    const idx = track.trackIndex !== undefined ? track.trackIndex : 0;
+    const slice = 1 / total;
+    const ratio = Math.min(1, Math.max(0, (idx + progress) * slice));
+    return -10 + (ratio * 20);
+  }
 
   function updatePlayPauseUI(isPlaying) {
     if (isPlaying) {
       iconPlay.style.display = 'none';
       iconPause.style.display = 'block';
       vinylRecord.classList.add('spinning');
+      const progress = (audio.duration && !isNaN(audio.duration)) ? (audio.currentTime / audio.duration) : 0;
+      const angle = getTonearmAngle(activeTrack, progress);
+      if (tonearm) {
+        tonearm.style.setProperty('--arm-angle', `${angle.toFixed(2)}deg`);
+      }
     } else {
       iconPlay.style.display = 'block';
       iconPause.style.display = 'none';
       vinylRecord.classList.remove('spinning');
+      if (tonearm) {
+        tonearm.style.setProperty('--arm-angle', '-28deg');
+      }
     }
   }
 
   function playTrack(track) {
     if (!track) return;
     
+    activeTrack = track;
     const fullUrl = getFullAudioUrl(track.file);
     audio.src = fullUrl;
     
@@ -127,6 +154,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   audio.addEventListener('ended', playNextTrack);
 
+  // Smoothly move tonearm inward as the track plays
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.paused && activeTrack && tonearm) {
+      const progress = (audio.duration && !isNaN(audio.duration)) ? (audio.currentTime / audio.duration) : 0;
+      const angle = getTonearmAngle(activeTrack, progress);
+      tonearm.style.setProperty('--arm-angle', `${angle.toFixed(2)}deg`);
+    }
+  });
+
   // Click on track row to play
   document.querySelectorAll('.track-row').forEach(row => {
     row.addEventListener('click', (e) => {
@@ -143,7 +179,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!album) return;
 
       isRadioMode = false;
-      currentPlaylist = album.tracks.map(t => ({...t, albumTitle: album.title}));
+      const total = album.tracks.length;
+      currentPlaylist = album.tracks.map((t, idx) => ({
+        ...t,
+        albumTitle: album.title,
+        trackIndex: idx,
+        totalTracks: total
+      }));
       playlistIndex = currentPlaylist.findIndex(t => t.id === trackId);
 
       if (playlistIndex !== -1) {
