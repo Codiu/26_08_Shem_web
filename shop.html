@@ -23,7 +23,7 @@ title: Магазин книг В. А. Шемшука
           <article class="book-card" id="{{ book.id }}" {% if visible_count > 12 %}style="display: none;"{% endif %}>
             <div class="book-cover-wrap">
               {% if book.ribbon and book.ribbon != '' %}
-                <span class="book-ribbon">{{ book.ribbon }}</span>
+                <span class="book-ribbon" data-ribbon="{{ book.ribbon }}">{{ book.ribbon }}</span>
               {% endif %}
               {% assign thumb_path = book.cover %}
               {% if thumb_path == nil or thumb_path == '' %}

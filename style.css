@@ -1780,6 +1780,50 @@ body.modal-open {
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
   z-index: 2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Unified Semantic Book Ribbons & Badges */
+.book-ribbon[data-ribbon="Новинка"],
+.book-ribbon-mini[data-ribbon="Новинка"],
+.book-ribbon.ribbon-new,
+.book-ribbon-mini.ribbon-new {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+  color: #ffffff;
+}
+
+.book-ribbon[data-ribbon="Переиздание"],
+.book-ribbon-mini[data-ribbon="Переиздание"],
+.book-ribbon.ribbon-reprint,
+.book-ribbon-mini.ribbon-reprint {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
+  color: #ffffff;
+}
+
+.book-ribbon[data-ribbon="Хит"],
+.book-ribbon[data-ribbon="Топ продаж"],
+.book-ribbon[data-ribbon="Бестселлер"],
+.book-ribbon-mini[data-ribbon="Хит"],
+.book-ribbon-mini[data-ribbon="Топ продаж"],
+.book-ribbon-mini[data-ribbon="Бестселлер"],
+.book-ribbon.ribbon-hit,
+.book-ribbon-mini.ribbon-hit {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+  color: #ffffff;
+}
+
+.book-ribbon[data-ribbon="Скидка"],
+.book-ribbon[data-ribbon="Акция"],
+.book-ribbon-mini[data-ribbon="Скидка"],
+.book-ribbon-mini[data-ribbon="Акция"],
+.book-ribbon.ribbon-sale,
+.book-ribbon-mini.ribbon-sale {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+  color: #ffffff;
 }
 
 .book-content {
@@ -3147,13 +3191,16 @@ body.modal-open {
   position: absolute;
   top: 4px;
   left: 4px;
-  background: #ef4444;
-  color: white;
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #ffffff;
   font-size: 0.65rem;
   font-weight: 700;
-  padding: 1px 4px;
+  letter-spacing: 0.02em;
+  padding: 2px 6px;
   border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
   z-index: 2;
+  line-height: 1.2;
 }
 
 .home-book-details {

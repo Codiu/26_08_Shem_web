@@ -69,7 +69,7 @@ title: Официальный сайт В. А. Шемшука
               <article class="home-book-card" id="{{ book.id }}">
                 <div class="home-book-thumb">
                   {% if book.ribbon and book.ribbon != '' %}
-                    <span class="book-ribbon-mini">{{ book.ribbon }}</span>
+                    <span class="book-ribbon-mini" data-ribbon="{{ book.ribbon }}">{{ book.ribbon }}</span>
                   {% endif %}
                   <img src="{{ '/assets/images/books/thumbs/' | append: thumb_path | relative_url }}" 
                        alt="{{ book.title | escape }}" 
