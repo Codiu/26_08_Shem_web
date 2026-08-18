@@ -653,14 +653,17 @@ body.pearl-theme {
   color: var(--text-muted);
 }
 
+.links-stack a,
 .grid-value.link {
   color: var(--accent-blue);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
+  font-family: var(--font-family);
   transition: color var(--transition-fast);
 }
 
+.links-stack a:hover,
 .grid-value.link:hover {
   color: var(--accent-hover);
   text-decoration: underline;
