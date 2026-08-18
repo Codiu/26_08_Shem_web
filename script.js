@@ -204,8 +204,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileDrawer = document.getElementById('mobileDrawer');
 
   if (menuToggle && mobileDrawer) {
-    menuToggle.addEventListener('click', () => {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       mobileDrawer.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileDrawer.contains(e.target) && !menuToggle.contains(e.target)) {
+        mobileDrawer.classList.remove('active');
+        menuToggle.classList.remove('active');
+      }
     });
   }
 
