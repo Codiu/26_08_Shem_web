@@ -344,4 +344,80 @@ document.addEventListener('DOMContentLoaded', () => {
       observer.observe(blogSentinel);
     }
   }
+
+  // Mobile Quick Nav - Hint Mode (Double Tap with Title Expansion)
+  const mobileHintToggle = document.getElementById('mobileHintToggle');
+  const mobileQuickNav = document.getElementById('mobileQuickNav');
+
+  if (mobileQuickNav) {
+    // Default hints state: true (enabled)
+    let hintsEnabled = localStorage.getItem('mobile_nav_hints') !== 'false';
+
+    function updateHintToggleUI() {
+      if (mobileHintToggle) {
+        const textEl = mobileHintToggle.querySelector('.hint-toggle-text');
+        if (hintsEnabled) {
+          mobileHintToggle.classList.add('active');
+          mobileHintToggle.setAttribute('title', 'Подсказки включены (нажмите для выключения)');
+          if (textEl) textEl.textContent = 'Подсказки';
+        } else {
+          mobileHintToggle.classList.remove('active');
+          mobileHintToggle.setAttribute('title', 'Подсказки выключены (нажмите для включения)');
+          if (textEl) textEl.textContent = 'Подсказки: Выкл';
+        }
+      }
+    }
+
+    updateHintToggleUI();
+
+    if (mobileHintToggle) {
+      mobileHintToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        hintsEnabled = !hintsEnabled;
+        localStorage.setItem('mobile_nav_hints', hintsEnabled ? 'true' : 'false');
+        updateHintToggleUI();
+
+        // Collapse any open hints
+        const opened = mobileQuickNav.querySelectorAll('.mq-item.show-hint');
+        opened.forEach(item => item.classList.remove('show-hint'));
+      });
+    }
+
+    const mqItems = mobileQuickNav.querySelectorAll('.mq-item');
+    mqItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (!hintsEnabled) {
+          // Direct navigation if hints mode is disabled
+          return;
+        }
+
+        // If hints mode is active
+        if (!item.classList.contains('show-hint')) {
+          // First tap: Expand hint, prevent navigation
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Collapse other items
+          mqItems.forEach(other => {
+            if (other !== item) other.classList.remove('show-hint');
+          });
+
+          // Expand current item
+          item.classList.add('show-hint');
+
+          // Smoothly scroll item into view inside the horizontal bar
+          item.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+        }
+        // Second tap: item already has .show-hint, browser follows link naturally!
+      });
+    });
+
+    // Close hints when clicking anywhere else on page
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#mobileQuickNav') && !e.target.closest('#mobileHintToggle')) {
+        mqItems.forEach(item => item.classList.remove('show-hint'));
+      }
+    });
+  }
 });

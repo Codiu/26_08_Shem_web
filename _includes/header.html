@@ -27,6 +27,11 @@
       </div>
 
       <div class="mobile-header-actions">
+        <button type="button" class="mobile-hint-toggle active" id="mobileHintToggle" title="Подсказки названий" aria-label="Включить/выключить подсказки меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span class="hint-toggle-text">Подсказки</span>
+          <span class="toggle-indicator"></span>
+        </button>
         <a href="{{ '/cart.html' | relative_url }}" class="mobile-cart-icon nav-cart-btn{% if page.url contains 'cart.html' or page.url contains '/cart/' %} active{% endif %}" aria-label="Корзина">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
           <span class="cart-count-badge mobile-cart-badge" style="display: none;">0</span>
@@ -58,31 +63,39 @@
   </div>
 
   <!-- Mobile Quick Nav Bar (All Sections) -->
-  <div class="mobile-quick-nav">
+  <div class="mobile-quick-nav" id="mobileQuickNav">
     <div class="mq-links">
-      <a href="{{ '/index.html' | relative_url }}" class="mq-item{% if page.url == '/' or page.url == '/index.html' %} active{% endif %}" title="Главная" aria-label="Главная">
+      <a href="{{ '/index.html' | relative_url }}" class="mq-item{% if page.url == '/' or page.url == '/index.html' %} active{% endif %}" data-name="Главная" title="Главная" aria-label="Главная">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="mq-label">Главная</span>
       </a>
-      <a href="{{ '/shop.html' | relative_url }}" class="mq-item mq-accent{% if page.url contains 'shop.html' or page.url contains '/shop/' %} active{% endif %}" title="Магазин" aria-label="Магазин">
+      <a href="{{ '/shop.html' | relative_url }}" class="mq-item mq-accent{% if page.url contains 'shop.html' or page.url contains '/shop/' %} active{% endif %}" data-name="Магазин" title="Магазин" aria-label="Магазин">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="mq-label">Магазин</span>
       </a>
-      <a href="{{ '/shkola.html' | relative_url }}" class="mq-item mq-accent{% if page.url contains 'shkola.html' or page.url contains '/shkola/' %} active{% endif %}" title="Школа" aria-label="Школа">
+      <a href="{{ '/shkola.html' | relative_url }}" class="mq-item mq-accent{% if page.url contains 'shkola.html' or page.url contains '/shkola/' %} active{% endif %}" data-name="Школа" title="Школа" aria-label="Школа">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a2 2 0 0 0-.019-3.838L12.83 4.3a2 2 0 0 0-1.66 0l-8.57 2.783a2 2 0 0 0-.019 3.838l8.567 3.982a2 2 0 0 0 1.69 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+        <span class="mq-label">Школа</span>
       </a>
-      <a href="{{ '/concerts.html' | relative_url }}" class="mq-item mq-accent{% if page.url contains 'concerts.html' or page.url contains '/concerts/' %} active{% endif %}" title="Концерты / Музыка" aria-label="Концерты">
+      <a href="{{ '/concerts.html' | relative_url }}" class="mq-item mq-accent{% if page.url contains 'concerts.html' or page.url contains '/concerts/' %} active{% endif %}" data-name="Концерты" title="Концерты / Музыка" aria-label="Концерты">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <span class="mq-label">Концерты</span>
       </a>
-      <a href="{{ '/molitva.html' | relative_url }}" class="mq-item{% if page.url contains 'molitva.html' or page.url contains '/molitva/' %} active{% endif %}" title="Молитва-Треба" aria-label="Молитва-Треба">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c0-3.5-3.5-5-3.5-5s-3.5 1.5-3.5 5c0 3.5 3.5 7 3.5 7v4"/><path d="M11 17h2"/></svg>
+      <a href="{{ '/molitva.html' | relative_url }}" class="mq-item{% if page.url contains 'molitva.html' or page.url contains '/molitva/' %} active{% endif %}" data-name="Молитва" title="Молитва-Треба" aria-label="Молитва-Треба">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-.8 0-1.5.5-1.8 1.2L7 12v8h10v-8l-3.2-8.8C13.5 2.5 12.8 2 12 2z"/><path d="M12 2v18"/><path d="M7 16l-3.5 1.5A2 2 0 0 0 2.5 20V20a2 2 0 0 0 2 2H7"/><path d="M17 16l3.5 1.5a2 2 0 0 1 1 2.5V20a2 2 0 0 1-2 2H17"/></svg>
+        <span class="mq-label">Молитва</span>
       </a>
-      <a href="{{ '/blog.html' | relative_url }}" class="mq-item mq-accent{% if page.url contains '/blog' %} active{% endif %}" title="Блог" aria-label="Блог">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <a href="{{ '/blog.html' | relative_url }}" class="mq-item mq-accent{% if page.url contains '/blog' %} active{% endif %}" data-name="Блог" title="Блог" aria-label="Блог">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
+        <span class="mq-label">Блог</span>
       </a>
-      <a href="{{ '/ob-avtore.html' | relative_url }}" class="mq-item{% if page.url contains 'ob-avtore.html' or page.url contains '/ob-avtore/' %} active{% endif %}" title="Об авторе" aria-label="Об авторе">
+      <a href="{{ '/ob-avtore.html' | relative_url }}" class="mq-item{% if page.url contains 'ob-avtore.html' or page.url contains '/ob-avtore/' %} active{% endif %}" data-name="Об авторе" title="Об авторе" aria-label="Об авторе">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+        <span class="mq-label">Об авторе</span>
       </a>
-      <a href="{{ '/contacts.html' | relative_url }}" class="mq-item{% if page.url contains 'contacts.html' or page.url contains '/contacts/' %} active{% endif %}" title="Контакты" aria-label="Контакты">
+      <a href="{{ '/contacts.html' | relative_url }}" class="mq-item{% if page.url contains 'contacts.html' or page.url contains '/contacts/' %} active{% endif %}" data-name="Контакты" title="Контакты" aria-label="Контакты">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="mq-label">Контакты</span>
       </a>
     </div>
   </div>
