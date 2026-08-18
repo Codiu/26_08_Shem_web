@@ -20,13 +20,34 @@
 
   --radius-lg: 14px;
   --radius-md: 8px;
-  --radius-pill: 16px;
+  --radius-sm: 6px;
+  --radius-pill: 99px;
 
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: 'Outfit', 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
 
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* 4K & Ultra-Wide Monitor Scaling */
+@media (min-width: 1440px) {
+  :root {
+    --grid-width: 1100px;
+    font-size: 17px;
+  }
+}
+@media (min-width: 2500px) {
+  :root {
+    --grid-width: 1400px;
+    font-size: 19px;
+  }
+}
+@media (min-width: 3500px) {
+  :root {
+    --grid-width: 1800px;
+    font-size: 22px;
+  }
 }
 
 /* Reset */
@@ -48,10 +69,17 @@ body.pearl-theme {
   background-attachment: fixed;
   color: var(--text-dark);
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
   line-height: 1.5;
+}
+
+@media (max-height: 500px) {
+  .header {
+    position: relative !important;
+  }
 }
 
 /* Dynamic Floating Particles Canvas */
@@ -65,9 +93,13 @@ body.pearl-theme {
   pointer-events: none;
 }
 
-/* Unified Integrated Header */
+/* ==========================================================================
+   HEADER STYLES
+   ========================================================================= */
 .header {
   width: 100%;
+  max-width: var(--grid-width);
+  margin: 0 auto;
   background: var(--header-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -576,12 +608,14 @@ body.pearl-theme {
 
 /* Footer */
 .footer {
+  width: 100%;
+  max-width: var(--grid-width);
+  margin: auto auto 0 auto;
   background: var(--header-bg);
   backdrop-filter: blur(14px);
   border-top: 1px solid var(--panel-border);
   padding: 16px 20px;
   text-align: center;
-  margin-top: auto;
   font-size: 0.8rem;
   color: var(--text-muted);
 }
