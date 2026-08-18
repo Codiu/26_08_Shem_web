@@ -340,6 +340,34 @@ body.pearl-theme {
   transition: transform var(--transition-fast);
 }
 
+/* Mobile Header Actions */
+.mobile-header-actions {
+  display: none;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-cart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+@media (max-width: 860px) {
+  .header-nav {
+    display: none !important;
+  }
+  .mobile-header-actions {
+    display: flex;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+}
+
 /* Mobile Drawer */
 .mobile-drawer {
   display: none;
@@ -414,6 +442,7 @@ body.pearl-theme {
   font-size: 0.92rem;
   padding-bottom: 10px;
   border-bottom: 1px dashed #e2e8f0;
+  flex-wrap: wrap;
 }
 
 .row-icon {
@@ -569,6 +598,12 @@ body.pearl-theme {
   grid-template-columns: 260px 1fr;
   gap: 24px;
   align-items: start;
+}
+
+@media (max-width: 768px) {
+  .about-content-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .author-photo-wrapper {
@@ -1124,6 +1159,15 @@ body.pearl-theme {
   .video-card-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .school-specs-grid {
+    grid-template-columns: 1fr;
+  }
+  .school-video-card {
+    padding: 16px 12px;
   }
 }
 
