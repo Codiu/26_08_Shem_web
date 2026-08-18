@@ -177,27 +177,38 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollTimeout = setTimeout(() => { isScrolling = false; }, 100);
   }, { passive: true });
 
-  function animate() {
-    // Only render if browser window is visible and not heavily scrolling (helps mid-range laptops)
-    if (!document.hidden && !isScrolling) {
-      ctx.clearRect(0, 0, width, height);
+  // 30 FPS Frame Limiter (saves GPU, battery, and ensures smooth scrolling)
+  const TARGET_FPS = 30;
+  const fpsInterval = 1000 / TARGET_FPS;
+  let lastFrameTime = 0;
 
-      glowingOrbs.forEach(orb => {
-        orb.update();
-        orb.draw();
-      });
-
-      drawConnections();
-
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-    }
+  function animate(currentTime) {
     requestAnimationFrame(animate);
+
+    // Only render if browser window is visible and not heavily scrolling
+    if (document.hidden || isScrolling) return;
+
+    // Throttle to 30 FPS
+    const elapsed = currentTime - lastFrameTime;
+    if (elapsed < fpsInterval) return;
+    lastFrameTime = currentTime - (elapsed % fpsInterval);
+
+    ctx.clearRect(0, 0, width, height);
+
+    glowingOrbs.forEach(orb => {
+      orb.update();
+      orb.draw();
+    });
+
+    drawConnections();
+
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
   }
 
-  animate();
+  requestAnimationFrame(animate);
 
   // Mobile Menu Drawer Toggle
   const menuToggle = document.getElementById('menuToggle');
@@ -355,15 +366,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateHintToggleUI() {
       if (mobileHintToggle) {
-        const textEl = mobileHintToggle.querySelector('.hint-toggle-text');
         if (hintsEnabled) {
           mobileHintToggle.classList.add('active');
           mobileHintToggle.setAttribute('title', 'Подсказки включены (нажмите для выключения)');
-          if (textEl) textEl.textContent = 'Подсказки';
         } else {
           mobileHintToggle.classList.remove('active');
           mobileHintToggle.setAttribute('title', 'Подсказки выключены (нажмите для включения)');
-          if (textEl) textEl.textContent = 'Подсказки: Выкл';
         }
       }
     }
