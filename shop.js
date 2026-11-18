@@ -169,6 +169,22 @@
       });
     }
 
+    // Home Page Books Quick View Delegation
+    const homeBooksList = document.querySelector('.home-books-list');
+    if (homeBooksList) {
+      homeBooksList.addEventListener('click', (e) => {
+        if (e.target.closest('.btn-buy-mini')) return;
+        const trigger = e.target.closest('.home-book-thumb, .home-book-title, .home-book-short-desc');
+        if (trigger) {
+          e.preventDefault();
+          const card = e.target.closest('.home-book-card');
+          if (card) {
+            openQuickView(card);
+          }
+        }
+      });
+    }
+
     // Modal Add To Cart
     if (modalAddBtn) {
       modalAddBtn.addEventListener('click', () => {
