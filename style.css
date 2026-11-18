@@ -1558,6 +1558,12 @@ body.pearl-theme {
   color: #ffffff;
 }
 
+.video-badge.blog-link {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.22);
+}
+
 .video-badge:hover {
   opacity: 0.9;
   transform: translateY(-1px);
