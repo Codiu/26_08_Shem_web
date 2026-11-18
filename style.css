@@ -1250,8 +1250,9 @@ body.pearl-theme {
 /* Two Columns Grid */
 .school-columns-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 18px;
+  align-items: stretch;
 }
 
 .info-block {
@@ -1266,7 +1267,7 @@ body.pearl-theme {
 
 .info-block h3 {
   font-family: var(--font-heading);
-  font-size: 0.98rem;
+  font-size: 1.02rem;
   font-weight: 700;
   color: var(--text-dark);
 }
@@ -1281,6 +1282,10 @@ body.pearl-theme {
   display: flex;
   gap: 8px;
   line-height: 1.45;
+}
+
+.author-program-notice {
+  margin-top: auto;
 }
 
 .program-points, .author-merits {
@@ -1311,10 +1316,100 @@ body.pearl-theme {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
-  padding: 20px 24px;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.school-video-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 12px;
+  margin-top: auto;
+  border-top: 1px solid #e2e8f0;
+}
+
+.video-footer-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* 4-Step Participation Section */
+.school-steps-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.school-section-heading {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.school-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.step-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 15px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.step-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.08);
+}
+
+.step-card-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-card-head h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.step-card p {
+  font-size: 0.78rem;
+  color: var(--text-body);
+  line-height: 1.48;
+  margin: 0;
 }
 
 .video-card-header {
@@ -1346,6 +1441,15 @@ body.pearl-theme {
   color: var(--text-dark);
 }
 
+@media (max-width: 900px) {
+  .school-columns-grid {
+    grid-template-columns: 1fr;
+  }
+  .school-steps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .school-specs-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1362,12 +1466,15 @@ body.pearl-theme {
     width: 100%;
     justify-content: center;
   }
-  .school-columns-grid {
-    grid-template-columns: 1fr;
-  }
   .video-card-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .school-steps-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -3254,12 +3361,12 @@ body.modal-open .floating-cart-widget {
   border-color: var(--accent-blue);
 }
 
-/* Split Grid */
+/* Split Grid (Bento Asymmetry aligned top & bottom) */
 .home-split-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
   gap: 2rem;
-  align-items: start; /* Align columns naturally at the top */
+  align-items: stretch;
 }
 
 .home-news-column,
@@ -3306,6 +3413,7 @@ body.modal-open .floating-cart-widget {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  flex: 1;
 }
 
 .news-card {
@@ -3320,8 +3428,9 @@ body.modal-open .floating-cart-widget {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1.2rem;
-  min-height: 190px;
+  gap: 1.25rem;
+  flex: 1;
+  min-height: 156px;
   height: auto;
   box-sizing: border-box;
   overflow: hidden;
@@ -3333,8 +3442,8 @@ body.modal-open .floating-cart-widget {
 }
 
 .news-card-thumb {
-  flex: 0 0 160px; /* Optimized 160px width to free up massive horizontal space for titles */
-  width: 160px;
+  flex: 0 0 184px;
+  width: 184px;
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -3359,6 +3468,7 @@ body.modal-open .floating-cart-widget {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.45rem;
   min-width: 0;
 }
 
@@ -3366,7 +3476,7 @@ body.modal-open .floating-cart-widget {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0;
 }
 
 .news-date {
@@ -3377,12 +3487,12 @@ body.modal-open .floating-cart-widget {
 
 .news-title {
   font-family: var(--font-heading);
-  font-size: 1.1rem; /* Optimal readable font size */
+  font-size: 1.14rem;
   font-weight: 700;
-  margin-bottom: 0.5rem; /* Distinct margin before excerpt */
+  margin: 0;
   line-height: 1.35;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Allows up to 3 full lines for complete titles */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -3518,15 +3628,17 @@ body.modal-open .floating-cart-widget {
 /* Home Quote of the Day Card (Subtle & Understated Footnote) */
 .home-quote-card {
   margin-top: 0;
+  flex: 1;
   background: rgba(15, 23, 42, 0.35) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border-radius: var(--radius-lg);
   border: 1px dashed rgba(255, 255, 255, 0.18) !important;
   box-shadow: none !important;
-  padding: 1.1rem 1.35rem;
+  padding: 1.15rem 1.35rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.5rem;
   position: relative;
   overflow: hidden;
@@ -3596,11 +3708,19 @@ body.modal-open .floating-cart-widget {
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--panel-shadow);
-  padding: 1.75rem 1.25rem;
+  padding: 1.5rem 1.25rem;
   text-align: center;
   text-decoration: none;
   color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: all 0.25s ease;
+}
+
+.nav-card.card-school {
+  border-color: rgba(2, 132, 199, 0.38);
+  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.14), var(--panel-shadow);
 }
 
 .nav-card:hover {
@@ -3610,13 +3730,35 @@ body.modal-open .floating-cart-widget {
 }
 
 .nav-card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.6rem;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 0.85rem;
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(56, 189, 248, 0.2));
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  color: var(--accent-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav-card.card-school .nav-card-icon {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.16), rgba(56, 189, 248, 0.28));
+  border-color: rgba(2, 132, 199, 0.36);
+}
+
+.nav-card:hover .nav-card-icon {
+  background: var(--accent-blue);
+  color: #ffffff;
+  border-color: var(--accent-blue);
+  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.32);
+  transform: scale(1.06);
 }
 
 .nav-card h3 {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   font-weight: 700;
   margin-bottom: 0.4rem;
   color: var(--text-dark);
@@ -3624,7 +3766,7 @@ body.modal-open .floating-cart-widget {
 
 .nav-card p {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   line-height: 1.4;
 }
 
