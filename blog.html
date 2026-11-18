@@ -35,7 +35,9 @@ title: Блог — Владимир Алексеевич Шемшук
             {% endif %}
           </div>
           <h2 class="blog-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          <p class="blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+          {% unless post.type == 'video' %}
+            <p class="blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+          {% endunless %}
           <a href="{{ post.url | relative_url }}" class="blog-read-more">
             <span>Читать далее</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
