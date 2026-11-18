@@ -5,6 +5,7 @@ date: 2021-10-16
 type: video
 category: "Статьи"
 cover: "assets/images/blog/02f04f_maxresdefault.jpg"
+video: "https://rutube.ru/play/embed/484db2d2b5b6a0438250b09b29eec4e1/"
 excerpt_separator: <!--more-->
 ---
 

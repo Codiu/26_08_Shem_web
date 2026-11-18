@@ -13,3 +13,8 @@ README_ARCHITECTURE.md
 # Workfiles & Raw Assets
 Z_workfiles/
 05 Концерты/
+
+# Local Blog Admin Utility
+blog_admin.py
+run_blog_admin.bat
+__pycache__/

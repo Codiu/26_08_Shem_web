@@ -2,9 +2,10 @@
 layout: post
 title: "Рассекреченные тайны тантры"
 date: 2020-06-16
-type: article
+type: video
 category: "Статьи"
 cover: "assets/images/blog/4bc152_mqdefault.jpg"
+video: "https://rutube.ru/play/embed/dff4cb54ac5bc8c198bfda3ba6b0ae04/"
 excerpt_separator: <!--more-->
 ---
 

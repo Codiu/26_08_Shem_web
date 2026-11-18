@@ -10,13 +10,13 @@ title: Блог — Владимир Алексеевич Шемшук
 
     <div class="blog-feed-grid">
       {% for post in site.posts %}
-      <article class="blog-card">
-        <a href="{{ post.url | relative_url }}" class="blog-card-cover-link">
+      <article class="blog-card"{% if post.video and post.video != '' %} data-video="{{ post.video | escape }}"{% endif %}>
+        <a href="{{ post.url | relative_url }}" class="blog-card-cover-link"{% if post.video and post.video != '' %} data-video="{{ post.video | escape }}"{% endif %}>
           <div class="blog-card-cover">
             {% assign cover = post.cover | default: 'assets/images/blog/stars-sky-cover.jpg' %}
             <img src="{{ cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
             
-            {% if post.type == 'video' %}
+            {% if post.type == 'video' or (post.video and post.video != '') %}
             <div class="video-play-overlay">▶</div>
             {% endif %}
           </div>
@@ -25,13 +25,13 @@ title: Блог — Владимир Алексеевич Шемшук
           <div class="blog-meta">
             <span class="blog-date">{{ post.date | date: "%d.%m.%Y" }}</span>
             {% if post.type == 'video' %}
-              <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999;">YouTube</span>
+              <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999;">Видео</span>
             {% elsif post.type == 'meeting' %}
               <span class="blog-tag" style="background: rgba(0, 255, 128, 0.2); color: #80ffbf;">Встреча</span>
             {% elsif post.type == 'news' %}
               <span class="blog-tag">Новость</span>
             {% else %}
-              <span class="blog-tag">{{ post.tag | default: 'Статья' }}</span>
+              <span class="blog-tag">{{ post.tag | default: post.category | default: 'Статья' }}</span>
             {% endif %}
           </div>
           <h2 class="blog-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>

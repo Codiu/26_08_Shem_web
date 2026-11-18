@@ -2,9 +2,10 @@
 layout: post
 title: "Рассекреченные тайны тантры 2й вариант"
 date: 2020-07-03
-type: article
+type: video
 category: "Статьи"
 cover: "assets/images/blog/651264_mqdefault.jpg"
+video: "https://rutube.ru/play/embed/2232dccf5e02a407e8b1f8024f19b215/"
 excerpt_separator: <!--more-->
 ---
 

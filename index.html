@@ -16,15 +16,15 @@ title: Официальный сайт В. А. Шемшука
         </div>
         <div class="news-list">
           {% for post in site.posts limit:3 %}
-          <article class="news-card">
+          <article class="news-card"{% if post.video and post.video != '' %} data-video="{{ post.video | escape }}"{% endif %}>
             {% assign post_cover = post.cover %}
             {% if post_cover == nil or post_cover == '' %}
               {% assign post_cover = '/assets/images/blog/stars-sky-cover.jpg' %}
             {% endif %}
             
-            <a href="{{ post.url | relative_url }}" class="news-card-thumb">
+            <a href="{{ post.url | relative_url }}" class="news-card-thumb"{% if post.video and post.video != '' %} data-video="{{ post.video | escape }}"{% endif %}>
               <img src="{{ post_cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
-              {% if post.type == 'video' %}
+              {% if post.type == 'video' or (post.video and post.video != '') %}
                 <div class="video-play-overlay">▶</div>
               {% endif %}
             </a>
@@ -33,7 +33,7 @@ title: Официальный сайт В. А. Шемшука
               <div class="news-meta">
                 <span class="news-date">{{ post.date | date: "%d.%m.%Y" }}</span>
                 {% if post.type == 'video' %}
-                  <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">YouTube</span>
+                  <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Видео</span>
                 {% elsif post.type == 'meeting' %}
                   <span class="blog-tag" style="background: rgba(0, 255, 128, 0.2); color: #80ffbf; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Встреча</span>
                 {% elsif post.type == 'news' %}

@@ -5,6 +5,7 @@ date: 2025-12-01
 type: video
 category: "Статьи"
 cover: "assets/images/blog/6da362_maxresdefault.jpg"
+video: "https://rutube.ru/play/embed/8158b7dae3e398d0aca737d88ce0864f/"
 excerpt_separator: <!--more-->
 ---
 

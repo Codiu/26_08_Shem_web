@@ -17,7 +17,7 @@ layout: default
     <div class="blog-meta">
       <span class="blog-date">{{ page.date | date: "%d.%m.%Y" }}</span>
       {% if page.type == 'video' %}
-        <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999;">YouTube</span>
+        <span class="blog-tag" style="background: rgba(255,0,0,0.2); color: #ff9999;">Видео</span>
       {% elsif page.type == 'meeting' %}
         <span class="blog-tag" style="background: rgba(0, 255, 128, 0.2); color: #80ffbf;">Встреча</span>
       {% elsif page.type == 'news' %}
@@ -29,10 +29,16 @@ layout: default
     <h1 class="post-title">{{ page.title }}</h1>
   </header>
 
-  <!-- Featured Cover Image (if present) -->
-  {% if page.cover %}
+  <!-- Featured Video Player or Cover Image -->
+  {% if page.video and page.video != '' %}
+  {% assign post_cover = page.cover | default: '/assets/images/blog/stars-sky-cover.jpg' %}
+  <div class="post-featured-image post-video-container" data-video="{{ page.video | escape }}">
+    <img src="{{ post_cover | relative_url }}" alt="{{ page.title | escape }}">
+    <div class="video-play-overlay">▶</div>
+  </div>
+  {% elsif page.cover %}
   <div class="post-featured-image">
-    <img src="{{ page.cover | relative_url }}" alt="{{ page.title }}">
+    <img src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}">
   </div>
   {% endif %}
 
