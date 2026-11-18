@@ -36,12 +36,93 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const iconPlay = document.getElementById('iconPlay');
   const iconPause = document.getElementById('iconPause');
+  const btnMute = document.getElementById('btnMute');
+  const iconVolumeOn = document.getElementById('iconVolumeOn');
+  const iconVolumeMute = document.getElementById('iconVolumeMute');
+  const volumeSlider = document.getElementById('volumeSlider');
   
   const playbackControls = document.getElementById('playbackControls');
   const mainControls = document.querySelector('.main-controls');
   const nowPlayingText = document.getElementById('nowPlayingText');
   const vinylRecord = document.getElementById('vinylRecord');
   const tonearm = document.getElementById('tonearm');
+
+  const VOLUME_STORAGE_KEY = 'shemshuk_player_volume_v1';
+  let lastNonZeroVolume = 0.85;
+
+  function loadSavedVolume() {
+    try {
+      const raw = localStorage.getItem(VOLUME_STORAGE_KEY);
+      if (raw !== null) {
+        const parsed = parseFloat(raw);
+        if (!isNaN(parsed) && parsed >= 0 && parsed <= 1) {
+          if (parsed > 0) lastNonZeroVolume = parsed;
+          return parsed;
+        }
+      }
+    } catch (e) {
+      // Ignore storage restrictions
+    }
+    return 1;
+  }
+
+  function saveVolume(val) {
+    try {
+      localStorage.setItem(VOLUME_STORAGE_KEY, String(val));
+    } catch (e) {
+      // Ignore storage restrictions
+    }
+  }
+
+  function syncVolumeUI(vol) {
+    const clamped = Math.min(1, Math.max(0, Number(vol) || 0));
+    if (volumeSlider) {
+      volumeSlider.value = String(clamped);
+      volumeSlider.style.setProperty('--vol-pct', `${Math.round(clamped * 100)}%`);
+    }
+    const isMuted = clamped === 0;
+    if (iconVolumeOn && iconVolumeMute) {
+      iconVolumeOn.style.display = isMuted ? 'none' : 'block';
+      iconVolumeMute.style.display = isMuted ? 'block' : 'none';
+    }
+    if (btnMute) {
+      btnMute.title = isMuted ? 'Включить звук' : 'Выключить звук';
+    }
+  }
+
+  const initialVolume = loadSavedVolume();
+  audio.volume = initialVolume;
+  audio.muted = initialVolume === 0;
+  syncVolumeUI(initialVolume);
+
+  if (volumeSlider) {
+    volumeSlider.addEventListener('input', (e) => {
+      const val = Math.min(1, Math.max(0, parseFloat(e.target.value) || 0));
+      audio.volume = val;
+      audio.muted = val === 0;
+      if (val > 0) lastNonZeroVolume = val;
+      saveVolume(val);
+      syncVolumeUI(val);
+    });
+  }
+
+  if (btnMute) {
+    btnMute.addEventListener('click', () => {
+      if (audio.muted || audio.volume === 0) {
+        const restored = lastNonZeroVolume > 0 ? lastNonZeroVolume : 0.85;
+        audio.volume = restored;
+        audio.muted = false;
+        saveVolume(restored);
+        syncVolumeUI(restored);
+      } else {
+        lastNonZeroVolume = audio.volume;
+        audio.volume = 0;
+        audio.muted = true;
+        saveVolume(0);
+        syncVolumeUI(0);
+      }
+    });
+  }
 
   let isRadioMode = false;
   let currentPlaylist = [];
