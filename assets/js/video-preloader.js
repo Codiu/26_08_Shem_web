@@ -253,9 +253,9 @@
         const targetCenterY = vpHeight * 0.48;
         const dist = Math.abs(elemCenterY - targetCenterY);
 
-        // Hysteresis prevents flicker near entry/exit boundary
-        const enterThreshold = vpHeight * 0.2;
-        const exitThreshold = vpHeight * 0.3;
+        // Center band ~20-30% of viewport height (enter within +-10%, exit beyond +-15%)
+        const enterThreshold = vpHeight * 0.1;
+        const exitThreshold = vpHeight * 0.15;
 
         if (!isFocused && dist <= enterThreshold) {
           isFocused = true;
@@ -289,195 +289,15 @@
     }
 
     // ------------------------------------------------------------------------
-    // 2) Home Page: Lightbox Pool Preloader
+    // 2) Unified Inline Video Preloader (Home + Blog + Single Post)
     // ------------------------------------------------------------------------
-    let videoLightbox = null;
-    let videoLightboxContent = null;
-    let activeLightboxSlot = null;
-
-    function ensureLightboxModal() {
-      if (videoLightbox) return;
-      videoLightbox = document.createElement('div');
-      videoLightbox.id = 'videoLightboxModal';
-      videoLightbox.className = 'video-lightbox-modal';
-      videoLightbox.setAttribute('aria-hidden', 'true');
-      videoLightbox.innerHTML = `
-        <div class="video-lightbox-wrapper" role="dialog" aria-modal="true" aria-label="Видеоплеер">
-          <button type="button" class="video-lightbox-close" aria-label="Закрыть видео">&times;</button>
-          <div class="video-lightbox-content"></div>
-        </div>
-      `;
-      document.body.appendChild(videoLightbox);
-
-      videoLightboxContent = videoLightbox.querySelector('.video-lightbox-content');
-      const closeBtn = videoLightbox.querySelector('.video-lightbox-close');
-
-      closeBtn.addEventListener('click', closeVideoLightbox);
-      videoLightbox.addEventListener('click', (e) => {
-        if (e.target === videoLightbox) {
-          closeVideoLightbox();
-        }
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && videoLightbox && videoLightbox.classList.contains('active')) {
-          closeVideoLightbox();
-        }
-      });
-    }
-
-    function closeVideoLightbox() {
-      if (!videoLightbox) return;
-      videoLightbox.classList.remove('active');
-      videoLightbox.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      if (activeLightboxSlot) {
-        pauseSlot(activeLightboxSlot);
-        if (activeLightboxSlot.holder) {
-          activeLightboxSlot.holder.classList.remove('active');
-        }
-        activeLightboxSlot = null;
-      }
-    }
-
-    function preloadHomeSlot(thumb, opts) {
-      const options = opts || {};
-      const embedUrl = parseVideoEmbedUrl(thumb.dataset.video);
-      if (!embedUrl) return null;
-
-      ensureLightboxModal();
-      const key = `home:${embedUrl}`;
-      let slot = slots.get(key);
-
-      if (!slot) {
-        const card = thumb.closest('.news-card');
-        const titleEl = card ? card.querySelector('.news-title') : null;
-        const posterImg = thumb.querySelector('img');
-        const title = titleEl ? titleEl.textContent.trim() : 'Видео';
-
-        const holder = document.createElement('div');
-        holder.className = 'video-lightbox-slot';
-
-        const poster = document.createElement('div');
-        poster.className = 'video-slot-poster';
-        if (posterImg && posterImg.getAttribute('src')) {
-          const img = document.createElement('img');
-          img.src = posterImg.getAttribute('src');
-          img.alt = title;
-          poster.appendChild(img);
-        }
-        const spinner = document.createElement('div');
-        spinner.className = 'video-slot-spinner';
-        poster.appendChild(spinner);
-
-        const iframe = createVideoIframe(embedUrl, title, Boolean(options.autoPlayOnCreate));
-        holder.appendChild(iframe);
-        holder.appendChild(poster);
-        videoLightboxContent.appendChild(holder);
-
-        slot = {
-          key,
-          type: 'home',
-          embedUrl,
-          title,
-          holder,
-          poster,
-          iframe,
-          isReady: false,
-          isPlaying: false,
-          wantsPlay: Boolean(options.wantsPlay),
-          lastUsed: 0,
-          fallbackTimer: null,
-          onReady() {
-            holder.classList.add('is-ready');
-          },
-          teardown() {
-            clearTimeout(slot.fallbackTimer);
-            if (holder && holder.parentNode) {
-              holder.parentNode.removeChild(holder);
-            }
-          }
-        };
-
-        iframe.addEventListener('load', () => {
-          slot.fallbackTimer = setTimeout(() => markSlotReady(slot), READY_FALLBACK_DELAY_MS);
-        });
-
-        slots.set(key, slot);
-      }
-
-      touchSlot(slot);
-      evictInactiveSlotsIfNeeded(slot);
-      return slot;
-    }
-
-    function openHomeVideoLightbox(thumb) {
-      const slot = preloadHomeSlot(thumb, {
-        autoPlayOnCreate: true,
-        wantsPlay: true
-      });
-      if (!slot) return;
-
-      pauseAllExcept(slot);
-
-      if (activeLightboxSlot && activeLightboxSlot !== slot && activeLightboxSlot.holder) {
-        activeLightboxSlot.holder.classList.remove('active');
-      }
-      activeLightboxSlot = slot;
-      slot.holder.classList.add('active');
-      slot.wantsPlay = true;
-
-      if (slot.isReady) {
-        sendPlayerCommand(slot.iframe, 'player:play');
-        slot.isPlaying = true;
-        slot.wantsPlay = false;
-      }
-
-      videoLightbox.classList.add('active');
-      videoLightbox.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-
-    const homeThumbs = Array.from(document.querySelectorAll('.news-card-thumb[data-video]'));
-    if (homeThumbs.length > 0) {
-      homeThumbs.forEach((thumb) => {
-        let hoverTimer = null;
-        if (canHover) {
-          thumb.addEventListener('mouseenter', () => {
-            clearTimeout(hoverTimer);
-            hoverTimer = setTimeout(() => {
-              preloadHomeSlot(thumb, { autoPlayOnCreate: false, wantsPlay: false });
-            }, HOVER_PRELOAD_DELAY_MS);
-          });
-          thumb.addEventListener('mouseleave', () => {
-            clearTimeout(hoverTimer);
-          });
-        }
-
-        thumb.addEventListener('click', (e) => {
-          const embedUrl = parseVideoEmbedUrl(thumb.dataset.video);
-          if (!embedUrl) return;
-          e.preventDefault();
-          clearTimeout(hoverTimer);
-          openHomeVideoLightbox(thumb);
-        });
-      });
-
-      // Auto-preload the first video on Home
-      setTimeout(() => {
-        preloadHomeSlot(homeThumbs[0], { autoPlayOnCreate: false, wantsPlay: false });
-      }, AUTO_PRELOAD_DELAY_MS);
-    }
-
-    // ------------------------------------------------------------------------
-    // 3) Inline Player Helper (Blog Feed Variant B + Single Post Page)
-    // ------------------------------------------------------------------------
-    function setupInlineContainer(triggerEl, containerEl, key, title, options) {
+    function setupInlineContainer(hoverEl, clickEl, containerEl, key, title, options) {
       const opts = options || {};
+      const hoverTarget = hoverEl || clickEl;
 
       function preloadInline(preloadOpts) {
         const pOpts = preloadOpts || {};
-        const embedUrl = parseVideoEmbedUrl(triggerEl.dataset.video);
+        const embedUrl = parseVideoEmbedUrl(clickEl.dataset.video);
         if (!embedUrl || !containerEl) return null;
 
         let slot = slots.get(key);
@@ -525,21 +345,21 @@
       }
 
       let hoverTimer = null;
-      if (canHover) {
-        triggerEl.addEventListener('mouseenter', () => {
+      if (canHover && hoverTarget) {
+        hoverTarget.addEventListener('mouseenter', () => {
           if (containerEl.classList.contains('is-ready') || containerEl.classList.contains('is-playing')) return;
           clearTimeout(hoverTimer);
           hoverTimer = setTimeout(() => {
             preloadInline({ autoPlayOnCreate: false, wantsPlay: false });
           }, HOVER_PRELOAD_DELAY_MS);
         });
-        triggerEl.addEventListener('mouseleave', () => {
+        hoverTarget.addEventListener('mouseleave', () => {
           clearTimeout(hoverTimer);
         });
       }
 
-      triggerEl.addEventListener('click', (e) => {
-        const embedUrl = parseVideoEmbedUrl(triggerEl.dataset.video);
+      clickEl.addEventListener('click', (e) => {
+        const embedUrl = parseVideoEmbedUrl(clickEl.dataset.video);
         if (!embedUrl || !containerEl) return;
 
         // If player is already revealed, allow clicking inside iframe naturally
@@ -572,31 +392,53 @@
       return preloadInline;
     }
 
-    // Blog Feed (Variant B: hover preloads & fades cover out once player is ready)
-    const blogTriggers = Array.from(document.querySelectorAll('.blog-card-cover-link[data-video]'));
-    const blogPreloaders = [];
-    blogTriggers.forEach((coverLink, idx) => {
-      const cover = coverLink.querySelector('.blog-card-cover');
-      const card = coverLink.closest('.blog-card');
-      const titleEl = card ? card.querySelector('.blog-title') : null;
-      const title = titleEl ? titleEl.textContent.trim() : 'Видео';
-      if (!cover) return;
+    // Helper for card lists (Home News & Blog Feed)
+    function initInlineFeed(items, buildEntry) {
+      const preloaders = [];
+      items.forEach((item, idx) => {
+        const entry = buildEntry(item, idx);
+        if (!entry) return;
+        preloaders.push(
+          setupInlineContainer(entry.hoverEl, entry.clickEl, entry.containerEl, entry.key, entry.title, {
+            revealOnReady: true
+          })
+        );
+      });
 
-      const preloader = setupInlineContainer(
-        coverLink,
-        cover,
-        `blog:${idx}:${coverLink.dataset.video}`,
-        title,
-        { revealOnReady: true }
-      );
-      blogPreloaders.push(preloader);
+      if (preloaders.length > 0) {
+        setTimeout(() => {
+          preloaders[0]({ autoPlayOnCreate: false, wantsPlay: false });
+        }, AUTO_PRELOAD_DELAY_MS);
+      }
+    }
+
+    // Home Page News Videos (same Variant B inline behavior as Blog)
+    initInlineFeed(Array.from(document.querySelectorAll('.news-card-thumb[data-video]')), (thumb, idx) => {
+      const card = thumb.closest('.news-card');
+      const titleEl = card ? card.querySelector('.news-title') : null;
+      return {
+        hoverEl: card || thumb,
+        clickEl: thumb,
+        containerEl: thumb,
+        key: `home:${idx}:${thumb.dataset.video}`,
+        title: titleEl ? titleEl.textContent.trim() : 'Видео'
+      };
     });
 
-    if (blogPreloaders.length > 0) {
-      setTimeout(() => {
-        blogPreloaders[0]({ autoPlayOnCreate: false, wantsPlay: false });
-      }, AUTO_PRELOAD_DELAY_MS);
-    }
+    // Blog Feed Videos
+    initInlineFeed(Array.from(document.querySelectorAll('.blog-card-cover-link[data-video]')), (coverLink, idx) => {
+      const cover = coverLink.querySelector('.blog-card-cover');
+      if (!cover) return null;
+      const card = coverLink.closest('.blog-card');
+      const titleEl = card ? card.querySelector('.blog-title') : null;
+      return {
+        hoverEl: coverLink,
+        clickEl: coverLink,
+        containerEl: cover,
+        key: `blog:${idx}:${coverLink.dataset.video}`,
+        title: titleEl ? titleEl.textContent.trim() : 'Видео'
+      };
+    });
 
     // Single Post Page: auto-preload featured video and reveal smoothly when ready
     const postContainer = document.querySelector('.post-video-container[data-video]');
@@ -604,6 +446,7 @@
       const postTitleEl = document.querySelector('.post-title');
       const postTitle = postTitleEl ? postTitleEl.textContent.trim() : 'Видео';
       const postPreloader = setupInlineContainer(
+        postContainer,
         postContainer,
         postContainer,
         `post:${postContainer.dataset.video}`,
