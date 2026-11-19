@@ -587,3 +587,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Auto-Hide Sticky Header on Downward Scroll (Desktop & Mobile)
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('.header');
+  if (!header) return;
+
+  let lastScrollY = Math.max(0, window.scrollY || window.pageYOffset || 0);
+  let ticking = false;
+  const SCROLL_DELTA = 10;
+
+  function updateHeaderVisibility() {
+    ticking = false;
+    if (getComputedStyle(header).position !== 'sticky') {
+      header.classList.remove('header-hidden');
+      return;
+    }
+
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    const currentY = Math.min(Math.max(0, window.scrollY || window.pageYOffset || 0), maxScroll);
+
+    if (document.body.classList.contains('modal-open') || header.querySelector(':focus-visible')) {
+      header.classList.remove('header-hidden');
+      lastScrollY = currentY;
+      return;
+    }
+
+    const hideThreshold = Math.max(header.offsetHeight || 140, 120);
+    if (currentY <= 60) {
+      header.classList.remove('header-hidden');
+      lastScrollY = currentY;
+      return;
+    }
+
+    const delta = currentY - lastScrollY;
+    if (Math.abs(delta) < SCROLL_DELTA) return;
+
+    if (delta > 0 && currentY > hideThreshold) {
+      header.classList.add('header-hidden');
+    } else if (delta < 0) {
+      header.classList.remove('header-hidden');
+    }
+
+    lastScrollY = currentY;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderVisibility);
+      ticking = true;
+    }
+  }, { passive: true });
+});
