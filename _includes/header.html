@@ -1,4 +1,4 @@
-<!-- Pearl Integrated Header -->
+<!-- Pearl Integrated Header (Brand band scrolls naturally with page) -->
 <header class="header">
   <div class="header-inner">
     <!-- Top Row: Brand Logo & Official Sites List -->
@@ -38,8 +38,13 @@
         </a>
       </div>
     </div>
+  </div>
+</header>
 
-    <!-- Bottom Row: Integrated Main Navigation + Cart Button on Right -->
+<!-- Sticky Slim Navigation Bar -->
+<div class="header-sticky-nav">
+  <div class="header-sticky-inner">
+    <!-- Desktop Main Navigation + Cart Button on Right -->
     <nav class="header-nav">
       <div class="nav-links">
         <a href="{{ '/index.html' | relative_url }}" {% if page.url == '/' or page.url == '/index.html' %}class="active"{% endif %}>ГЛАВНАЯ</a>
@@ -99,4 +104,4 @@
       </a>
     </div>
   </div>
-</header>
+</div>
