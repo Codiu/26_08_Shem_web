@@ -1,12 +1,9 @@
 /**
- * Unified Video Preloader, Pool Manager & Mobile Focus Module
- * - School page (Kinescope): muted autoplay + preload, mobile scroll-to-center zoom with shadow, landscape fullscreen lock.
- * - Home (Lightbox) & Blog / Post (Inline):
- *   1. Auto-preload first video on page.
- *   2. Desktop hover preloads other videos (200ms debounce); cover stays visible until player is ready (no blank flash).
- *   3. Mobile/fast tap preloads immediately with spinner on cover until ready.
- *   4. LRU pool capped at MAX_PRELOADED_SLOTS (4 inactive slots) to keep memory low.
- *   5. Enforces strict single-playback (only 1 video plays at a time via Rutube postMessage + DOM tracking).
+ * Unified Video Preloader, Playback Coordinator & Mobile Focus Module
+ * - School page (Kinescope): official IFrame API (muted autoplay + preload) + desktop Unmute pill.
+ * - Mobile Focus ([data-mobile-focus-video]): symmetric +-10% center band on <=768px for School ("always") & Blog ("ready-only").
+ * - Home page: clean cover thumbnails + Lightbox modal with blurred cover & visible loading spinner/label.
+ * - Blog & Post: Variant B inline player (auto-preload #1, hover/tap preloads rest without blank flash, LRU cap 4, 1 playing max).
  */
 (function () {
   'use strict';
@@ -14,7 +11,7 @@
   const MAX_PRELOADED_SLOTS = 4;
   const HOVER_PRELOAD_DELAY_MS = 200;
   const AUTO_PRELOAD_DELAY_MS = 450;
-  const READY_FALLBACK_DELAY_MS = 600;
+  const READY_FALLBACK_DELAY_MS = 650;
 
   function parseVideoEmbedUrl(rawVideo) {
     if (!rawVideo || typeof rawVideo !== 'string') return '';
@@ -84,7 +81,7 @@
   // ==========================================================================
   // Global Video Slot Pool & Single-Playback Coordinator
   // ==========================================================================
-  const slots = new Map(); // key -> slot object
+  const slots = new Map();
   let slotSeq = 0;
 
   function touchSlot(slot) {
@@ -107,7 +104,6 @@
       }
     });
 
-    // Also pause any unmanaged iframes on the page (if present)
     document.querySelectorAll('iframe').forEach((iframe) => {
       if (!exceptSlot || iframe !== exceptSlot.iframe) {
         sendPlayerCommand(iframe, 'player:pause');
@@ -116,10 +112,9 @@
   }
 
   function evictInactiveSlotsIfNeeded(protectedSlot) {
-    // Count preloaded non-playing slots
     const inactive = [];
     slots.forEach((slot) => {
-      if (slot !== protectedSlot && slot.iframe && !slot.isPlaying) {
+      if (slot !== protectedSlot && slot.type === 'inline' && slot.iframe && !slot.isPlaying) {
         inactive.push(slot);
       }
     });
@@ -209,101 +204,318 @@
     const canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
 
     // ------------------------------------------------------------------------
-    // 1) School Page: Kinescope Mobile Scroll-to-Center Focus Zoom
+    // 1) Shared Symmetric Mobile Center-Focus Module (School + Blog)
     // ------------------------------------------------------------------------
-    const schoolVideoBox = document.querySelector('.video-embed-container[data-mobile-focus-video]');
-    if (schoolVideoBox) {
-      let ticking = false;
-      let isFocused = false;
-      let currentShiftX = 0;
+    const mobileFocusShiftMap = new WeakMap();
+    let mobileFocusTicking = false;
 
-      function resetSchoolVideoFocus() {
-        isFocused = false;
-        currentShiftX = 0;
-        schoolVideoBox.classList.remove('is-mobile-focused');
-        schoolVideoBox.style.removeProperty('--focus-scale');
-        schoolVideoBox.style.removeProperty('--focus-shift-x');
+    function clearMobileFocus(el) {
+      mobileFocusShiftMap.delete(el);
+      el.classList.remove('is-mobile-focused');
+      el.style.removeProperty('--focus-scale');
+      el.style.removeProperty('--focus-shift-x');
+      const card = el.closest('.blog-card, .school-video-card');
+      if (card) card.classList.remove('has-mobile-focused-video');
+    }
+
+    function isMobileFocusEligible(el) {
+      const mode = el.getAttribute('data-mobile-focus-video');
+      if (mode === 'ready-only') {
+        return el.classList.contains('is-ready') || el.classList.contains('is-playing');
+      }
+      return true;
+    }
+
+    function updateAllMobileVideoFocus() {
+      mobileFocusTicking = false;
+      const targets = Array.from(document.querySelectorAll('[data-mobile-focus-video]'));
+      if (targets.length === 0) return;
+
+      const isMobile = window.innerWidth <= 768;
+      const fsActive = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+
+      if (!isMobile || fsActive) {
+        targets.forEach(clearMobileFocus);
+        return;
       }
 
-      function updateSchoolVideoFocus() {
-        ticking = false;
-        const isMobile = window.innerWidth <= 768;
-        const fsActive = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+      const vpHeight = window.innerHeight;
+      const vpWidth = document.documentElement.clientWidth;
+      const targetCenterY = vpHeight * 0.5;
+      // Strict single symmetric band around viewport center (+-10% = 20% center zone)
+      const symmetricThreshold = vpHeight * 0.1;
 
-        if (!isMobile || fsActive) {
-          if (isFocused) resetSchoolVideoFocus();
-          return;
-        }
+      let bestTarget = null;
+      let bestDist = Infinity;
 
-        // offsetWidth ignores CSS transforms, giving the exact unscaled container width
-        const naturalWidth = schoolVideoBox.offsetWidth;
+      targets.forEach((el) => {
+        if (!isMobileFocusEligible(el)) return;
+        const naturalWidth = el.offsetWidth;
         if (!naturalWidth) return;
 
-        const rect = schoolVideoBox.getBoundingClientRect();
-        const vpHeight = window.innerHeight;
-        const vpWidth = document.documentElement.clientWidth;
-
-        const visible = rect.bottom > 40 && rect.top < vpHeight - 40;
-        if (!visible) {
-          if (isFocused) resetSchoolVideoFocus();
-          return;
-        }
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom <= 20 || rect.top >= vpHeight - 20) return;
 
         const elemCenterY = rect.top + rect.height / 2;
-        const targetCenterY = vpHeight * 0.48;
         const dist = Math.abs(elemCenterY - targetCenterY);
-
-        // Center band ~20-30% of viewport height (enter within +-10%, exit beyond +-15%)
-        const enterThreshold = vpHeight * 0.1;
-        const exitThreshold = vpHeight * 0.15;
-
-        if (!isFocused && dist <= enterThreshold) {
-          isFocused = true;
-        } else if (isFocused && dist >= exitThreshold) {
-          isFocused = false;
+        if (dist <= symmetricThreshold && dist < bestDist) {
+          bestDist = dist;
+          bestTarget = { el, rect, naturalWidth };
         }
+      });
 
-        if (isFocused) {
-          const scale = Math.max(1, vpWidth / naturalWidth);
-          // Subtract active translateX so measurement stays invariant regardless of scale
-          const naturalCenterX = (rect.left + rect.width / 2) - currentShiftX;
-          currentShiftX = vpWidth / 2 - naturalCenterX;
-          schoolVideoBox.style.setProperty('--focus-scale', scale.toFixed(4));
-          schoolVideoBox.style.setProperty('--focus-shift-x', `${currentShiftX.toFixed(1)}px`);
-          schoolVideoBox.classList.add('is-mobile-focused');
-        } else if (schoolVideoBox.classList.contains('is-mobile-focused')) {
-          resetSchoolVideoFocus();
+      targets.forEach((el) => {
+        if (!bestTarget || el !== bestTarget.el) {
+          if (el.classList.contains('is-mobile-focused')) {
+            clearMobileFocus(el);
+          }
         }
+      });
+
+      if (bestTarget) {
+        const { el, rect, naturalWidth } = bestTarget;
+        const scale = Math.max(1, vpWidth / naturalWidth);
+        const prevShift = mobileFocusShiftMap.get(el) || 0;
+        const naturalCenterX = (rect.left + rect.width / 2) - prevShift;
+        const nextShiftX = vpWidth / 2 - naturalCenterX;
+
+        mobileFocusShiftMap.set(el, nextShiftX);
+        el.style.setProperty('--focus-scale', scale.toFixed(4));
+        el.style.setProperty('--focus-shift-x', `${nextShiftX.toFixed(1)}px`);
+        el.classList.add('is-mobile-focused');
+
+        const card = el.closest('.blog-card, .school-video-card');
+        if (card) card.classList.add('has-mobile-focused-video');
       }
+    }
 
-      const scheduleFocusUpdate = () => {
-        if (!ticking) {
-          window.requestAnimationFrame(updateSchoolVideoFocus);
-          ticking = true;
-        }
-      };
+    function scheduleMobileFocusUpdate() {
+      if (!mobileFocusTicking) {
+        window.requestAnimationFrame(updateAllMobileVideoFocus);
+        mobileFocusTicking = true;
+      }
+    }
 
-      window.addEventListener('scroll', scheduleFocusUpdate, { passive: true });
-      window.addEventListener('resize', scheduleFocusUpdate, { passive: true });
-      scheduleFocusUpdate();
+    if (document.querySelector('[data-mobile-focus-video]')) {
+      window.addEventListener('scroll', scheduleMobileFocusUpdate, { passive: true });
+      window.addEventListener('resize', scheduleMobileFocusUpdate, { passive: true });
+      scheduleMobileFocusUpdate();
     }
 
     // ------------------------------------------------------------------------
-    // 2) Unified Inline Video Preloader (Home + Blog + Single Post)
+    // 2) School Page: Kinescope IFrame API + Desktop Unmute Pill
     // ------------------------------------------------------------------------
-    function setupInlineContainer(hoverEl, clickEl, containerEl, key, title, options) {
-      const opts = options || {};
-      const hoverTarget = hoverEl || clickEl;
+    const schoolPlayerHost = document.getElementById('schoolKinescopePlayer');
+    const schoolUnmuteBtn = document.getElementById('schoolUnmuteBtn');
+    if (schoolPlayerHost) {
+      const videoId = schoolPlayerHost.getAttribute('data-kinescope-id');
+      let kinescopeInitialized = false;
 
+      function mountFallbackSchoolIframe() {
+        if (kinescopeInitialized || schoolPlayerHost.querySelector('iframe')) return;
+        kinescopeInitialized = true;
+        const iframe = createVideoIframe(
+          `https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&preload=true`,
+          'Русская жреческая школа',
+          false
+        );
+        schoolPlayerHost.replaceChildren(iframe);
+      }
+
+      if (videoId) {
+        window.onKinescopeIframeAPIReady = function (playerFactory) {
+          if (kinescopeInitialized) return;
+          kinescopeInitialized = true;
+
+          playerFactory.create('schoolKinescopePlayer', {
+            url: `https://kinescope.io/${videoId}`,
+            size: { width: '100%', height: '100%' },
+            behavior: {
+              autoPlay: true,
+              muted: true
+            }
+          }).then((player) => {
+            if (!schoolUnmuteBtn) return;
+
+            const syncUnmuteButton = (muted) => {
+              schoolUnmuteBtn.hidden = !muted;
+            };
+
+            syncUnmuteButton(true);
+            if (typeof player.isMuted === 'function') {
+              Promise.resolve(player.isMuted()).then((muted) => syncUnmuteButton(Boolean(muted))).catch(() => {});
+            }
+
+            if (player.Events && player.Events.VolumeChange) {
+              player.on(player.Events.VolumeChange, (ev) => {
+                if (ev && ev.data) {
+                  syncUnmuteButton(Boolean(ev.data.muted) || ev.data.volume === 0);
+                }
+              });
+            }
+
+            schoolUnmuteBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              if (typeof player.unmute === 'function') {
+                Promise.resolve(player.unmute()).then(() => {
+                  if (typeof player.setVolume === 'function') {
+                    return player.setVolume(1);
+                  }
+                }).catch(() => {});
+              }
+              syncUnmuteButton(false);
+            });
+          }).catch(() => {
+            kinescopeInitialized = false;
+            mountFallbackSchoolIframe();
+          });
+        };
+
+        const apiScript = document.createElement('script');
+        apiScript.src = 'https://player.kinescope.io/latest/iframe.player.js';
+        apiScript.async = true;
+        apiScript.onerror = mountFallbackSchoolIframe;
+        document.head.appendChild(apiScript);
+
+        // Safety timeout if Kinescope API CDN is blocked
+        setTimeout(mountFallbackSchoolIframe, 3500);
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // 3) Home Page: Lightbox Modal on Click (Clean Thumbnail + Visible Loader)
+    // ------------------------------------------------------------------------
+    let videoLightbox = null;
+    let videoLightboxContent = null;
+    let activeLightboxSlot = null;
+
+    function ensureLightboxModal() {
+      if (videoLightbox) return;
+      videoLightbox = document.createElement('div');
+      videoLightbox.id = 'videoLightboxModal';
+      videoLightbox.className = 'video-lightbox-modal';
+      videoLightbox.setAttribute('aria-hidden', 'true');
+      videoLightbox.innerHTML = `
+        <div class="video-lightbox-wrapper" role="dialog" aria-modal="true" aria-label="Видеоплеер">
+          <button type="button" class="video-lightbox-close" aria-label="Закрыть видео">&times;</button>
+          <div class="video-lightbox-content"></div>
+        </div>
+      `;
+      document.body.appendChild(videoLightbox);
+
+      videoLightboxContent = videoLightbox.querySelector('.video-lightbox-content');
+      const closeBtn = videoLightbox.querySelector('.video-lightbox-close');
+
+      closeBtn.addEventListener('click', closeVideoLightbox);
+      videoLightbox.addEventListener('click', (e) => {
+        if (e.target === videoLightbox) {
+          closeVideoLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoLightbox && videoLightbox.classList.contains('active')) {
+          closeVideoLightbox();
+        }
+      });
+    }
+
+    function closeVideoLightbox() {
+      if (!videoLightbox) return;
+      videoLightbox.classList.remove('active');
+      videoLightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (activeLightboxSlot) {
+        clearTimeout(activeLightboxSlot.fallbackTimer);
+        slots.delete(activeLightboxSlot.key);
+        activeLightboxSlot = null;
+      }
+      if (videoLightboxContent) {
+        videoLightboxContent.innerHTML = '';
+      }
+    }
+
+    function openHomeVideoLightbox(thumb) {
+      const embedUrl = parseVideoEmbedUrl(thumb.dataset.video);
+      if (!embedUrl) return;
+
+      ensureLightboxModal();
+      closeVideoLightbox();
+
+      const card = thumb.closest('.news-card');
+      const titleEl = card ? card.querySelector('.news-title') : null;
+      const posterImg = thumb.querySelector('img');
+      const title = titleEl ? titleEl.textContent.trim() : 'Видео';
+
+      const holder = document.createElement('div');
+      holder.className = 'video-lightbox-slot active';
+
+      const poster = document.createElement('div');
+      poster.className = 'video-slot-poster';
+      if (posterImg && posterImg.getAttribute('src')) {
+        const img = document.createElement('img');
+        img.src = posterImg.getAttribute('src');
+        img.alt = title;
+        poster.appendChild(img);
+      }
+
+      const loaderWrap = document.createElement('div');
+      loaderWrap.className = 'video-slot-loader';
+      loaderWrap.innerHTML = '<div class="video-slot-spinner"></div><span class="video-slot-loading-text">Загрузка видео...</span>';
+      poster.appendChild(loaderWrap);
+
+      const iframe = createVideoIframe(embedUrl, title, true);
+      holder.appendChild(iframe);
+      holder.appendChild(poster);
+      videoLightboxContent.replaceChildren(holder);
+
+      const slot = {
+        key: `home-modal:${embedUrl}`,
+        type: 'lightbox',
+        iframe,
+        isReady: false,
+        isPlaying: true,
+        wantsPlay: false,
+        lastUsed: ++slotSeq,
+        fallbackTimer: null,
+        onReady() {
+          holder.classList.add('is-ready');
+        }
+      };
+
+      iframe.addEventListener('load', () => {
+        slot.fallbackTimer = setTimeout(() => markSlotReady(slot), READY_FALLBACK_DELAY_MS);
+      });
+
+      slots.set(slot.key, slot);
+      activeLightboxSlot = slot;
+      pauseAllExcept(slot);
+
+      videoLightbox.classList.add('active');
+      videoLightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.querySelectorAll('.news-card-thumb[data-video]').forEach((thumb) => {
+      thumb.addEventListener('click', (e) => {
+        if (!parseVideoEmbedUrl(thumb.dataset.video)) return;
+        e.preventDefault();
+        openHomeVideoLightbox(thumb);
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // 4) Blog Feed & Single Post Inline Preloader (Variant B)
+    // ------------------------------------------------------------------------
+    function setupInlineContainer(triggerEl, containerEl, key, title) {
       function preloadInline(preloadOpts) {
         const pOpts = preloadOpts || {};
-        const embedUrl = parseVideoEmbedUrl(clickEl.dataset.video);
+        const embedUrl = parseVideoEmbedUrl(triggerEl.dataset.video);
         if (!embedUrl || !containerEl) return null;
 
         let slot = slots.get(key);
         if (!slot) {
           const iframe = createVideoIframe(embedUrl, title, Boolean(pOpts.autoPlayOnCreate));
-          // Insert behind poster image & play overlay (cover stays visible until ready)
           containerEl.insertBefore(iframe, containerEl.firstChild);
 
           slot = {
@@ -318,14 +530,13 @@
             fallbackTimer: null,
             onReady() {
               containerEl.classList.remove('is-loading');
-              containerEl.classList.add('is-ready');
-              if (slot.wantsPlay || opts.revealOnReady) {
-                containerEl.classList.add('is-playing');
-              }
+              containerEl.classList.add('is-ready', 'is-playing');
+              scheduleMobileFocusUpdate();
             },
             teardown() {
               clearTimeout(slot.fallbackTimer);
               containerEl.classList.remove('is-loading', 'is-ready', 'is-playing');
+              clearMobileFocus(containerEl);
               if (iframe && iframe.parentNode) {
                 iframe.parentNode.removeChild(iframe);
               }
@@ -345,24 +556,23 @@
       }
 
       let hoverTimer = null;
-      if (canHover && hoverTarget) {
-        hoverTarget.addEventListener('mouseenter', () => {
+      if (canHover) {
+        triggerEl.addEventListener('mouseenter', () => {
           if (containerEl.classList.contains('is-ready') || containerEl.classList.contains('is-playing')) return;
           clearTimeout(hoverTimer);
           hoverTimer = setTimeout(() => {
             preloadInline({ autoPlayOnCreate: false, wantsPlay: false });
           }, HOVER_PRELOAD_DELAY_MS);
         });
-        hoverTarget.addEventListener('mouseleave', () => {
+        triggerEl.addEventListener('mouseleave', () => {
           clearTimeout(hoverTimer);
         });
       }
 
-      clickEl.addEventListener('click', (e) => {
-        const embedUrl = parseVideoEmbedUrl(clickEl.dataset.video);
+      triggerEl.addEventListener('click', (e) => {
+        const embedUrl = parseVideoEmbedUrl(triggerEl.dataset.video);
         if (!embedUrl || !containerEl) return;
 
-        // If player is already revealed, allow clicking inside iframe naturally
         if (containerEl.classList.contains('is-ready') || containerEl.classList.contains('is-playing')) {
           e.preventDefault();
           return;
@@ -384,6 +594,7 @@
           sendPlayerCommand(slot.iframe, 'player:play');
           slot.isPlaying = true;
           slot.wantsPlay = false;
+          scheduleMobileFocusUpdate();
         } else {
           containerEl.classList.add('is-loading');
         }
@@ -392,55 +603,28 @@
       return preloadInline;
     }
 
-    // Helper for card lists (Home News & Blog Feed)
-    function initInlineFeed(items, buildEntry) {
-      const preloaders = [];
-      items.forEach((item, idx) => {
-        const entry = buildEntry(item, idx);
-        if (!entry) return;
-        preloaders.push(
-          setupInlineContainer(entry.hoverEl, entry.clickEl, entry.containerEl, entry.key, entry.title, {
-            revealOnReady: true
-          })
-        );
-      });
-
-      if (preloaders.length > 0) {
-        setTimeout(() => {
-          preloaders[0]({ autoPlayOnCreate: false, wantsPlay: false });
-        }, AUTO_PRELOAD_DELAY_MS);
-      }
-    }
-
-    // Home Page News Videos (same Variant B inline behavior as Blog)
-    initInlineFeed(Array.from(document.querySelectorAll('.news-card-thumb[data-video]')), (thumb, idx) => {
-      const card = thumb.closest('.news-card');
-      const titleEl = card ? card.querySelector('.news-title') : null;
-      return {
-        hoverEl: card || thumb,
-        clickEl: thumb,
-        containerEl: thumb,
-        key: `home:${idx}:${thumb.dataset.video}`,
-        title: titleEl ? titleEl.textContent.trim() : 'Видео'
-      };
-    });
-
-    // Blog Feed Videos
-    initInlineFeed(Array.from(document.querySelectorAll('.blog-card-cover-link[data-video]')), (coverLink, idx) => {
+    // Blog Feed
+    const blogTriggers = Array.from(document.querySelectorAll('.blog-card-cover-link[data-video]'));
+    const blogPreloaders = [];
+    blogTriggers.forEach((coverLink, idx) => {
       const cover = coverLink.querySelector('.blog-card-cover');
-      if (!cover) return null;
       const card = coverLink.closest('.blog-card');
       const titleEl = card ? card.querySelector('.blog-title') : null;
-      return {
-        hoverEl: coverLink,
-        clickEl: coverLink,
-        containerEl: cover,
-        key: `blog:${idx}:${coverLink.dataset.video}`,
-        title: titleEl ? titleEl.textContent.trim() : 'Видео'
-      };
+      const title = titleEl ? titleEl.textContent.trim() : 'Видео';
+      if (!cover) return;
+
+      blogPreloaders.push(
+        setupInlineContainer(coverLink, cover, `blog:${idx}:${coverLink.dataset.video}`, title)
+      );
     });
 
-    // Single Post Page: auto-preload featured video and reveal smoothly when ready
+    if (blogPreloaders.length > 0) {
+      setTimeout(() => {
+        blogPreloaders[0]({ autoPlayOnCreate: false, wantsPlay: false });
+      }, AUTO_PRELOAD_DELAY_MS);
+    }
+
+    // Single Post Page
     const postContainer = document.querySelector('.post-video-container[data-video]');
     if (postContainer) {
       const postTitleEl = document.querySelector('.post-title');
@@ -448,10 +632,8 @@
       const postPreloader = setupInlineContainer(
         postContainer,
         postContainer,
-        postContainer,
         `post:${postContainer.dataset.video}`,
-        postTitle,
-        { revealOnReady: true }
+        postTitle
       );
       setTimeout(() => {
         postPreloader({ autoPlayOnCreate: false, wantsPlay: false });

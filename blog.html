@@ -12,7 +12,7 @@ title: Блог — Владимир Алексеевич Шемшук
       {% for post in site.posts %}
       <article class="blog-card"{% if post.video and post.video != '' %} data-video="{{ post.video | escape }}"{% endif %}>
         <a href="{{ post.url | relative_url }}" class="blog-card-cover-link"{% if post.video and post.video != '' %} data-video="{{ post.video | escape }}"{% endif %}>
-          <div class="blog-card-cover">
+          <div class="blog-card-cover"{% if post.type == 'video' or (post.video and post.video != '') %} data-mobile-focus-video="ready-only"{% endif %}>
             {% assign cover = post.cover | default: 'assets/images/blog/stars-sky-cover.jpg' %}
             <img src="{{ cover | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
             
