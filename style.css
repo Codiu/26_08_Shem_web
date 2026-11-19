@@ -16,7 +16,7 @@
   --accent-hover: #0369a1;
   --accent-glow: rgba(2, 132, 199, 0.2);
 
-  --grid-width: 900px;
+  --grid-width: 56.25rem;
 
   --radius-lg: 14px;
   --radius-md: 8px;
@@ -3427,6 +3427,7 @@ body.modal-open .floating-cart-widget {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.75rem;
   margin-bottom: 0;
   border-bottom: 2px solid rgba(56, 189, 248, 0.35);
   padding-bottom: 0.6rem;
@@ -3445,6 +3446,8 @@ body.modal-open .floating-cart-widget {
   color: #38bdf8;
   text-decoration: none;
   font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: color 0.2s ease;
 }
 
@@ -3579,7 +3582,7 @@ body.modal-open .floating-cart-widget {
 /* Fixed-footprint slot so the grid never shifts when the mini-overlay opens */
 .home-book-card {
   position: relative;
-  height: 138px;
+  height: 8.625rem;
   flex-shrink: 0;
   z-index: 1;
 }
@@ -3629,9 +3632,9 @@ body.modal-open .floating-cart-widget {
 
 .home-book-thumb {
   position: relative;
-  flex: 0 0 98px;
-  width: 98px;
-  min-height: 136px;
+  flex: 0 0 6.125rem;
+  width: 6.125rem;
+  min-height: 8.5rem;
   overflow: hidden;
   cursor: pointer;
   background: #0f172a;
@@ -3642,8 +3645,8 @@ body.modal-open .floating-cart-widget {
 @media (hover: hover) {
   .home-book-card:hover .home-book-thumb,
   .home-book-card:focus-within .home-book-thumb {
-    flex-basis: 122px;
-    width: 122px;
+    flex-basis: 7.625rem;
+    width: 7.625rem;
   }
 }
 
@@ -3850,7 +3853,7 @@ body.modal-open .floating-cart-widget {
 /* Navigation Cards */
 .home-nav-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
@@ -3921,6 +3924,8 @@ body.modal-open .floating-cart-widget {
   color: var(--text-muted);
   font-size: 0.84rem;
   line-height: 1.4;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Responsive */
@@ -3930,7 +3935,7 @@ body.modal-open .floating-cart-widget {
   }
   
   .home-nav-cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
